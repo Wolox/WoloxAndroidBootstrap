@@ -22,7 +22,7 @@ class String
 end
 
 puts 'Linting...'
-out = `java -jar ./check/checkstyle.jar -c ./check/google_checks.xml ./WoloxLogger/app/src/`
+out = `java -jar ./check/checkstyle.jar -c ./check/google_checks.xml ./WoloxAndroidBootstrap/app/src/`
 puts out
 if out == "Starting audit...\nAudit done.\n"
  puts 'Buena!'.green
