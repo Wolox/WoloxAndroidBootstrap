@@ -26,6 +26,5 @@ public class MainActivity extends WoloxActivity {
 
     @Override
     protected void init() {
-
     }
 }
