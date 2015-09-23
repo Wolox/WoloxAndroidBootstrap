@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class WoloxAdapter<T,VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class WoloxAdapter<T, V extends RecyclerView.ViewHolder>
+        extends RecyclerView.Adapter<V> {
 
     private List<T> mDataset;
 
