@@ -14,19 +14,19 @@ public abstract class WoloxActivity extends FragmentActivity {
         setContentView(layout());
         setUi();
         init();
-        setListeners();
         populate();
+        setListeners();
     }
 
     protected abstract int layout();
 
     protected abstract void setUi();
 
-    protected abstract void setListeners();
+    protected abstract void init();
 
     protected abstract void populate();
 
-    protected abstract void init();
+    protected abstract void setListeners();
 
     protected void showToast(int resId) {
         Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
