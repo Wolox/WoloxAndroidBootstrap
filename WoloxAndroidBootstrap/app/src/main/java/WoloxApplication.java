@@ -9,6 +9,8 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
+import org.joda.time.LocalDate;
+
 import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,6 +20,7 @@ import java.util.TimeZone;
 
 import ar.com.wolox.android.Configuration;
 import ar.com.wolox.android.service.interceptor.SecuredRequestInterceptor;
+import ar.com.wolox.android.service.serializer.DateDeserializer;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.converter.GsonConverter;
@@ -35,7 +38,7 @@ public class WoloxApplication extends Application {
         sSecureRequestInterceptor = new SecuredRequestInterceptor();
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .registerTypeAdapter(Date.class, new DateDeserializer())
+                .registerTypeAdapter(LocalDate.class, new DateDeserializer())
                 .create();
         RestAdapter apiaryAdapter = new RestAdapter.Builder()
                 .setEndpoint(Configuration.APIARY_ENDPOINT)
@@ -49,6 +52,7 @@ public class WoloxApplication extends Application {
                 .build();
     }
 
+<<<<<<< 0e9d49f87d9194aa5dbfb8aaa57851fea02b41bd:WoloxAndroidBootstrap/app/src/main/java/WoloxApplication.java
     public static class DateDeserializer implements JsonDeserializer<Date> {
         @Override
         public Date deserialize(JsonElement element, Type arg1, JsonDeserializationContext arg2)
@@ -76,6 +80,10 @@ public class WoloxApplication extends Application {
 
     public static WoloxApplication getInstance() {
         return sApplication;
+=======
+    public static Context context() {
+        return sContext;
+>>>>>>> Date Deserializer using JodaTime:WoloxLogger/app/src/main/java/WoloxApplication.java
     }
 
     @Override
