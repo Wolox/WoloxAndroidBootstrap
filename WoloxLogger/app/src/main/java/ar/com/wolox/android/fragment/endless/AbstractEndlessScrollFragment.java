@@ -1,5 +1,8 @@
 package ar.com.wolox.android.fragment.endless;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +40,7 @@ abstract class AbstractEndlessScrollFragment<T> extends WoloxFragment
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     protected View mLoadingView;
     protected View mNoResultsView;
+    protected View mOfflineModeView;
     protected Button mRetry;
     protected LinearLayout mErrorView;
     protected BaseAdapter mAdapter;
@@ -45,6 +49,7 @@ abstract class AbstractEndlessScrollFragment<T> extends WoloxFragment
     protected EndlessScrollListener mEndlessScrollListener;
 
     private int mStartOffset = 0;
+    private ConnectivityManager mConnectivityManager;
 
     protected abstract BaseAdapter loadAdapter();
 
@@ -106,6 +111,13 @@ abstract class AbstractEndlessScrollFragment<T> extends WoloxFragment
     @Override
     protected void setListeners() {
         setRefreshListener(this);
+        if (mOfflineModeView == null) return;
+        mOfflineModeView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadMore(1);
+            }
+        });
     }
 
     @Override
@@ -118,6 +130,8 @@ abstract class AbstractEndlessScrollFragment<T> extends WoloxFragment
     protected void init() {
         mAdapter = loadAdapter();
         mProvider = loadProvider();
+        mConnectivityManager = (ConnectivityManager)
+                getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 
     protected int getEndlessScrollAmount() {
@@ -199,28 +213,50 @@ abstract class AbstractEndlessScrollFragment<T> extends WoloxFragment
             return;
         }
         setStatusLoading();
-        mProvider.provide(currentPage, ELEMENTS_PER_PAGE,
-                new WoloxCallback<List<T>>() {
-                    @Override
-                    public void success(List<T> list, Response response) {
-                        if (currentPage == 1) {
-                            mList.clear();
+        if (isNetworkAvailable()) {
+            mProvider.provide(currentPage, ELEMENTS_PER_PAGE,
+                    new WoloxCallback<List<T>>() {
+                        @Override
+                        public void success(List<T> list, Response response) {
+                            mProvider.saveOfflineData(response);
+                            if (currentPage == 1) {
+                                mList.clear();
+                                if (mOfflineModeView != null) mOfflineModeView.setVisibility(View.GONE);
+                            }
+                            if (getActivity() != null && list != null && !list.isEmpty()) {
+                                mList.addAll(list);
+                                setOnItemClickListener(getItemClickListener());
+                                mAdapter.notifyDataSetChanged();
+                            }
+                            setStatusLoaded();
+                            if (!mLoadQueue.isEmpty()) loadMore(mLoadQueue.poll());
                         }
-                        if (getActivity() != null &&  list != null && !list.isEmpty()) {
-                            mList.addAll(list);
-                            setOnItemClickListener(getItemClickListener());
-                            mAdapter.notifyDataSetChanged();
-                        }
-                        setStatusLoaded();
-                        if (!mLoadQueue.isEmpty()) loadMore(mLoadQueue.poll());
-                    }
 
-                    @Override
-                    public void failure(RetrofitError retrofitError) {
-                        super.failure(retrofitError);
-                        setStatusError();
+                        @Override
+                        public void failure(RetrofitError retrofitError) {
+                            super.failure(retrofitError);
+                            setStatusError();
+                        }
                     }
-                }
-        );
+            );
+        } else {
+            loadOfflineData(currentPage);
+        }
+    }
+
+    private void loadOfflineData(final int currentPage) {
+        List offlineList = mProvider.getOfflineData();
+        if (!offlineList.isEmpty() && currentPage == 1) {
+            mList.clear();
+            mList.addAll(offlineList);
+            mAdapter.notifyDataSetChanged();
+        }
+        if (mOfflineModeView != null) mOfflineModeView.setVisibility(View.VISIBLE);
+        setStatusLoaded();
+    }
+
+    private boolean isNetworkAvailable() {
+        NetworkInfo activeNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
