@@ -73,10 +73,4 @@ public abstract class WoloxFragment<T extends BasePresenter> extends Fragment {
                 .replace(resId, f)
                 .commit();
     }
-
-    protected void hideKeyboard(EditText et) {
-        InputMethodManager imm = (InputMethodManager) getActivity()
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
-    }
 }
