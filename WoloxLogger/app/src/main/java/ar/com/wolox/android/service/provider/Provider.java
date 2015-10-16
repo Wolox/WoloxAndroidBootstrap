@@ -6,6 +6,6 @@ import retrofit.Callback;
 
 public interface Provider<T> {
 
-    void provide(int currentPage, int itemsPerPage, Callback<List<T>> callback);
+    void provide(int currentPage, int itemsPerPage, Callback<T> callback);
 
 }
