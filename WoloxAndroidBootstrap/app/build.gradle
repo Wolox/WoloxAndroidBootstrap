@@ -32,10 +32,10 @@ android {
 
     signingConfigs {
         stage {
-//            storeFile file('keystore/stage.keystore')
-//            storePassword 'android'
-//            keyAlias 'androiddebugkey'
-//            keyPassword 'android'
+            storeFile file('keystore/stage.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
         }
         production {
 //            storeFile file('keystore/playstore.keystore')
@@ -71,4 +71,5 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.3.4'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.google.android.gms:play-services:8.1.0'
+    compile 'joda-time:joda-time:2.8.2'
 }
