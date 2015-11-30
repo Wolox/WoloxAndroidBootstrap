@@ -10,12 +10,17 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public abstract class WoloxFragment extends Fragment {
+import ar.com.wolox.android.presenter.BasePresenter;
+
+public abstract class WoloxFragment<T extends BasePresenter> extends Fragment {
+
+    protected T presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(layout(), container, false);
+        presenter = createPresenter();
         setUi(v);
         init();
         populate();
@@ -47,6 +52,11 @@ public abstract class WoloxFragment extends Fragment {
      * Sets the listeners for the views of the fragment
      */
     protected abstract void setListeners();
+
+    /**
+     * Create the presenter for this fragment
+     */
+    protected abstract T createPresenter();
 
     protected void showToast(int resId) {
         Toast.makeText(getActivity(), resId, Toast.LENGTH_SHORT).show();
