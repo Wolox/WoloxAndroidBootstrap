@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
+
+import ar.com.wolox.android.R;
+import butterknife.ButterKnife;
 
 public abstract class WoloxActivity extends FragmentActivity {
 
@@ -12,21 +16,56 @@ public abstract class WoloxActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout());
-        setUi();
-        init();
-        populate();
-        setListeners();
+        ButterKnife.bind(this);
+        if (handleArguments(getIntent().getExtras())) {
+            setUi();
+            init();
+            populate();
+            setListeners();
+        } else {
+            showToast(R.string.unknown_error);
+            finish();
+        }
     }
 
     protected abstract int layout();
 
-    protected abstract void setUi();
+    /**
+     * Reads arguments sent as a Bundle and saves them as appropriate.
+     *
+     * @param args The bundle obtainable by the getExtras method of the intent.
+     * @return true if arguments were read successfully, false otherwise.
+     * Default implementation returns true.
+     */
+    protected boolean handleArguments(Bundle args) {
+        return true;
+    }
 
+    /**
+     * Loads the view elements for the activity
+     */
+    protected void setUi() {
+        // Do nothing, ButterKnife does this for us now!
+    }
+
+    /**
+     * Initializes any variables that the activity needs
+     */
     protected abstract void init();
 
-    protected abstract void populate();
+    /**
+     * Populates the view elements of the activity
+     */
+    protected void populate() {
+        // Do nothing, override if needed!
+    }
 
-    protected abstract void setListeners();
+    /**
+     * Sets the listeners for the views of the activity
+     */
+    protected void setListeners() {
+        // Do nothing, override if needed!
+    }
 
     protected void showToast(int resId) {
         Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();

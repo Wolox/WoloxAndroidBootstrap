@@ -7,8 +7,12 @@ import android.content.Context;
  */
 public class BasePresenter<T> {
 
-    private final T mViewInstance;
-    private final Context mContext;
+    private T mViewInstance;
+    private Context mContext;
+
+    public BasePresenter(T viewInstance) {
+        this.mViewInstance = viewInstance;
+    }
 
     public BasePresenter(T viewInstance, Context context) {
         this.mViewInstance = viewInstance;
@@ -23,4 +27,12 @@ public class BasePresenter<T> {
         return mContext;
     }
 
+    public boolean isViewAttached() {
+        return mViewInstance != null;
+    }
+
+    public void detachView() {
+        mViewInstance = null;
+        mContext = null;
+    }
 }
