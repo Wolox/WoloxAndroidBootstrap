@@ -11,6 +11,8 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+
+        multiDexEnabled true
     }
     lintOptions {
           checkReleaseBuilds false
@@ -75,4 +77,8 @@ dependencies {
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.google.android.gms:play-services:8.1.0'
     compile 'joda-time:joda-time:2.8.2'
+    // Testing dependencies
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:1.10.19'
+    testCompile 'org.hamcrest:hamcrest-library:1.1'
 }
