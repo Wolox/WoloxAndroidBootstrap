@@ -1,35 +1,64 @@
 package ar.com.wolox.android.callback;
 
+import android.text.TextUtils;
+
+
+import com.squareup.okhttp.ResponseBody;
+
+import java.io.IOException;
+
+import ar.com.wolox.android.utils.RetrofitErrorsUtils;
 import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public abstract class WoloxCallback<T> implements Callback<T> {
 
-    private static final String AUTH_ERROR =
+    private static final String authError =
             "java.io.IOException: No authentication challenges found";
 
+    /** Successful HTTP response */
+    public abstract void onSuccess(T response);
+
+    /** Successful HTTP response but has an error body */
+    public abstract void onCallFailed(ResponseBody responseBody, int code);
+
+    /** Invoked when a network or unexpected exception occurred during the HTTP request. */
+    public void onFailure(Throwable t) {
+        onCallFailure(t);
+    }
+
+    public abstract void onCallFailure(Throwable t);
+
     @Override
-    public void failure(RetrofitError retrofitError) {
-        if (retrofitError == null) return;
-        if (authError(retrofitError)) {
-//            AccessUtils.refreshSessionToken();
+    public void onResponse(Response<T> response, Retrofit retrofit) {
+        if (response.isSuccess()) onSuccess(response.body());
+        else failure(response.errorBody(), response.code());
+    }
+
+    public void failure(ResponseBody responseBody, int code) {
+        if (isAuthError(responseBody, code)) {
+            onCallFailed(responseBody, code);
+            //Handle authentication error
+        } else onCallFailed(responseBody, code);
+    }
+
+    protected boolean isAuthError(ResponseBody responseBody, int code) {
+        return responseBody != null
+                && (messageIsAuthError(responseBody)
+                || code == RetrofitErrorsUtils.ERROR_UNAUTHORIZED);
+    }
+
+    private boolean messageIsAuthError(ResponseBody responseBody) {
+        try {
+            String responseString = responseBody.string();
+            return !TextUtils.isEmpty(responseString)
+                    && (responseString.contains(authError)
+                    || authError.contains(responseString));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
         }
+        return false;
     }
 
-    protected boolean authError(RetrofitError retrofitError) {
-        if (retrofitError == null) return false;
-        return messageIsAuthError(retrofitError) || is401(retrofitError.getResponse());
-    }
-
-    private boolean is401(Response response) {
-        return response != null && response.getStatus() == 401;
-    }
-
-    private boolean messageIsAuthError(RetrofitError retrofitError) {
-        return retrofitError.getMessage() != null
-                && (retrofitError.getMessage().contains(AUTH_ERROR)
-                        || AUTH_ERROR.contains(retrofitError.getMessage()));
-    }
 }
-
