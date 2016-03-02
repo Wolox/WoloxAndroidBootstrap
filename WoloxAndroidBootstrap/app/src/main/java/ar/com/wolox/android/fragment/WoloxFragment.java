@@ -10,21 +10,29 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import ar.com.wolox.android.R;
 import ar.com.wolox.android.presenter.BasePresenter;
+import butterknife.ButterKnife;
 
 public abstract class WoloxFragment<T extends BasePresenter> extends Fragment {
 
-    protected T presenter;
+    protected T mPresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(layout(), container, false);
-        presenter = createPresenter();
-        setUi(v);
-        init();
-        populate();
-        setListeners();
+        ButterKnife.bind(this, v);
+        if (handleArguments(getArguments())) {
+            mPresenter = createPresenter();
+            setUi(v);
+            init();
+            populate();
+            setListeners();
+        } else {
+            showToast(R.string.unknown_error);
+            getActivity().finish();
+        }
         return v;
     }
 
@@ -34,9 +42,26 @@ public abstract class WoloxFragment<T extends BasePresenter> extends Fragment {
     protected abstract int layout();
 
     /**
+     * Reads arguments sent as a Bundle and saves them as appropriate.
+     * @param args The bundle obtainable by the getArguments method.
+     * @return true if arguments were read successfully, false otherwise.
+     * Default implementation returns true.
+     */
+    protected boolean handleArguments(Bundle args) {
+        return true;
+    }
+
+    /**
+     * Create the presenter for this fragment
+     */
+    protected abstract T createPresenter();
+
+    /**
      * Loads the view elements for the fragment
      */
-    protected abstract void setUi(View v);
+    protected void setUi(View v) {
+        // Do nothing, ButterKnife does this for us now!
+    }
 
     /**
      * Initializes any variables that the fragment needs
@@ -46,17 +71,22 @@ public abstract class WoloxFragment<T extends BasePresenter> extends Fragment {
     /**
      * Populates the view elements of the fragment
      */
-    protected abstract void populate();
+    protected void populate() {
+        // Do nothing, override if needed!
+    }
 
     /**
      * Sets the listeners for the views of the fragment
      */
-    protected abstract void setListeners();
+    protected void setListeners() {
+        // Do nothing, override if needed!
+    }
 
-    /**
-     * Create the presenter for this fragment
-     */
-    protected abstract T createPresenter();
+    @Override
+    public void onDestroy() {
+        mPresenter.detachView();
+        super.onDestroy();
+    }
 
     protected void showToast(int resId) {
         Toast.makeText(getActivity(), resId, Toast.LENGTH_SHORT).show();

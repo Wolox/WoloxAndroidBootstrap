@@ -1,5 +1,9 @@
 <resources>
+
+    <!-- General -->
+    <string name="unknown_error">Whoops! Something went wrong</string>
     <string name="error">Ups! Error</string>
     <string name="retry">Reintentar</string>
     <string name="no_results">Sin resultados</string>
+
 </resources>
