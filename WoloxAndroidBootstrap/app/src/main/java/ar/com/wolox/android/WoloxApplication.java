@@ -1,6 +1,5 @@
 package ar.com.wolox.android;
 import android.app.Application;
-import android.content.Context;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -9,6 +8,8 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.OkHttpClient;
 
 import org.joda.time.LocalDate;
 
@@ -19,17 +20,14 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.TimeZone;
 
-import ar.com.wolox.android.Configuration;
 import ar.com.wolox.android.service.interceptor.SecuredRequestInterceptor;
-import ar.com.wolox.android.service.serializer.DateDeserializer;
-import retrofit.RequestInterceptor;
-import retrofit.RestAdapter;
-import retrofit.converter.GsonConverter;
+import retrofit.GsonConverterFactory;
+import retrofit.Retrofit;
 
 public class WoloxApplication extends Application {
 
     private static WoloxApplication sApplication;
-    private static RequestInterceptor sSecureRequestInterceptor;
+    private static Interceptor sSecureRequestInterceptor;
 
     static {
         buildRestServices();
@@ -41,15 +39,17 @@ public class WoloxApplication extends Application {
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .registerTypeAdapter(LocalDate.class, new DateDeserializer())
                 .create();
-        RestAdapter apiaryAdapter = new RestAdapter.Builder()
-                .setEndpoint(Configuration.APIARY_ENDPOINT)
-                .setConverter(new GsonConverter(gson))
-                .setRequestInterceptor(sSecureRequestInterceptor)
+        OkHttpClient client = new OkHttpClient();
+        client.interceptors().add(sSecureRequestInterceptor);
+        Retrofit apiaryAdapter = new Retrofit.Builder()
+                .baseUrl(Configuration.APIARY_ENDPOINT)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
                 .build();
-        RestAdapter apiAdapter = new RestAdapter.Builder()
-                .setEndpoint(Configuration.API_ENDPOINT)
-                .setConverter(new GsonConverter(gson))
-                .setRequestInterceptor(sSecureRequestInterceptor)
+        Retrofit apiAdapter = new Retrofit.Builder()
+                .baseUrl(Configuration.API_ENDPOINT)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
                 .build();
     }
 

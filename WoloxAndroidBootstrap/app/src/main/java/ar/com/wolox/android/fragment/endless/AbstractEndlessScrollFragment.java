@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.squareup.okhttp.ResponseBody;
+
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
@@ -19,8 +21,7 @@ import ar.com.wolox.android.fragment.WoloxFragment;
 import ar.com.wolox.android.listener.EndlessScrollListener;
 import ar.com.wolox.android.listener.SmoothScrollable;
 import ar.com.wolox.android.service.provider.Provider;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import retrofit.Response;
 
 abstract class AbstractEndlessScrollFragment<T> extends WoloxFragment
         implements SwipeRefreshLayout.OnRefreshListener, SmoothScrollable {
@@ -202,7 +203,7 @@ abstract class AbstractEndlessScrollFragment<T> extends WoloxFragment
         mProvider.provide(currentPage, ELEMENTS_PER_PAGE,
                 new WoloxCallback<List<T>>() {
                     @Override
-                    public void success(List<T> list, Response response) {
+                    public void onSuccess(List<T> list) {
                         if (currentPage == 1) {
                             mList.clear();
                         }
@@ -216,9 +217,13 @@ abstract class AbstractEndlessScrollFragment<T> extends WoloxFragment
                     }
 
                     @Override
-                    public void failure(RetrofitError retrofitError) {
-                        super.failure(retrofitError);
+                    public void onCallFailed(ResponseBody responseBody, int errorCode) {
                         setStatusError();
+                    }
+
+                    @Override
+                    public void onCallFailure(Throwable t) {
+
                     }
                 }
         );

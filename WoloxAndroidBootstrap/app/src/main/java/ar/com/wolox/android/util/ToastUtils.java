@@ -26,18 +26,18 @@ public class ToastUtils {
     }
 
     public static void showToast(@StringRes int resId) {
-        showToast(WoloxApplication.context(), resId);
+        showToast(WoloxApplication.getInstance(), resId);
     }
 
     public static void showToast(@NonNull String text) {
-        showToast(WoloxApplication.context(), text);
+        showToast(WoloxApplication.getInstance(), text);
     }
 
     public static void showToast(@StringRes int resId, int toastLength) {
-        showToast(WoloxApplication.context(), resId, toastLength);
+        showToast(WoloxApplication.getInstance(), resId, toastLength);
     }
 
     public static void showToast(@NonNull String text, int toastLength) {
-        showToast(WoloxApplication.context(), text, toastLength);
+        showToast(WoloxApplication.getInstance(), text, toastLength);
     }
 }
