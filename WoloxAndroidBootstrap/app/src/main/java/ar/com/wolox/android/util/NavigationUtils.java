@@ -1,4 +1,4 @@
-package ar.com.wolox.android.utils;
+package ar.com.wolox.android.util;
 
 import android.app.Activity;
 import android.content.Context;

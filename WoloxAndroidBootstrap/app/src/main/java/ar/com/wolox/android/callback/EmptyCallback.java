@@ -1,11 +1,23 @@
 package ar.com.wolox.android.callback;
 
-import retrofit.client.Response;
+import com.squareup.okhttp.ResponseBody;
+
+import retrofit.Response;
 
 public class EmptyCallback extends WoloxCallback<Void> {
 
     @Override
-    public void success(Void aVoid, Response response) {
-        //Do nothing...
+    public void onSuccess(Void response) {
+
+    }
+
+    @Override
+    public void onCallFailed(ResponseBody responseBody, int code) {
+
+    }
+
+    @Override
+    public void onCallFailure(Throwable t) {
+
     }
 }
