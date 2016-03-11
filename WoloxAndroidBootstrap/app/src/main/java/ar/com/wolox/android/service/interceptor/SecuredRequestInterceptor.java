@@ -7,15 +7,11 @@ import java.io.IOException;
 
 public class SecuredRequestInterceptor extends ApiRestInterceptor {
 
-    public static final String SESSION_TOKEN_HEADER = "session_token";
+    public static final String SESSION_TOKEN_HEADER = "Authorization";
 
-    public Response intercept(Chain chain) throws IOException {
-        super.intercept(chain);
-        String token = "holis"; // AccessUtils.getAccessToken();
-        if (token == null) return chain.proceed(chain.request());
-        Request request = chain.request().newBuilder()
-                .header(SESSION_TOKEN_HEADER, token)
-                .build();
-        return chain.proceed(request);
+    public void addHeaders(Request.Builder requestBuilder) {
+        String token = "holis"; // AccessUtils.getSessionToken()
+        if (token == null) return;
+        requestBuilder.addHeader(SESSION_TOKEN_HEADER, token);
     }
 }

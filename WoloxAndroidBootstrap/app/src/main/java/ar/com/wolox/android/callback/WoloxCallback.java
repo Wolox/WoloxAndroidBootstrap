@@ -7,7 +7,7 @@ import com.squareup.okhttp.ResponseBody;
 
 import java.io.IOException;
 
-import ar.com.wolox.android.utils.RetrofitErrorsUtils;
+import ar.com.wolox.android.util.RetrofitErrorsUtils;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
