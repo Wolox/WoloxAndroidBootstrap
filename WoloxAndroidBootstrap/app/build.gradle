@@ -1,5 +1,6 @@
+apply from: '../jacoco.gradle'
 apply plugin: 'com.android.application'
-//apply from: 'keystore.gradle'
+apply from: 'keystore.gradle'
 
 android {
     compileSdkVersion 22
@@ -28,6 +29,7 @@ android {
         }
 
         debug {
+            testCoverageEnabled = true
             signingConfig null
         }
     }
@@ -40,10 +42,10 @@ android {
             keyPassword 'android'
         }
         production {
-//            storeFile file('keystore/playstore.keystore')
-//            storePassword store_password
-//            keyAlias key_alias
-//            keyPassword key_password
+            storeFile file('keystore/playstore.keystore')
+            storePassword store_password
+            keyAlias key_alias
+            keyPassword key_password
         }
     }
 
@@ -59,6 +61,15 @@ android {
             signingConfig signingConfigs.production
             resValue "string", "app_name", "WoloxApp"
         }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    lintOptions {
+        // I prefer avoiding a build fail if there is any warning, for they are only warnings
+        abortOnError false
     }
 
 }
@@ -80,5 +91,5 @@ dependencies {
     // Testing dependencies
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
-    testCompile 'org.hamcrest:hamcrest-library:1.1'
+    testCompile 'org.hamcrest:hamcrest-library:1.3'
 }
