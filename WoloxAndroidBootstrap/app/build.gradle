@@ -1,3 +1,4 @@
+apply plugin: 'android-sdk-manager'
 apply from: '../jacoco.gradle'
 apply plugin: 'com.android.application'
 //apply from: 'keystore.gradle'
