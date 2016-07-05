@@ -2,15 +2,13 @@ package ar.com.wolox.android.callback;
 
 import android.text.TextUtils;
 
-
-import com.squareup.okhttp.ResponseBody;
-
 import java.io.IOException;
 
 import ar.com.wolox.android.util.RetrofitErrorsUtils;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public abstract class WoloxCallback<T> implements Callback<T> {
 
@@ -24,15 +22,16 @@ public abstract class WoloxCallback<T> implements Callback<T> {
     public abstract void onCallFailed(ResponseBody responseBody, int code);
 
     /** Invoked when a network or unexpected exception occurred during the HTTP request. */
-    public void onFailure(Throwable t) {
+    @Override
+    public void onFailure(Call<T> call, Throwable t) {
         onCallFailure(t);
     }
 
     public abstract void onCallFailure(Throwable t);
 
     @Override
-    public void onResponse(Response<T> response, Retrofit retrofit) {
-        if (response.isSuccess()) onSuccess(response.body());
+    public void onResponse(Call<T> call, Response<T> response) {
+        if (response.isSuccessful()) onSuccess(response.body());
         else failure(response.errorBody(), response.code());
     }
 

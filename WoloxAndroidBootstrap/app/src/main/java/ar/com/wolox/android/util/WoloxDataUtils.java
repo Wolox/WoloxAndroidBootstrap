@@ -1,7 +1,5 @@
 package ar.com.wolox.android.util;
 
-import com.squareup.okhttp.ResponseBody;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayDeque;
@@ -15,7 +13,8 @@ import java.util.Map;
 import java.util.Set;
 
 import ar.com.wolox.android.callback.WoloxCallback;
-import retrofit.Call;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
 
 public class WoloxDataUtils {
 
@@ -85,7 +84,7 @@ public class WoloxDataUtils {
                         sCallbacks.get(oldestCallbacks.service).remove(oldestCallbacks);
                         sCallbacksAmount -= oldestCallbacks.callbacks.size();
                         for (WoloxCallback callback : oldestCallbacks.callbacks) {
-                            callback.onFailure(new Throwable());
+                            callback.onCallFailure(new Throwable());
                         }
                         iterator.remove();
                     }
@@ -118,7 +117,7 @@ public class WoloxDataUtils {
                     public void onCallFailure(Throwable t) {
                         while (!finalCallbacksQueue.isEmpty()) {
                             WoloxCallback cbToCall = finalCallbacksQueue.poll();
-                            cbToCall.onFailure(t);
+                            cbToCall.onCallFailure(t);
                         }
                     }
                 };
