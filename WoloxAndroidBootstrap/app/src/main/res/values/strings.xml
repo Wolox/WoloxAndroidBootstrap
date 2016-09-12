@@ -1,8 +1,9 @@
 <resources>
 
     <!-- General -->
-    <string name="unknown_error">Whoops! Something went wrong</string>
-    <string name="error">Ups! Error</string>
-    <string name="retry">Reintentar</string>
-    <string name="no_results">Sin resultados</string>
+    <string name="example_title">ExampleFragment</string>
+    <string name="example_textview">Some example TextView</string>
+    <string name="example_randomize">Randomize</string>
+    <string name="example_wolox">WOLOX</string>
+    <string name="example_message">The presenter generated the number %1$d and this view is displaying it</string>
 </resources>

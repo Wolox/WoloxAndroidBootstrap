@@ -7,13 +7,13 @@
 
     <application
         android:allowBackup="true"
-        android:name=".WoloxApplication"
+        android:name=".example.BootstrapApplication"
         android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher"
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".example.ExampleActivity"
+            android:name=".example.ui.ExampleActivity"
             android:screenOrientation="portrait">
 
             <intent-filter>

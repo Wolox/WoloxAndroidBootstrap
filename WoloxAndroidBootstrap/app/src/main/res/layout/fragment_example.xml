@@ -13,7 +13,7 @@
         android:layout_weight="1"
         android:layout_margin="8dp"
         android:gravity="top|center_horizontal"
-        android:text="ExampleFragment"
+        android:text="@string/example_title"
         android:textSize="16sp"
         />
 
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:gravity="center"
-        android:text="Some example TextView"
+        android:text="@string/example_textview"
         android:textSize="16sp"
         />
 
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Randomize"
+        android:text="@string/example_randomize"
         />
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_weight="1"
         android:layout_margin="8dp"
         android:gravity="bottom|center_horizontal"
-        android:text="WOLOX"
+        android:text="@string/example_wolox"
         android:textSize="16sp"
         />
 
