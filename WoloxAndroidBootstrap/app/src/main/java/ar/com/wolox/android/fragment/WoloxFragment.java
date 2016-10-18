@@ -88,6 +88,13 @@ public abstract class WoloxFragment<T extends BasePresenter> extends Fragment {
         super.onDestroy();
     }
 
+    /**
+     * @return Returns the presenter for this View
+     */
+    public T getPresenter() {
+        return mPresenter;
+    }
+
     protected void showToast(int resId) {
         Toast.makeText(getActivity(), resId, Toast.LENGTH_SHORT).show();
     }

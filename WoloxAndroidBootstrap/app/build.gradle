@@ -1,5 +1,8 @@
+apply plugin: 'android-sdk-manager'
+apply from: '../jacoco.gradle'
 apply plugin: 'com.android.application'
 //apply from: 'keystore.gradle'
+apply from: '../quality.gradle'
 
 android {
     compileSdkVersion 22
@@ -11,6 +14,8 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+
+        multiDexEnabled true
     }
     lintOptions {
           checkReleaseBuilds false
@@ -26,6 +31,7 @@ android {
         }
 
         debug {
+            testCoverageEnabled = true
             signingConfig null
         }
     }
@@ -54,9 +60,19 @@ android {
         }
 
         production {
-            signingConfig signingConfigs.production
+//            signingConfig signingConfigs.production
             resValue "string", "app_name", "WoloxApp"
         }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    lintOptions {
+        // I prefer avoiding a build fail if there is any warning, for they are only warnings
+        abortOnError true
+        warning 'InvalidPackage'
     }
 
 }
@@ -75,4 +91,8 @@ dependencies {
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.google.android.gms:play-services:8.1.0'
     compile 'joda-time:joda-time:2.8.2'
+    // Testing dependencies
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:1.10.19'
+    testCompile 'org.hamcrest:hamcrest-library:1.3'
 }

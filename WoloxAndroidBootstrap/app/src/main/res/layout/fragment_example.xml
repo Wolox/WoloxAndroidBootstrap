@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16sp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="8dp"
+        android:gravity="top|center_horizontal"
+        android:text="ExampleFragment"
+        android:textSize="16sp"
+        />
+
+    <TextView
+        android:id="@+id/fragment_example_message_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="Some example TextView"
+        android:textSize="16sp"
+        />
+
+    <Button
+        android:id="@+id/fragment_example_randomize_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Randomize"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="8dp"
+        android:gravity="bottom|center_horizontal"
+        android:text="WOLOX"
+        android:textSize="16sp"
+        />
+
+</LinearLayout>
