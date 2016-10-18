@@ -1,8 +1,6 @@
 package ar.com.wolox.android.service;
 
 import com.google.gson.Gson;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +8,10 @@ import java.util.Map;
 import ar.com.wolox.android.Configuration;
 import ar.com.wolox.android.service.interceptor.SecuredRequestInterceptor;
 import ar.com.wolox.android.service.serializer.GsonBuilder;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitServices {
 
@@ -22,10 +22,14 @@ public class RetrofitServices {
     public static void init() {
         sServices = new HashMap<>();
         Gson gson = GsonBuilder.getBasicGsonBuilder().create();
-        OkHttpClient client = new SecuredRequestInterceptor();
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        client.interceptors().add(interceptor);
+
+        HttpLoggingInterceptor loggerInterceptor = new HttpLoggingInterceptor();
+        loggerInterceptor.setLevel(HttpL oggingInterceptor.Level.BODY);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(new SecuredRequestInterceptor())
+                .addInterceptor(loggerInterceptor).build();
+
         sRetrofit = new Retrofit.Builder()
                 .baseUrl(Configuration.API_ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create(gson))

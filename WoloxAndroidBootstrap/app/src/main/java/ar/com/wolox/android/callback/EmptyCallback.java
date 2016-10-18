@@ -1,8 +1,6 @@
 package ar.com.wolox.android.callback;
 
-import com.squareup.okhttp.ResponseBody;
-
-import retrofit.Response;
+import okhttp3.ResponseBody;
 
 public class EmptyCallback extends WoloxCallback<Void> {
 

@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.squareup.okhttp.ResponseBody;
-
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
@@ -21,7 +19,7 @@ import ar.com.wolox.android.fragment.WoloxFragment;
 import ar.com.wolox.android.listener.EndlessScrollListener;
 import ar.com.wolox.android.listener.SmoothScrollable;
 import ar.com.wolox.android.service.provider.Provider;
-import retrofit.Response;
+import okhttp3.ResponseBody;
 
 abstract class AbstractEndlessScrollFragment<T> extends WoloxFragment
         implements SwipeRefreshLayout.OnRefreshListener, SmoothScrollable {

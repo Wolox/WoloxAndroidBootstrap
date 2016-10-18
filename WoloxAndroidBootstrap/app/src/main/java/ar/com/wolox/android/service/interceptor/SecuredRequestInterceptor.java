@@ -1,9 +1,6 @@
 package ar.com.wolox.android.service.interceptor;
 
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-
-import java.io.IOException;
+import okhttp3.Request;
 
 public class SecuredRequestInterceptor extends ApiRestInterceptor {
 

@@ -2,7 +2,7 @@ package ar.com.wolox.android.service.provider;
 
 import java.util.List;
 
-import retrofit.Callback;
+import retrofit2.Callback;
 
 public interface Provider<T> {
 
