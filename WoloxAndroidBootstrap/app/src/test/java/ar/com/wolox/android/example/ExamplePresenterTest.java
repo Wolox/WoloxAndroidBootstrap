@@ -4,7 +4,9 @@ import android.content.Context;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
+
+import ar.com.wolox.android.example.ui.ExamplePresenter;
+import ar.com.wolox.android.example.ui.ExampleView;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;

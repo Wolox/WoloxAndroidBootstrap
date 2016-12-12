@@ -12,7 +12,7 @@ metrics:
     build_report_file_url: 'jacoco'
   android_quality:
     name: 'Code Quality'
-    location: 'app/build/outputs/lint-results.xml'
+    location: 'app/build/outputs/lint-results-productionDebug.xml'
     enabled: true
     minimum: 70
     build_base_url: 'http://ci.wolox.com.ar/job'
