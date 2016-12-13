@@ -13,8 +13,8 @@ function openUrl {
 }
 
 ./gradlew clean lint testProductionReleaseUnitTest
-LINT_URL=app/build/outputs/lint-results-productionDebug.html
-openUrl $LINT_URL
+lint_url=app/build/outputs/lint-results-productionDebug.html
+openUrl $lint_url
 
-REPORT_URL=app/build/reports/tests/productionRelease/index.html
-openUrl $REPORT_URL
+report_url=app/build/reports/tests/productionRelease/index.html
+openUrl $report_url
