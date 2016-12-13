@@ -1,14 +1,10 @@
 package ar.com.wolox.android.example.ui;
 
-import android.Manifest;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import ar.com.wolox.android.R;
 import ar.com.wolox.wolmo.core.fragment.WoloxFragment;
-import ar.com.wolox.wolmo.core.permission.PermissionListener;
-import ar.com.wolox.wolmo.core.permission.PermissionManager;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -44,17 +40,6 @@ public class ExampleFragment extends WoloxFragment<ExamplePresenter> implements 
     @Override
     public void init() {
         getPresenter().generateRandomNumber();
-        PermissionManager.getInstance().requirePermission(this, new PermissionListener() {
-            @Override
-            public void onPermissionsGranted() {
-                Log.d(getClass().getSimpleName(), "GRANTED");
-            }
-
-            @Override
-            public void onPermissionsDenied(String[] deniedPermissions) {
-                Log.d(getClass().getSimpleName(), deniedPermissions.toString());
-            }
-        }, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO);
     }
 
     @OnClick(R.id.fragment_example_randomize_button) // Using Butterknife to set up an OnClickListener

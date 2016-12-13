@@ -25,8 +25,7 @@ android {
             keyPassword 'android'
         }
         release {
-//            TODO Generate a production keystore for the project
-            storeFile file('keystore/debug.keystore')
+            storeFile release_keystore
             storePassword store_password
             keyAlias key_alias
             keyPassword key_password
