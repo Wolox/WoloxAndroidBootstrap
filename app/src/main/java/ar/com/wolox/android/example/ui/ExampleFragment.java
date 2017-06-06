@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import ar.com.wolox.android.R;
-import ar.com.wolox.wolmo.core.fragment.WoloxFragment;
+import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ExampleFragment extends WoloxFragment<ExamplePresenter> implements ExampleView {
+public class ExampleFragment extends WolmoFragment<ExamplePresenter> implements ExampleView {
 
     // Views (using Butterknife)
     @BindView(R.id.fragment_example_message_text_view) protected TextView mMessageTextView;
@@ -34,7 +34,7 @@ public class ExampleFragment extends WoloxFragment<ExamplePresenter> implements 
 
     @Override
     public ExamplePresenter createPresenter() {
-        return new ExamplePresenter(this, getActivity());
+        return new ExamplePresenter(this);
     }
 
     @Override

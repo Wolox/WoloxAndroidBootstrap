@@ -1,7 +1,6 @@
 package ar.com.wolox.android.example.ui;
 
 
-import android.content.Context;
 import android.util.Log;
 
 import java.util.Random;
@@ -20,8 +19,8 @@ public class ExamplePresenter extends BasePresenter<ExampleView> {
     private ExampleModel mExampleModel = new ExampleModel();
 
     // Constructor
-    public ExamplePresenter(ExampleView viewInstance, Context context) {
-        super(viewInstance, context);
+    public ExamplePresenter(ExampleView viewInstance) {
+        super(viewInstance);
     }
 
     public int generateRandomNumber() {

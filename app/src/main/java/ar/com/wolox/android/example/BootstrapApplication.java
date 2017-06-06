@@ -1,17 +1,24 @@
 package ar.com.wolox.android.example;
 
-import ar.com.wolox.android.example.ExampleRetrofitServices;
-import ar.com.wolox.wolmo.core.WoloxApplication;
-import ar.com.wolox.wolmo.core.service.WoloxRetrofitServices;
+import com.squareup.leakcanary.LeakCanary;
 
-public class BootstrapApplication extends WoloxApplication {
+import ar.com.wolox.wolmo.networking.retrofit.NetworkingApplication;
+import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices;
+
+public class BootstrapApplication extends NetworkingApplication {
+
     @Override
-    public void onInit() {
-        // TODO
+    public RetrofitServices getRetrofitServices() {
+        return new ExampleRetrofitServices();
     }
 
     @Override
-    public WoloxRetrofitServices getRetrofitServices() {
-        return new ExampleRetrofitServices();
+    public void onInit() {
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
     }
 }

@@ -2,9 +2,9 @@ package ar.com.wolox.android.example.ui;
 
 
 import ar.com.wolox.android.R;
-import ar.com.wolox.wolmo.core.activity.WoloxActivity;
+import ar.com.wolox.wolmo.core.activity.WolmoActivity;
 
-public class ExampleActivity extends WoloxActivity {
+public class ExampleActivity extends WolmoActivity {
 
     @Override
     protected int layout() {
