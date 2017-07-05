@@ -1,4 +1,4 @@
-package ar.com.wolox.android.example.ui;
+package ar.com.wolox.android.example.ui.random;
 
 public interface ExampleView {
 

@@ -1,16 +1,15 @@
 package ar.com.wolox.android.example;
 
+import com.readystatesoftware.chuck.ChuckInterceptor;
 import com.squareup.leakcanary.LeakCanary;
 
-import ar.com.wolox.wolmo.networking.retrofit.NetworkingApplication;
-import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices;
+import ar.com.wolox.android.example.di.DaggerAppComponent;
+import ar.com.wolox.wolmo.core.WolmoApplication;
+import ar.com.wolox.wolmo.networking.di.DaggerNetworkingComponent;
 
-public class BootstrapApplication extends NetworkingApplication {
+import dagger.android.AndroidInjector;
 
-    @Override
-    public RetrofitServices getRetrofitServices() {
-        return new ExampleRetrofitServices();
-    }
+public class BootstrapApplication extends WolmoApplication {
 
     @Override
     public void onInit() {
@@ -20,5 +19,16 @@ public class BootstrapApplication extends NetworkingApplication {
             return;
         }
         LeakCanary.install(this);
+    }
+
+    @Override
+    protected AndroidInjector<BootstrapApplication> applicationInjector() {
+        return DaggerAppComponent.builder()
+            .networkingComponent(DaggerNetworkingComponent.builder()
+                .baseUrl(BaseConfiguration.EXAMPLE_CONFIGURAITON_KEY)
+                .okHttpInterceptors(new ChuckInterceptor(this))
+                .build())
+            .application(this)
+            .create(this);
     }
 }

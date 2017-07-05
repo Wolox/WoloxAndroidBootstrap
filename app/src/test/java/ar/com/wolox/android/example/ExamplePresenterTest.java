@@ -1,29 +1,25 @@
 package ar.com.wolox.android.example;
 
-import android.content.Context;
+import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+import ar.com.wolox.android.example.ui.random.ExamplePresenter;
+import ar.com.wolox.android.example.ui.random.ExampleView;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.com.wolox.android.example.ui.ExamplePresenter;
-import ar.com.wolox.android.example.ui.ExampleView;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
-import static org.mockito.Mockito.*;
-
 public class ExamplePresenterTest {
 
     ExampleView mExampleView;
-    Context mContext;
     ExamplePresenter mExamplePresenter;
 
     @Before
     public void createInstances() {
         mExampleView = mock(ExampleView.class);
-        mContext = mock(Context.class);
-        mExamplePresenter = new ExamplePresenter(mExampleView);
+        mExamplePresenter = new ExamplePresenter();
     }
 
     @Test
@@ -31,8 +27,8 @@ public class ExamplePresenterTest {
 
         int randomNumberGenerated = mExamplePresenter.generateRandomNumber();
 
-        assertThat(randomNumberGenerated, greaterThanOrEqualTo(ExamplePresenter.NUMBER_MIN));
-        assertThat(randomNumberGenerated, lessThanOrEqualTo(ExamplePresenter.NUMBER_MAX));
+        assertThat(randomNumberGenerated).isGreaterThanOrEqualTo(ExamplePresenter.NUMBER_MIN);
+        assertThat(randomNumberGenerated).isLessThanOrEqualTo(ExamplePresenter.NUMBER_MAX);
     }
 
     @Test

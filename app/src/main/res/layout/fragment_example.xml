@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16sp"
     android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16sp">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -14,8 +14,7 @@
         android:layout_margin="8dp"
         android:gravity="top|center_horizontal"
         android:text="@string/example_title"
-        android:textSize="16sp"
-        />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/fragment_example_message_text_view"
@@ -24,16 +23,14 @@
         android:layout_margin="8dp"
         android:gravity="center"
         android:text="@string/example_textview"
-        android:textSize="16sp"
-        />
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/fragment_example_randomize_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="@string/example_randomize"
-        />
+        android:text="@string/example_randomize" />
 
     <TextView
         android:layout_width="match_parent"
@@ -42,7 +39,21 @@
         android:layout_margin="8dp"
         android:gravity="bottom|center_horizontal"
         android:text="@string/example_wolox"
-        android:textSize="16sp"
-        />
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/fragment_example_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Username"/>
+
+
+    <Button
+        android:id="@+id/fragment_example_go_to_viewpager_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/example_randomize" />
 
 </LinearLayout>
