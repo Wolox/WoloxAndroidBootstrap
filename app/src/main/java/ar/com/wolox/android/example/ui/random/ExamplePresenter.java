@@ -1,12 +1,14 @@
 package ar.com.wolox.android.example.ui;
 
-
 import android.util.Log;
-
-import java.util.Random;
 
 import ar.com.wolox.android.example.model.ExampleModel;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
+import ar.com.wolox.wolmo.core.util.ToastUtils;
+
+import java.util.Random;
+
+import javax.inject.Inject;
 
 public class ExamplePresenter extends BasePresenter<ExampleView> {
 
@@ -17,10 +19,12 @@ public class ExamplePresenter extends BasePresenter<ExampleView> {
 
     // Variables
     private ExampleModel mExampleModel = new ExampleModel();
+    private ToastUtils mToastUtils;
 
     // Constructor
-    public ExamplePresenter(ExampleView viewInstance) {
-        super(viewInstance);
+    @Inject
+    public ExamplePresenter(ToastUtils toastUtils) {
+        mToastUtils = toastUtils;
     }
 
     public int generateRandomNumber() {
@@ -32,6 +36,7 @@ public class ExamplePresenter extends BasePresenter<ExampleView> {
 
         // Notify the view so it can update the UI however it wants to
         getView().onRandomNumberUpdate(mExampleModel.someNumber);
+        mToastUtils.show("LALALALALA: " + mExampleModel.someNumber);
 
         // Note: Remember that the presenter doesn't know and doesn't care about what the View
         // does with the new value of the random number, it only cares about the backend

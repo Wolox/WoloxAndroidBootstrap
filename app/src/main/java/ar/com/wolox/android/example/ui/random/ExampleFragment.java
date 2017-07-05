@@ -1,10 +1,15 @@
 package ar.com.wolox.android.example.ui;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.TextView;
 
 import ar.com.wolox.android.R;
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
+
+import javax.inject.Inject;
+
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -17,6 +22,9 @@ public class ExampleFragment extends WolmoFragment<ExamplePresenter> implements 
     // Resources
     @BindString(R.string.example_message) String mMessage;
 
+    @Inject
+    public ExampleFragment() {}
+
     // Fragments default constructors shouldn't be overridden, always prefer this method instead
     public static ExampleFragment newInstance() {
 
@@ -27,18 +35,19 @@ public class ExampleFragment extends WolmoFragment<ExamplePresenter> implements 
         return fragment;
     }
 
+
     @Override
     public int layout() {
         return R.layout.fragment_example;
     }
 
     @Override
-    public ExamplePresenter createPresenter() {
-        return new ExamplePresenter(this);
+    public void init() {
     }
 
     @Override
-    public void init() {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         getPresenter().generateRandomNumber();
     }
 
