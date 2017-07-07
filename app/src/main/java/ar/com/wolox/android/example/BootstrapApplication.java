@@ -25,9 +25,10 @@ public class BootstrapApplication extends WolmoApplication {
     protected AndroidInjector<BootstrapApplication> applicationInjector() {
         return DaggerAppComponent.builder()
             .networkingComponent(DaggerNetworkingComponent.builder()
-                .baseUrl(BaseConfiguration.EXAMPLE_CONFIGURAITON_KEY)
+                .baseUrl(Configuration.EXAMPLE_CONFIGURAITON_KEY)
                 .okHttpInterceptors(new ChuckInterceptor(this))
                 .build())
+            .sharedPreferencesName(Configuration.SHARED_PREFERENCES_NAME)
             .application(this)
             .create(this);
     }

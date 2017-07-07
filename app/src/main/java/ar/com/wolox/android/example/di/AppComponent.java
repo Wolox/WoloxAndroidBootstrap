@@ -25,6 +25,9 @@ public interface AppComponent extends AndroidInjector<BootstrapApplication> {
         @BindsInstance
         public abstract Builder application(Application application);
 
+        @BindsInstance
+        public abstract Builder sharedPreferencesName(String sharedPrefName);
+
         public abstract Builder networkingComponent(NetworkingComponent networkingComponent);
 
     }
