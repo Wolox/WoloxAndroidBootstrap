@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.Pair;
 import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 
 import ar.com.wolox.android.R;
 import ar.com.wolox.android.example.ui.viewpager.page1.Page1Fragment;
@@ -19,11 +20,11 @@ import butterknife.BindView;
 
 public class ViewPagerFragment extends WolmoFragment<BasePresenter> {
 
-    @Inject Page1Fragment mPage1Fragment;
-    @Inject Page2Fragment mPage2Fragment;
-
     @BindView(R.id.fragment_viewpager_pager) ViewPager mViewPager;
     @BindView(R.id.fragment_viewpager_title_strip) PagerTitleStrip mPagerTitleStrip;
+
+    @Inject Page1Fragment mPage1Fragment;
+    @Inject Page2Fragment mPage2Fragment;
 
     private FragmentPagerAdapter mFragmentPagerAdapter;
 

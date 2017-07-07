@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import ar.com.wolox.android.R;
 import ar.com.wolox.android.example.ui.viewpager.ViewpagerActivity;
+import ar.com.wolox.android.example.utils.Extras;
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
 
 import javax.inject.Inject;
@@ -22,9 +23,8 @@ import butterknife.OnTextChanged;
 public class ExampleFragment extends WolmoFragment<ExamplePresenter> implements ExampleView {
 
     // Views (using Butterknife)
-    @BindView(R.id.fragment_example_message_text_view) TextView mMessageTextView;
     @BindView(R.id.fragment_example_username) TextView mUsername;
-    @BindView(R.id.fragment_example_go_to_viewpager_button) Button mGoToViewpager;
+    @BindView(R.id.fragment_example_login) Button mGoToViewpager;
 
     // Resources
     @BindString(R.string.example_message) String mMessage;
@@ -45,12 +45,6 @@ public class ExampleFragment extends WolmoFragment<ExamplePresenter> implements 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getPresenter().generateRandomNumber();
-    }
-
-    @OnClick(R.id.fragment_example_randomize_button) // Using Butterknife to set up an OnClickListener
-    protected void onRandomizeButtonClick() {
-        getPresenter().generateRandomNumber(); // The click behaviour is handled inside the presenter
     }
 
     @OnTextChanged(R.id.fragment_example_username)
@@ -58,20 +52,13 @@ public class ExampleFragment extends WolmoFragment<ExamplePresenter> implements 
         mGoToViewpager.setEnabled(!TextUtils.isEmpty(value));
     }
 
-    @OnClick(R.id.fragment_example_go_to_viewpager_button)
+    @OnClick(R.id.fragment_example_login)
     public void onGoToViewpage() {
-        Intent intent = new Intent(getActivity(), ViewpagerActivity.class);
-        intent.putExtra("username", mUsername.getText());
-        startActivity(intent);
+        getPresenter().storeUsername(mUsername.getText().toString());
     }
 
-    @Override
-    public void onRandomNumberUpdate(int someNumber) {
-        // Do some frontend logic here
-        String msg = String.format(mMessage, someNumber);
-        mMessageTextView.setText(msg);
-
-        // Note: The View doesn't care about how the data (in this case a number) was retrieved,
-        // it let's the presenter deal with that and only cares about the UI
+    public void onUsernameSaved() {
+        Intent intent = new Intent(getActivity(), ViewpagerActivity.class);
+        startActivity(intent);
     }
 }

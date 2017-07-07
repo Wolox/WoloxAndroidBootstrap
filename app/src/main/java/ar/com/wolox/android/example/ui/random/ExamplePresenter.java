@@ -1,9 +1,12 @@
 package ar.com.wolox.android.example.ui.random;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import ar.com.wolox.android.example.model.ExampleModel;
+import ar.com.wolox.android.example.utils.Extras;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
+import ar.com.wolox.wolmo.core.util.StorageUtils;
 import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices;
 
 import java.util.Random;
@@ -18,25 +21,17 @@ public class ExamplePresenter extends BasePresenter<ExampleView> {
     public static final int NUMBER_MIN = 200;
 
     // Variables
+    private StorageUtils mStorageUtils;
     private ExampleModel mExampleModel = new ExampleModel();
 
     // Constructor
     @Inject
-    public ExamplePresenter() {}
-
-    public int generateRandomNumber() {
-
-        // Do some backend logic here, in this case generate just some random number
-        // between a given range and update our model
-        mExampleModel.someNumber = (new Random().nextInt((NUMBER_MAX - NUMBER_MIN) + 1)) + NUMBER_MIN;
-        Log.i(TAG, "A new random number has been generated: " + mExampleModel.someNumber);
-
-        // Notify the view so it can update the UI however it wants to
-        getView().onRandomNumberUpdate(mExampleModel.someNumber);
-
-        // Note: Remember that the presenter doesn't know and doesn't care about what the View
-        // does with the new value of the random number, it only cares about the backend
-        return mExampleModel.someNumber;
+    public ExamplePresenter(StorageUtils storageUtils) {
+        mStorageUtils = storageUtils;
     }
 
+    public void storeUsername(String text) {
+        mStorageUtils.storeInSharedPreferences(Extras.UserLogin.USERNAME, text);
+        getView().onUsernameSaved();
+    }
 }

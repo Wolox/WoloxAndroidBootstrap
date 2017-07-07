@@ -6,4 +6,5 @@ public interface IPage2View {
 
     void setNewsBody(String body);
 
+    void showError();
 }

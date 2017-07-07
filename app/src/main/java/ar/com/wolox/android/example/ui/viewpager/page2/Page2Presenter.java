@@ -24,19 +24,34 @@ public class Page2Presenter extends BasePresenter<IPage2View> {
     public void onViewAttached() {
         mRetrofitServices.getService(PostService.class).getPostById(1).enqueue(new NetworkCallback<Post>() {
             @Override
-            public void onResponseSuccessful(Post response) {
-                getView().setNewsTitle(response.getTitle());
-                getView().setNewsBody(response.getBody());
+            public void onResponseSuccessful(final Post response) {
+                runIfViewAttached(new Consumer<IPage2View>() {
+                    @Override
+                    public void accept(IPage2View view) {
+                        view.setNewsTitle(response.getTitle());
+                        view.setNewsBody(response.getBody());
+                    }
+                });
             }
 
             @Override
             public void onResponseFailed(ResponseBody responseBody, int code) {
-
+                runIfViewAttached(new Runnable() {
+                    @Override
+                    public void run() {
+                        getView().showError();
+                    }
+                });
             }
 
             @Override
             public void onCallFailure(Throwable t) {
-
+                runIfViewAttached(new Runnable() {
+                    @Override
+                    public void run() {
+                        getView().showError();
+                    }
+                });
             }
         });
     }
