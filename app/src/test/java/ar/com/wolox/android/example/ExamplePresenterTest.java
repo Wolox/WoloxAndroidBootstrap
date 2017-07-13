@@ -23,7 +23,7 @@ public class ExamplePresenterTest {
     public void createInstances() {
         mExampleView = mock(ExampleView.class);
         mContext = mock(Context.class);
-        mExamplePresenter = new ExamplePresenter(mExampleView, mContext);
+        mExamplePresenter = new ExamplePresenter(mExampleView);
     }
 
     @Test

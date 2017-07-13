@@ -80,14 +80,15 @@ buildscript {
     ext.butterknife_version = '8.6.0'
     ext.chuck_version = '1.0.4'
     ext.leak_canary_version = '1.5.1'
+    ext.wolmo_version = 'v1.1.0'
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     // Wolmo
-    compile 'com.github.Wolox:wolmo-core-android:v1.0.0'
-    compile 'com.github.Wolox:wolmo-networking-android:v1.0.0'
+    compile "com.github.Wolox:wolmo-core-android:$wolmo_version"
+    compile "com.github.Wolox:wolmo-networking-android:$wolmo_version"
 
     // Android support libraries
     compile "com.android.support:support-compat:$support_library_version"
