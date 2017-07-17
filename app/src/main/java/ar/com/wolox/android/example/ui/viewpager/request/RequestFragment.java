@@ -1,4 +1,4 @@
-package ar.com.wolox.android.example.ui.viewpager.page2;
+package ar.com.wolox.android.example.ui.viewpager.request;
 
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
@@ -11,7 +11,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class Page2Fragment extends WolmoFragment<Page2Presenter> implements IPage2View {
+public class RequestFragment extends WolmoFragment<RequestPresenter> implements IRequestView {
 
     @BindView(R.id.fragment_page2_toolbar) Toolbar mToolbar;
     @BindView(R.id.fragment_page2_title) TextView mTitle;
@@ -20,11 +20,11 @@ public class Page2Fragment extends WolmoFragment<Page2Presenter> implements IPag
     @Inject ToastUtils mToastUtils;
 
     @Inject
-    public Page2Fragment() {}
+    public RequestFragment() {}
 
     @Override
     public int layout() {
-        return R.layout.fragment_page2;
+        return R.layout.fragment_request;
     }
 
     @Override

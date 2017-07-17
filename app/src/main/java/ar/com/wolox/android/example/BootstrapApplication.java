@@ -6,6 +6,7 @@ import com.squareup.leakcanary.LeakCanary;
 import ar.com.wolox.android.example.di.DaggerAppComponent;
 import ar.com.wolox.wolmo.core.WolmoApplication;
 import ar.com.wolox.wolmo.networking.di.DaggerNetworkingComponent;
+import ar.com.wolox.wolmo.networking.di.NetworkingComponent;
 
 import dagger.android.AndroidInjector;
 
@@ -24,12 +25,16 @@ public class BootstrapApplication extends WolmoApplication {
     @Override
     protected AndroidInjector<BootstrapApplication> applicationInjector() {
         return DaggerAppComponent.builder()
-            .networkingComponent(DaggerNetworkingComponent.builder()
-                .baseUrl(Configuration.EXAMPLE_CONFIGURAITON_KEY)
-                .okHttpInterceptors(new ChuckInterceptor(this))
-                .build())
+            .networkingComponent(buildDaggerNetworkingComponent())
             .sharedPreferencesName(Configuration.SHARED_PREFERENCES_NAME)
             .application(this)
             .create(this);
+    }
+
+    private NetworkingComponent buildDaggerNetworkingComponent() {
+        return DaggerNetworkingComponent.builder()
+            .baseUrl(Configuration.EXAMPLE_CONFIGURAITON_KEY)
+            .okHttpInterceptors(new ChuckInterceptor(this))
+            .build();
     }
 }

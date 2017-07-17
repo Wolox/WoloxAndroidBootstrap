@@ -1,19 +1,13 @@
-package ar.com.wolox.android.example.ui.random;
-
-import android.content.SharedPreferences;
-import android.util.Log;
+package ar.com.wolox.android.example.ui.example;
 
 import ar.com.wolox.android.example.model.ExampleModel;
 import ar.com.wolox.android.example.utils.Extras;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 import ar.com.wolox.wolmo.core.util.StorageUtils;
-import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices;
-
-import java.util.Random;
 
 import javax.inject.Inject;
 
-public class ExamplePresenter extends BasePresenter<ExampleView> {
+public class ExamplePresenter extends BasePresenter<IExampleView> {
 
     // Constants
     public static final String TAG = "ExamplePresenter";

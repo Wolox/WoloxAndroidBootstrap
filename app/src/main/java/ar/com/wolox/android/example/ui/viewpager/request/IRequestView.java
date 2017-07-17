@@ -1,6 +1,6 @@
-package ar.com.wolox.android.example.ui.viewpager.page2;
+package ar.com.wolox.android.example.ui.viewpager.request;
 
-public interface IPage2View {
+public interface IRequestView {
 
     void setNewsTitle(String title);
 

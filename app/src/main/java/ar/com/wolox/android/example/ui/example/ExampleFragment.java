@@ -1,4 +1,4 @@
-package ar.com.wolox.android.example.ui.random;
+package ar.com.wolox.android.example.ui.example;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import ar.com.wolox.android.R;
 import ar.com.wolox.android.example.ui.viewpager.ViewpagerActivity;
-import ar.com.wolox.android.example.utils.Extras;
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
 
 import javax.inject.Inject;
@@ -20,7 +19,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-public class ExampleFragment extends WolmoFragment<ExamplePresenter> implements ExampleView {
+public class ExampleFragment extends WolmoFragment<ExamplePresenter> implements IExampleView {
 
     // Views (using Butterknife)
     @BindView(R.id.fragment_example_username) TextView mUsername;

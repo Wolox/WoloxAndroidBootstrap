@@ -5,11 +5,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.Pair;
 import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 
 import ar.com.wolox.android.R;
-import ar.com.wolox.android.example.ui.viewpager.page1.Page1Fragment;
-import ar.com.wolox.android.example.ui.viewpager.page2.Page2Fragment;
+import ar.com.wolox.android.example.ui.viewpager.random.RandomFragment;
+import ar.com.wolox.android.example.ui.viewpager.request.RequestFragment;
 import ar.com.wolox.wolmo.core.adapter.viewpager.SimpleFragmentPagerAdapter;
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
@@ -23,8 +22,8 @@ public class ViewPagerFragment extends WolmoFragment<BasePresenter> {
     @BindView(R.id.fragment_viewpager_pager) ViewPager mViewPager;
     @BindView(R.id.fragment_viewpager_title_strip) PagerTitleStrip mPagerTitleStrip;
 
-    @Inject Page1Fragment mPage1Fragment;
-    @Inject Page2Fragment mPage2Fragment;
+    @Inject RandomFragment mPage1Fragment;
+    @Inject RequestFragment mPage2Fragment;
 
     private FragmentPagerAdapter mFragmentPagerAdapter;
 

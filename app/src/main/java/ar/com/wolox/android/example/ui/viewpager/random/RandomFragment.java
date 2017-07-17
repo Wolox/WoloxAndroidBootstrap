@@ -1,4 +1,4 @@
-package ar.com.wolox.android.example.ui.viewpager.page1;
+package ar.com.wolox.android.example.ui.viewpager.random;
 
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
@@ -13,7 +13,7 @@ import butterknife.BindColor;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class Page1Fragment extends WolmoFragment<Page1Presenter> implements IPage1View {
+public class RandomFragment extends WolmoFragment<RandomPresenter> implements IRandomView {
 
     @BindView(R.id.fragment_page1_toolbar) Toolbar mToolbar;
     @BindView(R.id.fragment_page1_title) TextView mFragmentViewpagerTitle;
@@ -23,11 +23,11 @@ public class Page1Fragment extends WolmoFragment<Page1Presenter> implements IPag
     @BindColor(R.color.colorPrimary) int mColorPrimary;
 
     @Inject
-    public Page1Fragment() {}
+    public RandomFragment() {}
 
     @Override
     public int layout() {
-        return R.layout.fragment_page1;
+        return R.layout.fragment_random;
     }
 
     @Override

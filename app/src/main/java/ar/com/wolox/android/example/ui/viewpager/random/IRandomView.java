@@ -1,6 +1,6 @@
-package ar.com.wolox.android.example.ui.viewpager.page1;
+package ar.com.wolox.android.example.ui.viewpager.random;
 
-public interface IPage1View {
+public interface IRandomView {
 
     void setUsername(String username);
 

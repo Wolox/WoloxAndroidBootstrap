@@ -9,14 +9,17 @@ import ar.com.wolox.wolmo.networking.di.NetworkingComponent;
 import ar.com.wolox.wolmo.networking.di.modules.NetworkingModule;
 import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices;
 
+import javax.inject.Singleton;
+
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 
+@Singleton
 @Component(dependencies = {NetworkingComponent.class},
-           modules = { AndroidSupportInjectionModule.class, ContextModule.class, InjectorsModule.class,
-               ViewPagerModule.class})
+           modules = { AndroidSupportInjectionModule.class, ContextModule.class,
+               InjectorsModule.class, ViewPagerModule.class})
 public interface AppComponent extends AndroidInjector<BootstrapApplication> {
 
     @Component.Builder

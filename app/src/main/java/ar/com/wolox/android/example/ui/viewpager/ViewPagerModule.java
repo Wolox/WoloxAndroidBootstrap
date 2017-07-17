@@ -2,8 +2,8 @@ package ar.com.wolox.android.example.ui.viewpager;
 
 import android.app.Activity;
 
-import ar.com.wolox.android.example.ui.viewpager.page1.Page1Fragment;
-import ar.com.wolox.android.example.ui.viewpager.page2.Page2Fragment;
+import ar.com.wolox.android.example.ui.viewpager.random.RandomFragment;
+import ar.com.wolox.android.example.ui.viewpager.request.RequestFragment;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 
 import dagger.Binds;
@@ -26,10 +26,10 @@ public abstract class ViewPagerModule {
     abstract ViewPagerFragment viewpagerFragment();
 
     @ContributesAndroidInjector
-    abstract Page1Fragment page1Fragment();
+    abstract RandomFragment page1Fragment();
 
     @ContributesAndroidInjector
-    abstract Page2Fragment page2Fragment();
+    abstract RequestFragment page2Fragment();
 
     @Provides
     static BasePresenter providesBasePresenter() {

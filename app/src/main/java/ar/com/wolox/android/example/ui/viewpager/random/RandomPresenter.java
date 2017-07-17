@@ -1,7 +1,7 @@
-package ar.com.wolox.android.example.ui.viewpager.page1;
+package ar.com.wolox.android.example.ui.viewpager.random;
 
-import static ar.com.wolox.android.example.ui.random.ExamplePresenter.NUMBER_MAX;
-import static ar.com.wolox.android.example.ui.random.ExamplePresenter.NUMBER_MIN;
+import static ar.com.wolox.android.example.ui.example.ExamplePresenter.NUMBER_MAX;
+import static ar.com.wolox.android.example.ui.example.ExamplePresenter.NUMBER_MIN;
 
 import android.util.Log;
 
@@ -14,16 +14,15 @@ import java.util.Random;
 
 import javax.inject.Inject;
 
-public class Page1Presenter extends BasePresenter<IPage1View> {
+public class RandomPresenter extends BasePresenter<IRandomView> {
 
-    public static final String TAG = "Page1Presenter";
+    public static final String TAG = "RandomPresenter";
 
     private StorageUtils mStorageUtils;
     private ExampleModel mExampleModel = new ExampleModel();
 
-
     @Inject
-    Page1Presenter(StorageUtils storageUtils) {
+    RandomPresenter(StorageUtils storageUtils) {
         mStorageUtils = storageUtils;
     }
 
@@ -31,7 +30,6 @@ public class Page1Presenter extends BasePresenter<IPage1View> {
     public void onViewAttached() {
         getView().setUsername(mStorageUtils.getStringFromSharedPreferences(Extras.UserLogin.USERNAME, "None"));
     }
-
 
     public int generateRandomNumber() {
 
