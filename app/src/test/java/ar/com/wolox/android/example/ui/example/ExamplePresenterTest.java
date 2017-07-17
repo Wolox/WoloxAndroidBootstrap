@@ -1,39 +1,41 @@
-package ar.com.wolox.android.example;
+package ar.com.wolox.android.example.ui.example;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.matches;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import ar.com.wolox.android.example.ui.example.ExamplePresenter;
-import ar.com.wolox.android.example.ui.example.ExampleView;
+import ar.com.wolox.android.example.utils.Extras;
+import ar.com.wolox.wolmo.core.util.StorageUtils;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class ExamplePresenterTest {
 
-    ExampleView mExampleView;
-    ExamplePresenter mExamplePresenter;
+    private IExampleView mExampleView;
+    private ExamplePresenter mExamplePresenter;
+    private StorageUtils mStorageUtils;
 
     @Before
     public void createInstances() {
-        mExampleView = mock(ExampleView.class);
-       // mExamplePresenter = new ExamplePresenter();
+        mExampleView = mock(IExampleView.class);
+        mStorageUtils = mock(StorageUtils.class);
+        mExamplePresenter = new ExamplePresenter(mStorageUtils);
     }
 
     @Test
-    public void randomNumberIsValid() {
-        // TODO
-       // int randomNumberGenerated = mExamplePresenter.generateRandomNumber();
-
-       // assertThat(randomNumberGenerated).isGreaterThanOrEqualTo(ExamplePresenter.NUMBER_MIN);
-       // assertThat(randomNumberGenerated).isLessThanOrEqualTo(ExamplePresenter.NUMBER_MAX);
+    public void usernameIsStored() {
+        mExamplePresenter.attachView(mExampleView);
+        mExamplePresenter.storeUsername("Test");
+        verify(mStorageUtils, times(1)).storeInSharedPreferences(matches(Extras.UserLogin.USERNAME), matches("Test"));
     }
 
     @Test
-    public void randomNumberUpdatesView() {
-        //int randomNumberGenerated = mExamplePresenter.generateRandomNumber();
-        //verify(mExampleView, times(1)).onRandomNumberUpdate(randomNumberGenerated);
+    public void storeUsernameUpdatesView() {
+        mExamplePresenter.attachView(mExampleView);
+        mExamplePresenter.storeUsername("Test");
+        verify(mExampleView, times(1)).onUsernameSaved();
     }
 
 }
