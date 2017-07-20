@@ -7,12 +7,11 @@ import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 @Module
-public abstract class InjectorsModule {
+public abstract class AppModule {
 
     @ContributesAndroidInjector
     abstract ExampleActivity exampleActivity();
 
     @ContributesAndroidInjector
     abstract ExampleFragment exampleFragment();
-
 }

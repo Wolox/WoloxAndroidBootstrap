@@ -2,6 +2,7 @@ package ar.com.wolox.android.example.ui.example;
 
 import ar.com.wolox.android.example.model.ExampleModel;
 import ar.com.wolox.android.example.utils.Extras;
+import ar.com.wolox.android.example.utils.UserUtils;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 import ar.com.wolox.wolmo.core.util.StorageUtils;
 
@@ -15,17 +16,17 @@ public class ExamplePresenter extends BasePresenter<IExampleView> {
     public static final int NUMBER_MIN = 200;
 
     // Variables
-    private StorageUtils mStorageUtils;
+    private UserUtils mUserUtils;
     private ExampleModel mExampleModel = new ExampleModel();
 
     // Constructor
     @Inject
-    public ExamplePresenter(StorageUtils storageUtils) {
-        mStorageUtils = storageUtils;
+    public ExamplePresenter(UserUtils userUtils) {
+        mUserUtils = userUtils;
     }
 
     public void storeUsername(String text) {
-        mStorageUtils.storeInSharedPreferences(Extras.UserLogin.USERNAME, text);
+        mUserUtils.setUsername(text);
         getView().onUsernameSaved();
     }
 }

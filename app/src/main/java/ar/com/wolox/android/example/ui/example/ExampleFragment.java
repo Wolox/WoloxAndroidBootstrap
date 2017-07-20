@@ -25,9 +25,6 @@ public class ExampleFragment extends WolmoFragment<ExamplePresenter> implements 
     @BindView(R.id.fragment_example_username) TextView mUsername;
     @BindView(R.id.fragment_example_login) Button mGoToViewpager;
 
-    // Resources
-    @BindString(R.string.example_message) String mMessage;
-
     @Inject
     public ExampleFragment() {}
 

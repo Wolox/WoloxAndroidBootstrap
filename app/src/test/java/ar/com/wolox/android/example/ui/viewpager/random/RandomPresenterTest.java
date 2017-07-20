@@ -10,6 +10,7 @@ import static org.mockito.Mockito.when;
 
 import ar.com.wolox.android.example.ui.example.ExamplePresenter;
 import ar.com.wolox.android.example.utils.Extras;
+import ar.com.wolox.android.example.utils.UserUtils;
 import ar.com.wolox.wolmo.core.util.StorageUtils;
 
 import org.junit.Before;
@@ -19,21 +20,18 @@ public class RandomPresenterTest {
 
     private IRandomView mPage1View;
     private RandomPresenter mRandomPresenter;
-    private StorageUtils mStorageUtils;
+    private UserUtils mUserUtils;
 
     @Before
     public void createInstances() {
         mPage1View = mock(IRandomView.class);
-        mStorageUtils = mock(StorageUtils.class);
-        mRandomPresenter = new RandomPresenter(mStorageUtils);
+        mUserUtils = mock(UserUtils.class);
+        mRandomPresenter = new RandomPresenter(mUserUtils);
     }
 
     @Test
     public void updatesViewOnAttach() {
-        when(mStorageUtils
-            .getStringFromSharedPreferences(matches(Extras.UserLogin.USERNAME), anyString()))
-            .thenReturn("TestUser");
-
+        when(mUserUtils.getUsername()).thenReturn("TestUser");
         mRandomPresenter.attachView(mPage1View);
         verify(mPage1View, times(1)).setUsername("TestUser");
     }

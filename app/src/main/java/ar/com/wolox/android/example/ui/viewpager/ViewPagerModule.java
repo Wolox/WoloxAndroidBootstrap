@@ -26,10 +26,10 @@ public abstract class ViewPagerModule {
     abstract ViewPagerFragment viewpagerFragment();
 
     @ContributesAndroidInjector
-    abstract RandomFragment page1Fragment();
+    abstract RandomFragment randomFragment();
 
     @ContributesAndroidInjector
-    abstract RequestFragment page2Fragment();
+    abstract RequestFragment requestFragment();
 
     @Provides
     static BasePresenter providesBasePresenter() {

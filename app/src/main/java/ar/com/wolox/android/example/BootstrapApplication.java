@@ -1,12 +1,15 @@
 package ar.com.wolox.android.example;
 
+import com.google.gson.FieldNamingPolicy;
 import com.readystatesoftware.chuck.ChuckInterceptor;
 import com.squareup.leakcanary.LeakCanary;
 
+import ar.com.wolox.android.BuildConfig;
 import ar.com.wolox.android.example.di.DaggerAppComponent;
 import ar.com.wolox.wolmo.core.WolmoApplication;
 import ar.com.wolox.wolmo.networking.di.DaggerNetworkingComponent;
 import ar.com.wolox.wolmo.networking.di.NetworkingComponent;
+import ar.com.wolox.wolmo.networking.utils.LoggingUtils;
 
 import dagger.android.AndroidInjector;
 
@@ -24,17 +27,21 @@ public class BootstrapApplication extends WolmoApplication {
 
     @Override
     protected AndroidInjector<BootstrapApplication> applicationInjector() {
-        return DaggerAppComponent.builder()
-            .networkingComponent(buildDaggerNetworkingComponent())
-            .sharedPreferencesName(Configuration.SHARED_PREFERENCES_NAME)
-            .application(this)
+        return DaggerAppComponent.builder().networkingComponent(buildDaggerNetworkingComponent())
+            .sharedPreferencesName(Configuration.SHARED_PREFERENCES_NAME).application(this)
             .create(this);
     }
 
     private NetworkingComponent buildDaggerNetworkingComponent() {
-        return DaggerNetworkingComponent.builder()
-            .baseUrl(Configuration.EXAMPLE_CONFIGURAITON_KEY)
-            .okHttpInterceptors(new ChuckInterceptor(this))
-            .build();
+        NetworkingComponent.Builder builder =
+            DaggerNetworkingComponent.builder().baseUrl(Configuration.EXAMPLE_CONFIGURAITON_KEY)
+                .gsonNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+
+        if (BuildConfig.DEBUG) {
+            builder.okHttpInterceptors(
+                LoggingUtils.buildHttpLoggingInterceptor(), new ChuckInterceptor(this));
+        }
+
+        return builder.build();
     }
 }
