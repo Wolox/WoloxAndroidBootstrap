@@ -75,9 +75,10 @@ buildscript {
     ext.support_library_version = '25.3.1'
     ext.dagger_version = '2.11-rc2'
     ext.butterknife_version = '8.6.0'
-    ext.leak_canary_version = '1.5.1'
     ext.wolmo_version = 'dagger-android-SNAPSHOT'
+    ext.leak_canary_version = '1.5.1'
     ext.chuck_version = '1.0.4'
+    ext.powermock_version = '1.7.0'
 }
 
 dependencies {
@@ -110,5 +111,7 @@ dependencies {
     testCompile "junit:junit:4.12"
     testCompile "org.mockito:mockito-inline:2.8.47"
     testCompile "org.assertj:assertj-core:3.8.0"
+    testCompile "org.powermock:powermock-module-junit4:$powermock_version"
+    testCompile "org.powermock:powermock-api-mockito2:$powermock_version"
     testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
 }

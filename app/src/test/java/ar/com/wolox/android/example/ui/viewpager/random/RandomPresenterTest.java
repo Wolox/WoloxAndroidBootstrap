@@ -1,21 +1,25 @@
 package ar.com.wolox.android.example.ui.viewpager.random;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.matches;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import android.util.Log;
+
 import ar.com.wolox.android.example.ui.example.ExamplePresenter;
-import ar.com.wolox.android.example.utils.Extras;
 import ar.com.wolox.android.example.utils.UserUtils;
-import ar.com.wolox.wolmo.core.util.StorageUtils;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({Log.class})
 public class RandomPresenterTest {
 
     private IRandomView mPage1View;
@@ -24,6 +28,9 @@ public class RandomPresenterTest {
 
     @Before
     public void createInstances() {
+        // Mock calls to android.util.Log
+        PowerMockito.mockStatic(Log.class);
+
         mPage1View = mock(IRandomView.class);
         mUserUtils = mock(UserUtils.class);
         mRandomPresenter = new RandomPresenter(mUserUtils);

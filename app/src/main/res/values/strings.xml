@@ -2,14 +2,15 @@
 
     <!-- General -->
     <string name="example_title">ExampleFragment</string>
-    <string name="example_textview">Some example TextView</string>
+    <string name="example_textview">Press the button to generate a random number</string>
     <string name="example_randomize">Randomize</string>
     <string name="example_wolox">WOLOX</string>
     <string name="example_message">The presenter generated the number %1$d and this view is displaying it</string>
     <string name="page_1_title">Username: %1$s</string>
-    <string name="page_1_toolbar_title">Press the button to generate a random number</string>
+    <string name="page_1_toolbar_title">Random number example</string>
     <string name="page_2_title">Page 2</string>
     <string name="page_2_toolbar_title">Example Request</string>
     <string name="fragment_example_username">Username</string>
     <string name="fragment_example_login">Login</string>
+
 </resources>
