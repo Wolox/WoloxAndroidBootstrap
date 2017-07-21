@@ -17,3 +17,11 @@
 #}
 
 -keepattributes EnclosingMethod
+
+
+###############################################################################
+## Gson models
+###############################################################################
+
+# Application classes that will be serialized/deserialized over Gson
+-keep class ar.com.wolox.android.example.model.** { *; }
