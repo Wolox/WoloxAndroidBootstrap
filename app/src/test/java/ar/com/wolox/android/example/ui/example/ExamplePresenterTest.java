@@ -1,14 +1,10 @@
 package ar.com.wolox.android.example.ui.example;
 
-import static org.mockito.ArgumentMatchers.matches;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.mockingDetails;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import ar.com.wolox.android.example.utils.Extras;
 import ar.com.wolox.android.example.utils.UserUtils;
-import ar.com.wolox.wolmo.core.util.StorageUtils;
 
 import org.junit.Before;
 import org.junit.Test;

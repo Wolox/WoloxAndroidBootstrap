@@ -7,9 +7,6 @@ import ar.com.wolox.android.example.ui.viewpager.ViewPagerModule;
 import ar.com.wolox.wolmo.core.di.modules.ContextModule;
 import ar.com.wolox.wolmo.core.di.scopes.ApplicationScope;
 import ar.com.wolox.wolmo.networking.di.NetworkingComponent;
-import ar.com.wolox.wolmo.networking.di.scopes.NetworkingScope;
-
-import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;

@@ -1,10 +1,8 @@
 package ar.com.wolox.android.example.ui.example;
 
 import ar.com.wolox.android.example.model.ExampleModel;
-import ar.com.wolox.android.example.utils.Extras;
 import ar.com.wolox.android.example.utils.UserUtils;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
-import ar.com.wolox.wolmo.core.util.StorageUtils;
 
 import javax.inject.Inject;
 

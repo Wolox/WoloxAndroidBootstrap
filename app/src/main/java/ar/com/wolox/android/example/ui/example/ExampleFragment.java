@@ -14,7 +14,6 @@ import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
 
 import javax.inject.Inject;
 
-import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
