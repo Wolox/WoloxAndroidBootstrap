@@ -87,6 +87,7 @@ dependencies {
     // Wolmo
     compile "com.github.Wolox:wolmo-core-android:$wolmo_version"
     compile "com.github.Wolox:wolmo-networking-android:$wolmo_version"
+    compile "com.squareup.okhttp3:logging-interceptor:3.7.0"
 
     // Android support libraries
     compile "com.android.support:support-compat:$support_library_version"

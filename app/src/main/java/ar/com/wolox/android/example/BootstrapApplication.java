@@ -1,5 +1,7 @@
 package ar.com.wolox.android.example;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.FieldNamingPolicy;
 import com.readystatesoftware.chuck.ChuckInterceptor;
 import com.squareup.leakcanary.LeakCanary;
@@ -12,6 +14,8 @@ import ar.com.wolox.wolmo.networking.di.NetworkingComponent;
 import ar.com.wolox.wolmo.networking.utils.LoggingUtils;
 
 import dagger.android.AndroidInjector;
+import okhttp3.logging.HttpLoggingInterceptor;
+import okhttp3.logging.HttpLoggingInterceptor.Level;
 
 public class BootstrapApplication extends WolmoApplication {
 
@@ -39,9 +43,22 @@ public class BootstrapApplication extends WolmoApplication {
 
         if (BuildConfig.DEBUG) {
             builder.okHttpInterceptors(
-                LoggingUtils.buildHttpLoggingInterceptor(), new ChuckInterceptor(this));
+                buildHttpLoggingInterceptor(Level.BODY), new ChuckInterceptor(this));
         }
 
         return builder.build();
+    }
+
+    /**
+     * Returns a {@link HttpLoggingInterceptor} with the level given by <b>level</b>.
+     *
+     * @param level - Logging level for the interceptor.
+     * @return New instance of interceptor
+     */
+    private static HttpLoggingInterceptor buildHttpLoggingInterceptor(
+          @NonNull HttpLoggingInterceptor.Level level) {
+        HttpLoggingInterceptor loggerInterceptor = new HttpLoggingInterceptor();
+        loggerInterceptor.setLevel(level);
+        return loggerInterceptor;
     }
 }
