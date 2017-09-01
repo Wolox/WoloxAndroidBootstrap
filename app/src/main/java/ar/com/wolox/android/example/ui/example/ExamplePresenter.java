@@ -1,7 +1,7 @@
 package ar.com.wolox.android.example.ui.example;
 
 import ar.com.wolox.android.example.model.ExampleModel;
-import ar.com.wolox.android.example.utils.UserUtils;
+import ar.com.wolox.android.example.utils.UserSession;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 
 import javax.inject.Inject;
@@ -14,17 +14,17 @@ public class ExamplePresenter extends BasePresenter<IExampleView> {
     public static final int NUMBER_MIN = 200;
 
     // Variables
-    private UserUtils mUserUtils;
+    private UserSession mUserSession;
     private ExampleModel mExampleModel = new ExampleModel();
 
     // Constructor
     @Inject
-    public ExamplePresenter(UserUtils userUtils) {
-        mUserUtils = userUtils;
+    public ExamplePresenter(UserSession userSession) {
+        mUserSession = userSession;
     }
 
     public void storeUsername(String text) {
-        mUserUtils.setUsername(text);
+        mUserSession.setUsername(text);
         getView().onUsernameSaved();
     }
 }

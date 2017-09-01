@@ -9,7 +9,7 @@ import static org.mockito.Mockito.when;
 import android.util.Log;
 
 import ar.com.wolox.android.example.ui.example.ExamplePresenter;
-import ar.com.wolox.android.example.utils.UserUtils;
+import ar.com.wolox.android.example.utils.UserSession;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +24,7 @@ public class RandomPresenterTest {
 
     private IRandomView mPage1View;
     private RandomPresenter mRandomPresenter;
-    private UserUtils mUserUtils;
+    private UserSession mUserSession;
 
     @Before
     public void createInstances() {
@@ -32,13 +32,13 @@ public class RandomPresenterTest {
         PowerMockito.mockStatic(Log.class);
 
         mPage1View = mock(IRandomView.class);
-        mUserUtils = mock(UserUtils.class);
-        mRandomPresenter = new RandomPresenter(mUserUtils);
+        mUserSession = mock(UserSession.class);
+        mRandomPresenter = new RandomPresenter(mUserSession);
     }
 
     @Test
     public void updatesViewOnAttach() {
-        when(mUserUtils.getUsername()).thenReturn("TestUser");
+        when(mUserSession.getUsername()).thenReturn("TestUser");
         mRandomPresenter.attachView(mPage1View);
         verify(mPage1View, times(1)).setUsername("TestUser");
     }

@@ -11,7 +11,6 @@ import ar.com.wolox.android.example.di.DaggerAppComponent;
 import ar.com.wolox.wolmo.core.WolmoApplication;
 import ar.com.wolox.wolmo.networking.di.DaggerNetworkingComponent;
 import ar.com.wolox.wolmo.networking.di.NetworkingComponent;
-import ar.com.wolox.wolmo.networking.utils.LoggingUtils;
 
 import dagger.android.AndroidInjector;
 import okhttp3.logging.HttpLoggingInterceptor;

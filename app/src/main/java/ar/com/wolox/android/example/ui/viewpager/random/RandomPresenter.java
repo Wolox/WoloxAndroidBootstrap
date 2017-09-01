@@ -6,7 +6,7 @@ import static ar.com.wolox.android.example.ui.example.ExamplePresenter.NUMBER_MI
 import android.util.Log;
 
 import ar.com.wolox.android.example.model.ExampleModel;
-import ar.com.wolox.android.example.utils.UserUtils;
+import ar.com.wolox.android.example.utils.UserSession;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 
 import java.util.Random;
@@ -17,17 +17,17 @@ public class RandomPresenter extends BasePresenter<IRandomView> {
 
     public static final String TAG = "RandomPresenter";
 
-    private UserUtils mUserUtils;
+    private UserSession mUserSession;
     private ExampleModel mExampleModel = new ExampleModel();
 
     @Inject
-    RandomPresenter(UserUtils userUtils) {
-        mUserUtils = userUtils;
+    RandomPresenter(UserSession userSession) {
+        mUserSession = userSession;
     }
 
     @Override
     public void onViewAttached() {
-        getView().setUsername(mUserUtils.getUsername());
+        getView().setUsername(mUserSession.getUsername());
     }
 
     public int generateRandomNumber() {

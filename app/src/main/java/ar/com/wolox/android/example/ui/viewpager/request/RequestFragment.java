@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import ar.com.wolox.android.R;
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
-import ar.com.wolox.wolmo.core.util.ToastUtils;
+import ar.com.wolox.wolmo.core.util.ToastFactory;
 
 import javax.inject.Inject;
 
@@ -17,7 +17,7 @@ public class RequestFragment extends WolmoFragment<RequestPresenter> implements 
     @BindView(R.id.fragment_page2_title) TextView mTitle;
     @BindView(R.id.fragment_page2_body) TextView mBody;
 
-    @Inject ToastUtils mToastUtils;
+    @Inject ToastFactory mToastFactory;
 
     @Inject
     public RequestFragment() {}
@@ -44,6 +44,6 @@ public class RequestFragment extends WolmoFragment<RequestPresenter> implements 
 
     @Override
     public void showError() {
-        mToastUtils.show(R.string.unknown_error);
+        mToastFactory.show(R.string.unknown_error);
     }
 }
