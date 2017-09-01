@@ -75,6 +75,7 @@ buildscript {
     ext.support_library_version = '25.3.1'
     ext.dagger_version = '2.11-rc2'
     ext.butterknife_version = '8.6.0'
+    // TODO Update wolmo version when merging both wolmo-core and wolmo-networking
     ext.wolmo_version = 'dagger-android-SNAPSHOT'
     ext.leak_canary_version = '1.5.1'
     ext.chuck_version = '1.0.4'
@@ -87,7 +88,6 @@ dependencies {
     // Wolmo
     compile "com.github.Wolox:wolmo-core-android:$wolmo_version"
     compile "com.github.Wolox:wolmo-networking-android:$wolmo_version"
-    compile "com.squareup.okhttp3:logging-interceptor:3.7.0"
 
     // Android support libraries
     compile "com.android.support:support-compat:$support_library_version"
@@ -103,6 +103,7 @@ dependencies {
     // Third-party
     compile "com.jakewharton:butterknife:$butterknife_version"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
+    compile "com.squareup.okhttp3:logging-interceptor:3.7.0"
     debugCompile "com.readystatesoftware.chuck:library:$chuck_version"
     releaseCompile "com.readystatesoftware.chuck:library-no-op:$chuck_version"
     debugCompile "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
