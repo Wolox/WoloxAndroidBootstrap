@@ -13,13 +13,13 @@ idea {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "ar.com.wolox.android.example"
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0.0"
 
@@ -72,7 +72,7 @@ android {
 }
 
 buildscript {
-    ext.support_library_version = '25.3.1'
+    ext.support_library_version = '26.1.0'
     ext.dagger_version = '2.11-rc2'
     ext.butterknife_version = '8.6.0'
     // TODO Update wolmo version when merging both wolmo-core and wolmo-networking
