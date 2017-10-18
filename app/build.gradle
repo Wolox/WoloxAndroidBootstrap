@@ -73,7 +73,7 @@ android {
 
 buildscript {
     ext.support_library_version = '26.1.0'
-    ext.dagger_version = '2.11-rc2'
+    ext.dagger_version = '2.12'
     ext.butterknife_version = '8.6.0'
     // TODO Update wolmo version when merging both wolmo-core and wolmo-networking
     ext.wolmo_version = 'dagger-android-SNAPSHOT'
