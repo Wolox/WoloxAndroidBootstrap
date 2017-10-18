@@ -1,6 +1,7 @@
 package ar.com.wolox.android.example.ui.viewpager;
 
 import ar.com.wolox.android.R;
+import ar.com.wolox.android.example.ui.viewpager.fragment.ViewPagerFragment;
 import ar.com.wolox.wolmo.core.activity.WolmoActivity;
 
 import javax.inject.Inject;

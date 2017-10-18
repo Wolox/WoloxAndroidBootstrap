@@ -4,26 +4,21 @@ import android.app.Activity;
 
 import ar.com.wolox.android.example.ui.viewpager.random.RandomFragment;
 import ar.com.wolox.android.example.ui.viewpager.request.RequestFragment;
-import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 
 import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 import dagger.android.ActivityKey;
 import dagger.android.AndroidInjector;
 import dagger.android.ContributesAndroidInjector;
 import dagger.multibindings.IntoMap;
 
-@Module(subcomponents = ViewPagerSubcomponent.class)
-public abstract class ViewPagerModule {
+@Module(subcomponents = ViewPagerActivitySubcomponent.class)
+public abstract class ViewPagerActivityModule {
 
     @Binds
     @IntoMap
     @ActivityKey(ViewpagerActivity.class)
-    abstract AndroidInjector.Factory<? extends Activity> binfViewPagerActivityFactory(ViewPagerSubcomponent.Builder builder);
-
-    @ContributesAndroidInjector
-    abstract ViewPagerFragment viewpagerFragment();
+    abstract AndroidInjector.Factory<? extends Activity> bindViewPagerActivityFactory(ViewPagerActivitySubcomponent.Builder builder);
 
     @ContributesAndroidInjector
     abstract RandomFragment randomFragment();
@@ -31,8 +26,4 @@ public abstract class ViewPagerModule {
     @ContributesAndroidInjector
     abstract RequestFragment requestFragment();
 
-    @Provides
-    static BasePresenter providesBasePresenter() {
-        return new BasePresenter();
-    }
 }
