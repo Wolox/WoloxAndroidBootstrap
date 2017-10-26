@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="200px" width="500px" src="https://user-images.githubusercontent.com/4109119/32069804-8a691d20-ba8a-11e7-8d02-6f8f849b6398.png"/>
+  <img height="200px" width="500px" src="https://user-images.githubusercontent.com/4109119/32070030-42060272-ba8b-11e7-8609-469decac7029.png"/>
 </p>
 
 # Wolox Android Bootstrap
