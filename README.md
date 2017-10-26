@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="140px" width="400px" src="https://user-images.githubusercontent.com/4109119/32069410-61a40dce-ba89-11e7-8dfa-e1745c629cc3.png"/>
+  <img height="200px" width="500px" src="https://user-images.githubusercontent.com/4109119/32069804-8a691d20-ba8a-11e7-8d02-6f8f849b6398.png"/>
 </p>
 
 # Wolox Android Bootstrap
@@ -47,7 +47,7 @@ and is developed by [Wolox](http://www.wolox.com.ar).
 
 ## <a name="topic-license"></a> License
 
-**WOLMO ANDROID BOOSTRAP** is available under the MIT [license](https://raw.githubusercontent.com/Wolox/WoloxAndroidBootstrap/master/LICENSE.md).
+**WOLOX ANDROID BOOSTRAP** is available under the MIT [license](https://raw.githubusercontent.com/Wolox/WoloxAndroidBootstrap/master/LICENSE.md).
 
     Copyright (c) Wolox S.A
 
