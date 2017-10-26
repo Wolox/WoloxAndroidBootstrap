@@ -17,6 +17,7 @@ These features can be found in Wolox Android Boostrap:
 * Fully integrated with [WOLMO](https://github.com/Wolox/wolmo-core-android)
 and [WOLMO NETWORKING](https://github.com/Wolox/wolmo-networking-android)
 * Usage example of the MVP architecture.
+* Has [WARP](https://github.com/Wolox/warp) for quick assets creation and optimization.
 * Includes [Butterknife](https://github.com/JakeWharton/butterknife) for view binding
 * Includes [Chuck](https://github.com/jgilfelt/chuck) for easy HTTP requests logging.
 * Includes [Leak Canary](https://github.com/square/leakcanary) for memory leak detection.
