@@ -13,13 +13,13 @@ idea {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "ar.com.wolox.android.example"
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0.0"
 
@@ -54,6 +54,9 @@ android {
         }
     }
 
+    // Change the "default" to whatever fits. At least one 'dimension' is required by gradle.
+    flavorDimensions "default"
+
     productFlavors {
         stage {
             applicationId defaultConfig.applicationId + ".stage"
@@ -73,18 +76,23 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 buildscript {
-    ext.support_library_version = '25.3.1'
+    ext.support_library_version = '26.1.0'
     ext.butterknife_version = '8.6.0'
     ext.chuck_version = '1.0.4'
     ext.leak_canary_version = '1.5.1'
-    ext.wolmo_version = 'v1.1.0'
+    ext.wolmo_version = 'v1.3.0'
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
 
     // Wolmo
     compile "com.github.Wolox:wolmo-core-android:$wolmo_version"
