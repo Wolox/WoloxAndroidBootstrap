@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         applicationId "ar.com.wolox.android.example"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0.0"
@@ -54,6 +54,9 @@ android {
         }
     }
 
+    // Change the "default" to whatever fits. At least one 'dimension' is required by gradle.
+    flavorDimensions "default"
+
     productFlavors {
         stage {
             applicationId defaultConfig.applicationId + ".stage"
@@ -69,12 +72,17 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 buildscript {
     ext.support_library_version = '26.1.0'
     ext.dagger_version = '2.12'
-    ext.butterknife_version = '8.6.0'
+    // TODO: ???? ext.butterknife_version = '8.6.0'
     // TODO Update wolmo version when merging both wolmo-core and wolmo-networking
     ext.wolmo_version = 'dagger-android-SNAPSHOT'
     ext.leak_canary_version = '1.5.1'
@@ -83,37 +91,37 @@ buildscript {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // Wolmo
-    compile "com.github.Wolox:wolmo-core-android:$wolmo_version"
-    compile "com.github.Wolox:wolmo-networking-android:$wolmo_version"
+    implementation "com.github.Wolox:wolmo-core-android:$wolmo_version"
+    implementation "com.github.Wolox:wolmo-networking-android:$wolmo_version"
 
     // Android support libraries
-    compile "com.android.support:support-compat:$support_library_version"
-    compile "com.android.support:recyclerview-v7:$support_library_version"
-    compile "com.android.support:design:$support_library_version"
+    implementation "com.android.support:support-compat:$support_library_version"
+    implementation "com.android.support:recyclerview-v7:$support_library_version"
+    implementation "com.android.support:design:$support_library_version"
 
     // Dagger
-    compile "com.google.dagger:dagger:$dagger_version"
-    compile "com.google.dagger:dagger-android-support:$dagger_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
 
     // Third-party
-    compile "com.jakewharton:butterknife:$butterknife_version"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
-    compile "com.squareup.okhttp3:logging-interceptor:3.7.0"
-    debugCompile "com.readystatesoftware.chuck:library:$chuck_version"
-    releaseCompile "com.readystatesoftware.chuck:library-no-op:$chuck_version"
-    debugCompile "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
-    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
+ //   implementation "com.jakewharton:butterknife:$butterknife_version"
+ //   annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:3.7.0"
+    debugImplementation "com.readystatesoftware.chuck:library:$chuck_version"
+    releaseImplementation "com.readystatesoftware.chuck:library-no-op:$chuck_version"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
 
     // Testing dependencies
-    testCompile "junit:junit:4.12"
-    testCompile "org.mockito:mockito-inline:2.8.47"
-    testCompile "org.assertj:assertj-core:3.8.0"
-    testCompile "org.powermock:powermock-module-junit4:$powermock_version"
-    testCompile "org.powermock:powermock-api-mockito2:$powermock_version"
-    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.mockito:mockito-inline:2.8.47"
+    testImplementation "org.assertj:assertj-core:3.8.0"
+    testImplementation "org.powermock:powermock-module-junit4:$powermock_version"
+    testImplementation "org.powermock:powermock-api-mockito2:$powermock_version"
+    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
 }
