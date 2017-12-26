@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'idea'
+apply plugin: 'jacoco-android'
+apply plugin: 'com.github.kt3k.coveralls'
 apply from: 'keystore.gradle'
 apply from: '../jacoco.gradle'
 apply from: '../quality.gradle'
@@ -79,12 +81,18 @@ android {
     }
 }
 
+jacocoAndroidUnitTestReport {
+    excludes = defaultExcludes + ['**/*_Factory.class']
+}
+
+coveralls {
+    jacocoReportPath = "${buildDir}/reports/jacoco/jacocoTestReleaseUnitTestReport/jacocoTestReleaseUnitTestReport.xml"
+}
+
 buildscript {
     ext.support_library_version = '26.1.0'
-    ext.dagger_version = '2.12'
-    // TODO: ???? ext.butterknife_version = '8.6.0'
-    // TODO Update wolmo version when merging both wolmo-core and wolmo-networking
-    ext.wolmo_version = 'dagger-android-SNAPSHOT'
+    ext.dagger_version = '2.13'
+    ext.wolmo_version = 'v2.0.0-rc1'
     ext.leak_canary_version = '1.5.1'
     ext.chuck_version = '1.0.4'
     ext.powermock_version = '1.7.0'
@@ -94,8 +102,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // Wolmo
-    implementation "com.github.Wolox:wolmo-core-android:$wolmo_version"
-    implementation "com.github.Wolox:wolmo-networking-android:$wolmo_version"
+    implementation "com.github.wolox:wolmo-core-android:$wolmo_version"
+    implementation "com.github.wolox:wolmo-networking-android:$wolmo_version"
 
     // Android support libraries
     implementation "com.android.support:support-compat:$support_library_version"
@@ -109,9 +117,7 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
 
     // Third-party
- //   implementation "com.jakewharton:butterknife:$butterknife_version"
- //   annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:3.7.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:3.9.0"
     debugImplementation "com.readystatesoftware.chuck:library:$chuck_version"
     releaseImplementation "com.readystatesoftware.chuck:library-no-op:$chuck_version"
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
@@ -119,7 +125,7 @@ dependencies {
 
     // Testing dependencies
     testImplementation "junit:junit:4.12"
-    testImplementation "org.mockito:mockito-inline:2.8.47"
+    testImplementation "org.mockito:mockito-inline:2.13.0"
     testImplementation "org.assertj:assertj-core:3.8.0"
     testImplementation "org.powermock:powermock-module-junit4:$powermock_version"
     testImplementation "org.powermock:powermock-api-mockito2:$powermock_version"
