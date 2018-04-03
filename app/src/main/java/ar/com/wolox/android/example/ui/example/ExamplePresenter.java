@@ -1,6 +1,5 @@
 package ar.com.wolox.android.example.ui.example;
 
-import ar.com.wolox.android.example.model.ExampleModel;
 import ar.com.wolox.android.example.utils.UserSession;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 
@@ -15,7 +14,6 @@ public class ExamplePresenter extends BasePresenter<IExampleView> {
 
     // Variables
     private UserSession mUserSession;
-    private ExampleModel mExampleModel = new ExampleModel();
 
     // Constructor
     @Inject
