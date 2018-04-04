@@ -29,10 +29,10 @@ and [WOLMO NETWORKING](https://github.com/Wolox/wolmo-networking-android)
 
 1. Clone this repository
 2. Change the **applicationId** in the *app/build.gradle* file
-3. Change the ***WoloxApplication*** class name
-4. Setup the API endpoints (if neccesary) in the *Configuration*/*BaseConfiguration* classes
+3. Change the ***BootstrapApplication*** class name to the name of your application
+4. Setup the API endpoints (if necessary) in the *Configuration*/*BaseConfiguration* classes
 5. Change the launcher icons under *main*/*stage* directories
-6. Setup the production keystore credentials: run `keystore.sh` or create *app/keystore.gradle* file manually:
+6. Setup the production keystore credentials: run `scripts/keystore.sh` from the project root directory or create *app/keystore.gradle* file manually:
 ```gradle
 ext.release_keystore=file('...')
 ext.key_alias='...'
