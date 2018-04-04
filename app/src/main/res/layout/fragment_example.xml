@@ -3,46 +3,43 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/spacing_large"
     android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16sp">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/spacing_none"
         android:layout_weight="1"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/spacing_medium_more"
         android:gravity="top|center_horizontal"
         android:text="@string/example_title"
-        android:textSize="16sp"
-        />
+        android:textSize="@dimen/font_medium_extra" />
 
-    <TextView
-        android:id="@+id/fragment_example_message_text_view"
+    <EditText
+        android:id="@+id/fragment_example_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginTop="@dimen/spacing_large_extra"
+        android:layout_marginLeft="@dimen/spacing_large_extra"
+        android:layout_marginRight="@dimen/spacing_large_extra"
         android:gravity="center"
-        android:text="@string/example_textview"
-        android:textSize="16sp"
-        />
+        android:hint="@string/fragment_example_username" />
 
     <Button
-        android:id="@+id/fragment_example_randomize_button"
+        android:id="@+id/fragment_example_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="@string/example_randomize"
-        />
+        android:layout_margin="@dimen/spacing_medium_more"
+        android:text="@string/fragment_example_login" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/spacing_none"
         android:layout_weight="1"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/spacing_medium_more"
         android:gravity="bottom|center_horizontal"
         android:text="@string/example_wolox"
-        android:textSize="16sp"
-        />
+        android:textSize="@dimen/font_medium_extra" />
 
 </LinearLayout>

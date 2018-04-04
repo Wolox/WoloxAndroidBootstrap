@@ -1,26 +1,33 @@
-package ar.com.wolox.android.example.ui;
+package ar.com.wolox.android.example.ui.viewpager.random;
 
+import static ar.com.wolox.android.example.ui.example.ExamplePresenter.NUMBER_MAX;
+import static ar.com.wolox.android.example.ui.example.ExamplePresenter.NUMBER_MIN;
 
 import android.util.Log;
 
-import java.util.Random;
-
 import ar.com.wolox.android.example.model.ExampleModel;
+import ar.com.wolox.android.example.utils.UserSession;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 
-public class ExamplePresenter extends BasePresenter<ExampleView> {
+import java.util.Random;
 
-    // Constants
-    public static final String TAG = "ExamplePresenter";
-    public static final int NUMBER_MAX = 1000;
-    public static final int NUMBER_MIN = 200;
+import javax.inject.Inject;
 
-    // Variables
+public class RandomPresenter extends BasePresenter<IRandomView> {
+
+    public static final String TAG = "RandomPresenter";
+
+    private UserSession mUserSession;
     private ExampleModel mExampleModel = new ExampleModel();
 
-    // Constructor
-    public ExamplePresenter(ExampleView viewInstance) {
-        super(viewInstance);
+    @Inject
+    RandomPresenter(UserSession userSession) {
+        mUserSession = userSession;
+    }
+
+    @Override
+    public void onViewAttached() {
+        getView().setUsername(mUserSession.getUsername());
     }
 
     public int generateRandomNumber() {
@@ -37,5 +44,4 @@ public class ExamplePresenter extends BasePresenter<ExampleView> {
         // does with the new value of the random number, it only cares about the backend
         return mExampleModel.someNumber;
     }
-
 }
