@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/fragment_page1_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/spacing_large"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fragment_page1_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_none"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/spacing_medium_more"
+            android:gravity="top|center_horizontal"
+            android:text="@string/page_1_title"
+            android:textSize="@dimen/font_medium_extra" />
+
+        <TextView
+            android:id="@+id/fragment_page1_message_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_medium_more"
+            android:gravity="center"
+            android:text="@string/example_textview"
+            android:textSize="@dimen/font_medium_extra" />
+
+        <Button
+            android:id="@+id/fragment_page1_randomize_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_medium_more"
+            android:text="@string/example_randomize" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_none"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/spacing_medium_more"
+            android:gravity="bottom|center_horizontal"
+            android:text="@string/example_wolox"
+            android:textSize="@dimen/font_medium_extra" />
+
+    </LinearLayout>
+</LinearLayout>

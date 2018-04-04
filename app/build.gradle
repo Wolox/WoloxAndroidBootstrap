@@ -1,9 +1,11 @@
-apply from: '../jacoco.gradle'
 apply plugin: 'com.android.application'
+apply plugin: 'idea'
+apply plugin: 'jacoco-android'
+apply plugin: 'com.github.kt3k.coveralls'
 apply from: 'keystore.gradle'
+apply from: '../jacoco.gradle'
 apply from: '../quality.gradle'
 apply from: '../scripts/warp/warp_task.gradle'
-apply plugin: 'idea'
 
 idea {
     module {
@@ -13,13 +15,13 @@ idea {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "ar.com.wolox.android.example"
-        minSdkVersion 16
-        targetSdkVersion 25
+        minSdkVersion 19
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0.0"
 
@@ -54,6 +56,9 @@ android {
         }
     }
 
+    // Change the "default" to whatever fits. At least one 'dimension' is required by gradle.
+    flavorDimensions "default"
+
     productFlavors {
         stage {
             applicationId defaultConfig.applicationId + ".stage"
@@ -66,45 +71,58 @@ android {
         }
     }
 
-    testOptions {
-        unitTests.returnDefaultValues = true
-    }
-
     lintOptions {
         abortOnError false
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+jacocoAndroidUnitTestReport {
+    excludes = defaultExcludes + ['**/*_Factory.class']
 }
 
 buildscript {
-    ext.support_library_version = '25.3.1'
-    ext.butterknife_version = '8.6.0'
-    ext.chuck_version = '1.0.4'
+    ext.support_library_version = '27.1.0'
+    ext.dagger_version = '2.13'
+    ext.wolmo_version = '2.0.1'
     ext.leak_canary_version = '1.5.1'
-    ext.wolmo_version = 'v1.1.0'
+    ext.chuck_version = '1.1.0'
+    ext.powermock_version = '1.7.0'
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // Wolmo
-    compile "com.github.Wolox:wolmo-core-android:$wolmo_version"
-    compile "com.github.Wolox:wolmo-networking-android:$wolmo_version"
+    implementation "com.github.wolox:wolmo-networking-android:$wolmo_version"
 
     // Android support libraries
-    compile "com.android.support:support-compat:$support_library_version"
-    compile "com.android.support:recyclerview-v7:$support_library_version"
+    implementation "com.android.support:support-compat:$support_library_version"
+    implementation "com.android.support:recyclerview-v7:$support_library_version"
+    implementation "com.android.support:design:$support_library_version"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
 
     // Third-party
-    compile "com.jakewharton:butterknife:$butterknife_version"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
-    debugCompile "com.readystatesoftware.chuck:library:$chuck_version"
-    releaseCompile "com.readystatesoftware.chuck:library-no-op:$chuck_version"
-    debugCompile "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
-    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
+    implementation "com.jakewharton:butterknife:9.0.0-SNAPSHOT"
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-SNAPSHOT'
+    implementation "com.squareup.okhttp3:logging-interceptor:3.9.0"
+    debugImplementation "com.readystatesoftware.chuck:library:$chuck_version"
+    releaseImplementation "com.readystatesoftware.chuck:library-no-op:$chuck_version"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
 
     // Testing dependencies
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:1.10.19'
-    testCompile 'org.hamcrest:hamcrest-library:1.3'
-    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.mockito:mockito-inline:2.13.0"
+    testImplementation "org.assertj:assertj-core:3.9.0"
+    testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
 }
