@@ -12,7 +12,7 @@
     <!-- Enables us to suppress warnings for particular lines of code via annotation. -->
     <module name="SuppressWarningsFilter" />
 
-    <!--<module name="FileLength"/>-->
+    <!-- ¿Limitar la cantidad de líneas por archivo? -->
 
     <!-- Unnecessary multiple blank lines. -->
     <module name="RegexpMultiline">
@@ -37,6 +37,7 @@
                       value="protected" />
         </module>
         <module name="JavadocMethod">
+            <property name="minLineCount" value="10" />
             <property name="scope"
                       value="protected" />
             <property name="allowMissingPropertyJavadoc"
@@ -44,6 +45,8 @@
         </module>
         <!-- ¿JavaDoc para las variables de clases que se expongan? -->
         <module name="JavadocStyle">
+            <property name="scope"
+                      value="protected" />
             <property name="checkFirstSentence"
                       value="false" />
         </module>
