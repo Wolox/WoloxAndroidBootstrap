@@ -4,10 +4,10 @@
     "http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd">
 <module name="Checker">
 
-    <!--<module name="SuppressionFilter">-->
-        <!--<property name="file"-->
-                  <!--value="${proj.module.dir}/config/checkstyle-suppressions.xml" />-->
-    <!--</module>-->
+    <module name="SuppressionFilter">
+        <property name="file" value="${configDir}/suppressions.xml" />
+        <property name="optional" value="false"/>
+    </module>
 
     <!-- Enables us to suppress warnings for particular lines of code via annotation. -->
     <module name="SuppressWarningsFilter" />

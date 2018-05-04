@@ -1,40 +1,36 @@
 apply plugin: 'findbugs'
-apply plugin: 'pmd'
+apply plugin: 'checkstyle'
 
 findbugs {
-    ignoreFailures = true
-    reportsDir = file("$project.buildDir/outputs/")
-    reportLevel = "medium"
-    effort = "max"
-}
-
-pmd {
-    ignoreFailures = true
     reportsDir = file("$project.buildDir/outputs/")
 }
 
-task findbugs(type: FindBugs, dependsOn: "assembleDebug") {
+task findbugs(type: FindBugs, dependsOn: 'assembleDebug') {
     description 'Run findbugs'
     group 'verification'
 
-    classes = fileTree("build/intermediates/classes/production/")
+    classes = fileTree('build/intermediates/classes/production/')
     source = fileTree('src/main/java')
     classpath = files()
-
     effort = 'max'
+    excludeFilter = file('quality/findbugs_exclude.xml')
 
-    excludeFilter = file("findbugs_exclude.xml")
-
+    reportLevel = 'medium'
     reports {
-        xml.enabled = true
-        html.enabled = false
+        xml.enabled = false
+        html.enabled = true
     }
+
+    ignoreFailures = false
 }
 
-task checkstyle(type: Checkstyle, dependsOn: "assembleDebug") {
+task checkstyle(type: Checkstyle, dependsOn: 'assembleDebug') {
     showViolations = true
-    configFile rootProject.file('config/checkstyle.xml')
-    ignoreFailures = true
+    configFile file('quality/checkstyle/checkstyle.xml')
+    // Expose ${configDir} in Checkstyle files
+    configProperties = ['configDir': file('quality/checkstyle')]
+    // empty classpath
+    classpath = files()
 
     source 'src/main/java'
     include '**/*.java'
@@ -42,11 +38,10 @@ task checkstyle(type: Checkstyle, dependsOn: "assembleDebug") {
     exclude '**/R.java'
     exclude '**/BuildConfig.java'
 
-    // empty classpath
-    classpath = files()
+    ignoreFailures = false
 }
 
 check.doLast {
-    project.tasks.getByName("findbugs").execute()
-    project.tasks.getByName("checkstyle").execute()
+    project.tasks.getByName('findbugs').execute()
+    project.tasks.getByName('checkstyle').execute()
 }
