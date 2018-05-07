@@ -25,7 +25,7 @@
         </activity>
 
         <activity
-            android:name=".example.ui.viewpager.ViewpagerActivity"
+            android:name=".example.ui.viewpager.ViewPagerActivity"
             android:screenOrientation="portrait" />
 
     </application>

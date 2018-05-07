@@ -6,6 +6,6 @@
 
     <suppress
         checks="JavadocStyleCheck|JavadocType|JavadocMethod"
-        files=".*(Component|Module).*"/>
+        files=".*((C|c)omponent|(M|m)odule|Configuration).*"/>
 
 </suppressions>

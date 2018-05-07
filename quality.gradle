@@ -25,6 +25,9 @@ task findbugs(type: FindBugs) {
 }
 
 task checkstyle(type: Checkstyle) {
+    description 'Run findbugs'
+    group 'verification'
+
     showViolations = true
     configFile file('quality/checkstyle/checkstyle.xml')
     // Expose ${configDir} in Checkstyle files
