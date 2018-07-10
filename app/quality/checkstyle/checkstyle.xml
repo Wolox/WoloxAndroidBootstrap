@@ -147,7 +147,10 @@
         <module name="EqualsAvoidNull" />
         <module name="EqualsHashCode" />
         <module name="ExplicitInitialization" />
-        <module name="HiddenField" />
+        <module name="HiddenField">
+            <property name="ignoreSetter" value="true" />
+            <property name="ignoreConstructorParameter" value="true" />
+        </module>
         <module name="IllegalInstantiation" />
         <module name="IllegalThrows" />
         <module name="InnerAssignment" />

@@ -25,7 +25,7 @@ task findbugs(type: FindBugs) {
 }
 
 task checkstyle(type: Checkstyle) {
-    description 'Run findbugs'
+    description 'Run checkstyle'
     group 'verification'
 
     showViolations = true
