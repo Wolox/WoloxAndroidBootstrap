@@ -47,6 +47,6 @@ task checkstyle(type: Checkstyle) {
 preBuild.dependsOn('checkstyle')
 
 check.doLast {
-    project.tasks.getByName('findbugs').execute()
     project.tasks.getByName('checkstyle').execute()
+    project.tasks.getByName('findbugs').execute()
 }
