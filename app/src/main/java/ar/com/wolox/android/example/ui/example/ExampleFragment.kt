@@ -6,12 +6,9 @@ import ar.com.wolox.android.example.ui.viewpager.ViewpagerActivity
 import ar.com.wolox.android.example.utils.onClickListener
 import ar.com.wolox.android.example.utils.onTextChanged
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
-import kotlinx.android.synthetic.main.fragment_example.fragment_example_login
-import kotlinx.android.synthetic.main.fragment_example.fragment_example_username
-import javax.inject.Inject
+import kotlinx.android.synthetic.main.fragment_example.*
 
-class ExampleFragment @Inject
-constructor() : WolmoFragment<ExamplePresenter>(), IExampleView {
+class ExampleFragment : WolmoFragment<ExamplePresenter>(), IExampleView {
 
     override fun layout(): Int = R.layout.fragment_example
 

@@ -91,8 +91,8 @@ buildscript {
     ext.support_library_version = '27.1.1'
     ext.dagger_version = '2.13'
     ext.wolmo_version = '2.0.1'
-    ext.butterknife_version = '9.0.0-SNAPSHOT'
-    ext.leak_canary_version = '1.5.1'
+    ext.butterknife_version = '8.8.1'
+    ext.leak_canary_version = '1.5.4'
     ext.chuck_version = '1.1.0'
     ext.powermock_version = '1.7.0'
 }

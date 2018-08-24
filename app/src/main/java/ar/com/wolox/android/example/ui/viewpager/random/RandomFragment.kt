@@ -3,10 +3,7 @@ package ar.com.wolox.android.example.ui.viewpager.random
 import ar.com.wolox.android.R
 import ar.com.wolox.android.example.utils.onClickListener
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
-import kotlinx.android.synthetic.main.fragment_random.fragment_page1_message_text_view
-import kotlinx.android.synthetic.main.fragment_random.fragment_page1_randomize_button
-import kotlinx.android.synthetic.main.fragment_random.fragment_page1_title
-import kotlinx.android.synthetic.main.fragment_random.fragment_page1_toolbar
+import kotlinx.android.synthetic.main.fragment_random.*
 import javax.inject.Inject
 
 class RandomFragment @Inject constructor() : WolmoFragment<RandomPresenter>(), IRandomView {
