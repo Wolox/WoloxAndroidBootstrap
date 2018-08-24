@@ -2,7 +2,6 @@ package ar.com.wolox.android.example.ui.viewpager
 
 import android.app.Activity
 import ar.com.wolox.android.example.ui.viewpager.fragment.ViewPagerFragment
-import ar.com.wolox.android.example.ui.viewpager.fragment.ViewPagerFragmentModule
 
 import ar.com.wolox.android.example.ui.viewpager.random.RandomFragment
 import ar.com.wolox.android.example.ui.viewpager.request.RequestFragment
@@ -23,7 +22,7 @@ abstract class ViewPagerActivityModule {
     internal abstract fun bindViewPagerActivityFactory(
             builder: ViewPagerActivitySubcomponent.Builder): AndroidInjector.Factory<out Activity>
 
-    @ContributesAndroidInjector(modules = [ViewPagerFragmentModule::class])
+    @ContributesAndroidInjector
     internal abstract fun viewpagerFragment(): ViewPagerFragment
 
     @ContributesAndroidInjector

@@ -3,9 +3,7 @@ package ar.com.wolox.android.example.ui.viewpager.request
 import ar.com.wolox.android.R
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import ar.com.wolox.wolmo.core.util.ToastFactory
-import kotlinx.android.synthetic.main.fragment_request.fragment_page2_body
-import kotlinx.android.synthetic.main.fragment_request.fragment_page2_title
-import kotlinx.android.synthetic.main.fragment_request.fragment_page2_toolbar
+import kotlinx.android.synthetic.main.fragment_request.*
 import javax.inject.Inject
 
 class RequestFragment @Inject constructor() : WolmoFragment<RequestPresenter>(), IRequestView {

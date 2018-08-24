@@ -4,15 +4,22 @@ import android.util.Log
 import ar.com.wolox.android.example.model.ExampleModel
 import ar.com.wolox.android.example.utils.UserSession
 import ar.com.wolox.wolmo.core.presenter.BasePresenter
-import java.util.Random
+import ar.com.wolox.wolmo.core.util.Logger
+import ar.com.wolox.wolmo.core.util.ToastFactory
+import java.util.*
 import javax.inject.Inject
 
 class RandomPresenter @Inject constructor(
-        private val mUserSession: UserSession
+        private val userSession: UserSession,
+        private val toastFactory: ToastFactory
 ) : BasePresenter<IRandomView>() {
 
+    @Inject protected lateinit var logger: Logger
+
     override fun onViewAttached() {
-        view.setUsername(mUserSession.username ?: "")
+        view.setUsername(userSession.username ?: "")
+        toastFactory.show("We don't show toasts from presenters")
+        logger.d("View Attached")
     }
 
     fun generateRandomNumber(): Int {

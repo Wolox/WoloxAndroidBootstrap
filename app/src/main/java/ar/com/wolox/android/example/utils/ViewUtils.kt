@@ -16,11 +16,11 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 
-fun View.setVisibleOrInvisible(visible: Boolean) {
+fun View.toggleVisibility(visible: Boolean) {
     visibility = if (visible) View.VISIBLE else View.INVISIBLE
 }
 
-fun View.setVisibleOrGone(visible: Boolean) {
+fun View.togglePresence(visible: Boolean) {
     visibility = if (visible) View.VISIBLE else View.GONE
 }
 
@@ -69,7 +69,7 @@ fun EditText.addInputFilter(vararg inputFilter: InputFilter) {
  * Otherwise it will be set to VISIBLE.
  */
 fun TextView.setTextOrGone(text: String?) {
-    this.setVisibleOrGone(!text.isNullOrEmpty())
+    this.togglePresence(!text.isNullOrEmpty())
     this.text = text
 }
 
