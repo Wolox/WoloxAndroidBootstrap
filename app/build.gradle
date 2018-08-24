@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'idea'
 apply plugin: 'jacoco-android'
 apply from: 'keystore.gradle'
@@ -85,17 +88,20 @@ jacocoAndroidUnitTestReport {
 }
 
 buildscript {
-    ext.support_library_version = '27.1.0'
+    ext.support_library_version = '27.1.1'
     ext.dagger_version = '2.13'
     ext.wolmo_version = '2.0.1'
-    ext.butterknife_version = '9.0.0-SNAPSHOT'
-    ext.leak_canary_version = '1.5.1'
+    ext.butterknife_version = '8.8.1'
+    ext.leak_canary_version = '1.5.4'
     ext.chuck_version = '1.1.0'
     ext.powermock_version = '1.7.0'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Wolmo
     implementation "com.github.wolox:wolmo-networking-android:$wolmo_version"
@@ -108,12 +114,12 @@ dependencies {
     // Dagger
     implementation "com.google.dagger:dagger:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
     // Third-party
     implementation "com.jakewharton:butterknife:$butterknife_version"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
+    kapt "com.jakewharton:butterknife-compiler:$butterknife_version"
     implementation "com.squareup.okhttp3:logging-interceptor:3.9.0"
     debugImplementation "com.readystatesoftware.chuck:library:$chuck_version"
     releaseImplementation "com.readystatesoftware.chuck:library-no-op:$chuck_version"
