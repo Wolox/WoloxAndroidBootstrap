@@ -1,6 +1,18 @@
 apply plugin: 'findbugs'
 apply plugin: 'checkstyle'
 
+configurations {
+    ktlint
+}
+
+buildscript {
+    ext.ktlint_version = '0.27.0'
+}
+
+dependencies {
+    ktlint "com.github.shyiko:ktlint:$ktlint_version"
+}
+
 findbugs {
     reportsDir = file("$project.buildDir/outputs/")
 }
@@ -44,9 +56,20 @@ task checkstyle(type: Checkstyle) {
     ignoreFailures = false
 }
 
-preBuild.dependsOn('checkstyle')
-
-check.doLast {
-    project.tasks.getByName('checkstyle').execute()
-    project.tasks.getByName('findbugs').execute()
+task ktlint(type: JavaExec, group: 'verification') {
+    description = 'Check Kotlin code style'
+    main = 'com.github.shyiko.ktlint.Main'
+    classpath = configurations.ktlint
+    args 'src/**/*.kt'
 }
+
+task ktlintFormat(type: JavaExec, group: 'formatting') {
+    description = 'Fix Kotlin code style deviations'
+    main = 'com.github.shyiko.ktlint.Main'
+    classpath = configurations.ktlint
+    args '-F', 'src/**/*.kt'
+}
+
+preBuild.dependsOn 'checkstyle'
+
+check.dependsOn 'checkstyle', 'findbugs', 'ktlint'
