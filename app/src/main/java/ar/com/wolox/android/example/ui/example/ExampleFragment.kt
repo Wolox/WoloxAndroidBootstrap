@@ -13,13 +13,13 @@ class ExampleFragment : WolmoFragment<ExamplePresenter>(), IExampleView {
     override fun layout(): Int = R.layout.fragment_example
 
     override fun init() {
-        fragment_example_login.isEnabled = false
+        vLoginButton.isEnabled = false
     }
 
     override fun setListeners() {
-        fragment_example_username.onTextChanged { fragment_example_login.isEnabled = it.isNotBlank() }
-        fragment_example_login.onClickListener {
-            presenter.storeUsername(fragment_example_username.text.toString())
+        vUsernameInput.onTextChanged { vLoginButton.isEnabled = it.isNotBlank() }
+        vLoginButton.onClickListener {
+            presenter.storeUsername(vUsernameInput.text.toString())
         }
     }
 

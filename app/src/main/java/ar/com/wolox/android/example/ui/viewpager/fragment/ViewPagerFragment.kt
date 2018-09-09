@@ -24,6 +24,6 @@ class ViewPagerFragment @Inject constructor() : WolmoFragment<BasePresenter<Any>
         fragmentPagerAdapter.addFragments(
                 Pair<Fragment, String>(page1Fragment, "Page 1"),
                 Pair<Fragment, String>(page2Fragment, "Page 2"))
-        fragment_viewpager_pager.adapter = fragmentPagerAdapter
+        vViewPager.adapter = fragmentPagerAdapter
     }
 }

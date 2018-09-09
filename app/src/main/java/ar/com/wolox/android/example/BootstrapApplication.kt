@@ -15,6 +15,7 @@ import okhttp3.logging.HttpLoggingInterceptor.Level
 class BootstrapApplication : WolmoApplication() {
 
     override fun onInit() {
+        // Initialize Application stuff here
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
@@ -31,7 +32,7 @@ class BootstrapApplication : WolmoApplication() {
 
     private fun buildDaggerNetworkingComponent(): NetworkingComponent {
         val builder = DaggerNetworkingComponent.builder().baseUrl(
-                BaseConfiguration.EXAMPLE_CONFIGURAITON_KEY)
+                BaseConfiguration.EXAMPLE_CONFIGURATION_KEY)
                 .gsonNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
 
         if (BuildConfig.DEBUG) {

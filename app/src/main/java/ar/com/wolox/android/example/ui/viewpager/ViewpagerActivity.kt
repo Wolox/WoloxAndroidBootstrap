@@ -14,6 +14,6 @@ class ViewpagerActivity @Inject constructor() : WolmoActivity() {
     override fun layout(): Int = R.layout.activity_base
 
     override fun init() {
-        replaceFragment(R.id.activity_base_content, lazyViewpagerFragment.get())
+        replaceFragment(R.id.vActivityBaseContent, lazyViewpagerFragment.get())
     }
 }

@@ -13,15 +13,15 @@ class RequestFragment @Inject constructor() : WolmoFragment<RequestPresenter>(),
     override fun layout(): Int = R.layout.fragment_request
 
     override fun init() {
-        fragment_page2_toolbar.title = getString(R.string.page_2_toolbar_title)
+        vToolbar.title = getString(R.string.page_2_toolbar_title)
     }
 
     override fun setNewsTitle(title: String) {
-        fragment_page2_title.text = title
+        vPageTitle.text = title
     }
 
     override fun setNewsBody(body: String) {
-        fragment_page2_body.text = body
+        vPageBody.text = body
     }
 
     override fun showError() {

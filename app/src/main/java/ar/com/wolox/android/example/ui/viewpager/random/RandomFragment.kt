@@ -11,18 +11,18 @@ class RandomFragment @Inject constructor() : WolmoFragment<RandomPresenter>(), I
     override fun layout(): Int = R.layout.fragment_random
 
     override fun init() {
-        fragment_page1_toolbar.title = getString(R.string.page_1_toolbar_title)
+        vToolbar.title = getString(R.string.page_1_toolbar_title)
     }
 
     override fun setListeners() {
-        fragment_page1_randomize_button.onClickListener { presenter.generateRandomNumber() }
+        vRandomizeButton.onClickListener { presenter.generateRandomNumber() }
     }
 
     override fun setUsername(username: String) {
-        fragment_page1_title.text = getString(R.string.page_1_title, username)
+        vUserTitle.text = getString(R.string.page_1_title, username)
     }
 
     override fun onRandomNumberUpdate(someNumber: Int) {
-        fragment_page1_message_text_view.text = getString(R.string.example_message, someNumber)
+        vMessage.text = getString(R.string.example_message, someNumber)
     }
 }
