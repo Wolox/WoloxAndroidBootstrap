@@ -17,7 +17,7 @@
         android:textSize="@dimen/font_medium_extra" />
 
     <EditText
-        android:id="@+id/fragment_example_username"
+        android:id="@+id/vUsernameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_large_extra"
@@ -27,7 +27,7 @@
         android:hint="@string/fragment_example_username" />
 
     <Button
-        android:id="@+id/fragment_example_login"
+        android:id="@+id/vLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_medium_more"

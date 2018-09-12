@@ -9,6 +9,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import android.support.annotation.NonNull;
+
 import ar.com.wolox.android.example.model.Post;
 import ar.com.wolox.android.example.network.PostService;
 import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices;
@@ -43,16 +45,9 @@ public class RequestPresenterTest {
         when(mPost.getTitle()).thenReturn("Title");
         when(mPost.getBody()).thenReturn("Body");
 
-        when(mRetrofitServices.getService(any(Class.class))).thenReturn(new PostService() {
-            @Override
-            public Call<Post> getPostById(@Path("id") int id) {
-                return mPostCall;
-            }
-        });
+        when(mRetrofitServices.getService(any(Class.class))).thenReturn((PostService) id -> mPostCall);
 
-        mRequestPresenter = new RequestPresenter();
-        // Simulate dagger member injection
-        mRequestPresenter.mRetrofitServices = mRetrofitServices;
+        mRequestPresenter = new RequestPresenter(mRetrofitServices);
     }
 
     /**
@@ -63,13 +58,10 @@ public class RequestPresenterTest {
     @Test
     @SuppressWarnings("unchecked")
     public void callViewOnSuccess() {
-        doAnswer(new Answer<Object>() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                ((Callback<Post>) invocation.getArguments()[0])
-                    .onResponse(mPostCall, Response.success(mPost));
-                return null;
-            }
+        doAnswer((Answer<Object>) invocation -> {
+            ((Callback<Post>) invocation.getArguments()[0])
+                .onResponse(mPostCall, Response.success(mPost));
+            return null;
         }).when(mPostCall).enqueue(any(Callback.class));
 
         // Verify view updates
@@ -81,13 +73,10 @@ public class RequestPresenterTest {
     @Test
     @SuppressWarnings("unchecked")
     public void dontCallViewIfNotAttached() {
-        doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                ((Callback<Post>) invocation.getArguments()[0])
-                    .onResponse(mPostCall, Response.success(mPost));
-                return null;
-            }
+        doAnswer(invocation -> {
+            ((Callback<Post>) invocation.getArguments()[0])
+                .onResponse(mPostCall, Response.success(mPost));
+            return null;
         }).when(mPostCall).enqueue(any(Callback.class));
 
         mRequestPresenter.onViewAttached();
@@ -98,13 +87,10 @@ public class RequestPresenterTest {
     @Test
     @SuppressWarnings("unchecked")
     public void callViewOnFailure() {
-        doAnswer(new Answer<Object>() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                ((Callback<Post>) invocation.getArguments()[0])
-                    .onFailure(mPostCall, new Throwable("Error"));
-                return null;
-            }
+        doAnswer((Answer<Object>) invocation -> {
+            ((Callback<Post>) invocation.getArguments()[0])
+                .onFailure(mPostCall, new Throwable("Error"));
+            return null;
         }).when(mPostCall).enqueue(any(Callback.class));
 
         // Verify view updates

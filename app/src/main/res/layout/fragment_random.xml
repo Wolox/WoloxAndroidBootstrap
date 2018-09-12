@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/fragment_page1_toolbar"
+        android:id="@+id/vToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary" />
@@ -19,7 +19,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/fragment_page1_title"
+            android:id="@+id/vUserTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/spacing_none"
             android:layout_weight="1"
@@ -29,7 +29,7 @@
             android:textSize="@dimen/font_medium_extra" />
 
         <TextView
-            android:id="@+id/fragment_page1_message_text_view"
+            android:id="@+id/vMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_medium_more"
@@ -38,7 +38,7 @@
             android:textSize="@dimen/font_medium_extra" />
 
         <Button
-            android:id="@+id/fragment_page1_randomize_button"
+            android:id="@+id/vRandomizeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_medium_more"
