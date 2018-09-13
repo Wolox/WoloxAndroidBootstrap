@@ -6,12 +6,12 @@ import ar.com.wolox.android.example.utils.UserSession
 import ar.com.wolox.wolmo.core.presenter.BasePresenter
 import ar.com.wolox.wolmo.core.util.Logger
 import ar.com.wolox.wolmo.core.util.ToastFactory
-import java.util.*
+import java.util.Random
 import javax.inject.Inject
 
 class RandomPresenter @Inject constructor(
-        private val userSession: UserSession,
-        private val toastFactory: ToastFactory
+    private val userSession: UserSession,
+    private val toastFactory: ToastFactory
 ) : BasePresenter<IRandomView>() {
 
     @Inject protected lateinit var logger: Logger

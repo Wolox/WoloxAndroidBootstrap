@@ -8,7 +8,7 @@ import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices
 import javax.inject.Inject
 
 class RequestPresenter @Inject constructor(
-        private val mRetrofitServices: RetrofitServices
+    private val mRetrofitServices: RetrofitServices
 ) : BasePresenter<IRequestView>() {
 
     override fun onViewAttached() {

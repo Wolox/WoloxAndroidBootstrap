@@ -44,8 +44,12 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false):
  * @param orientation Orientation of the gradient. By default is [Orientation.TL_BR].
  * @return [GradientDrawable] with the gradient
  */
-fun Resources.createRoundDrawable(@ColorInt color: Int, @ColorInt endColor: Int = -1,
-                                  cornerRadius: Float = 4f, orientation: Orientation = TL_BR): GradientDrawable {
+fun Resources.createRoundDrawable(
+    @ColorInt color: Int,
+    @ColorInt endColor: Int = -1,
+    cornerRadius: Float = 4f,
+    orientation: Orientation = TL_BR
+): GradientDrawable {
 
     val end = if (endColor == -1) color else endColor
     val pxRadius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, cornerRadius, displayMetrics)
@@ -84,9 +88,9 @@ fun View.onClickListener(listener: () -> Unit) {
  * Adds a simple lambda textWatcher to listen after the text changes.
  */
 fun EditText.onTextChanged(listener: (Editable) -> Unit) {
-   this.addTextChangedListener(object : SimpleTextWatcher() {
-       override fun afterTextChanged(editable: Editable) { listener(editable) }
-   })
+    this.addTextChangedListener(object : SimpleTextWatcher() {
+        override fun afterTextChanged(editable: Editable) { listener(editable) }
+    })
 }
 
 /**

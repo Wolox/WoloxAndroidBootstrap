@@ -31,6 +31,5 @@ interface AppComponent : AndroidInjector<BootstrapApplication> {
         abstract fun sharedPreferencesName(sharedPrefName: String): Builder
 
         abstract fun networkingComponent(networkingComponent: NetworkingComponent): Builder
-
     }
 }
