@@ -70,6 +70,6 @@ task ktlintFormat(type: JavaExec, group: 'formatting') {
     args '-F', 'src/**/*.kt'
 }
 
-preBuild.dependsOn 'checkstyle'
+preBuild.dependsOn 'checkstyle', 'ktlintFormat'
 
 check.dependsOn 'checkstyle', 'findbugs', 'ktlint'
