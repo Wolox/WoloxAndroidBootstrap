@@ -56,14 +56,16 @@ task checkstyle(type: Checkstyle) {
     ignoreFailures = false
 }
 
-task ktlint(type: JavaExec, group: 'verification') {
+task ktlint(type: JavaExec) {
+    group = 'verification'
     description = 'Check Kotlin code style'
     main = 'com.github.shyiko.ktlint.Main'
     classpath = configurations.ktlint
     args 'src/**/*.kt'
 }
 
-task ktlintFormat(type: JavaExec, group: 'formatting') {
+task ktlintFormat(type: JavaExec) {
+    group = 'formatting'
     description = 'Fix Kotlin code style deviations'
     main = 'com.github.shyiko.ktlint.Main'
     classpath = configurations.ktlint
@@ -72,4 +74,4 @@ task ktlintFormat(type: JavaExec, group: 'formatting') {
 
 preBuild.dependsOn 'checkstyle', 'ktlintFormat'
 
-check.dependsOn 'checkstyle', 'findbugs', 'ktlint'
+check.dependsOn 'checkstyle', 'findbugs', 'ktlintFormat', 'ktlint'

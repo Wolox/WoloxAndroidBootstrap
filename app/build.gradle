@@ -8,6 +8,7 @@ apply from: 'keystore.gradle'
 apply from: '../jacoco.gradle'
 apply from: '../quality.gradle'
 apply from: '../scripts/warp/warp_task.gradle'
+apply from: '../scripts/sanity/sanity_task.gradle'
 
 idea {
     module {
