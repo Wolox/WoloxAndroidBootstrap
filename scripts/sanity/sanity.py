@@ -2,12 +2,13 @@ import os, shutil
 
 ####################### Sanity Steps ###########################
 def installGitHooks():
-    if not os.path.exists("./git-hooks/pre-commit"):
-        print("Skipping git hooks step -- Hooks not present")
-        return
+    if os.path.exists("./git-hooks/pre-commit"):
+        print("Git hooks step -- Copying pre-commit")
+        shutil.copy2("./git-hooks/pre-commit", "../../.git/hooks/pre-commit")
 
-    print("Executing git hooks step")
-    shutil.copy2("./git-hooks/pre-commit", "../../.git/hooks/pre-commit")
+    if os.path.exists("./git-hooks/pre-push"):
+        print("Git hooks step -- Copying pre-push")
+        shutil.copy2("./git-hooks/pre-push", "../../.git/hooks/pre-push")
 
 ########################### Main ###############################
 def main():
