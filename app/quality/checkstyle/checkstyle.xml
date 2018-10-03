@@ -160,7 +160,7 @@
             <property name="ignoreNumbers"
                       value="-1, 0, 1, 2, 90, 100, 180, 255, 270, 360" />
         </module>
-        <!-- ¿switch con default case siempre? -->
+        <module name="MissingSwitchDefault"/>
         <module name="ModifiedControlVariable" />
         <module name="MultipleStringLiterals" />
         <module name="OneStatementPerLine" />
