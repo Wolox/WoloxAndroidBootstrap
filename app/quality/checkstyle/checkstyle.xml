@@ -45,7 +45,6 @@
             <property name="allowMissingPropertyJavadoc"
                       value="true" />
         </module>
-        <!-- ¿JavaDoc para las variables de clases que se expongan? -->
         <module name="JavadocStyle">
             <property name="scope"
                       value="protected" />
@@ -101,7 +100,6 @@
 
         <!-- Checks for whitespace                               -->
         <!-- See http://checkstyle.sf.net/config_whitespace.html -->
-        <!-- ¿Largo de archivo? -->
         <module name="GenericWhitespace" />
         <module name="EmptyForIteratorPad" />
         <module name="MethodParamPad" />
