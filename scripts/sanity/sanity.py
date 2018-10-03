@@ -12,8 +12,8 @@ def installGitHooks():
 
 ########################### Main ###############################
 def main():
-    print("Running sanity checks")
-
+    print("Hooking sanity checks to Git")
+    
     installGitHooks()
 
 if __name__ == "__main__":
