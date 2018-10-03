@@ -12,7 +12,9 @@
     <!-- Enables us to suppress warnings for particular lines of code via annotation. -->
     <module name="SuppressWarningsFilter" />
 
-    <!-- ¿Limitar la cantidad de líneas por archivo? -->
+    <module name="FileLength">
+        <property name="max" value="1000"/>
+    </module>
 
     <!-- Unnecessary multiple blank lines. -->
     <module name="RegexpMultiline">
