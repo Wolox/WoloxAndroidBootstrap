@@ -1,50 +1,77 @@
 apply plugin: 'findbugs'
-apply plugin: 'pmd'
+apply plugin: 'checkstyle'
+
+configurations {
+    ktlint
+}
+
+buildscript {
+    ext.ktlint_version = '0.27.0'
+}
+
+dependencies {
+    ktlint "com.github.shyiko:ktlint:$ktlint_version"
+}
 
 findbugs {
-    ignoreFailures = true
-    reportsDir = file("$project.buildDir/outputs/")
-    reportLevel = "medium"
-    effort = "max"
-}
-
-pmd {
-    ignoreFailures = true
     reportsDir = file("$project.buildDir/outputs/")
 }
 
-task findbugs(type: FindBugs, dependsOn: "assembleDebug") {
+task findbugs(type: FindBugs) {
     description 'Run findbugs'
     group 'verification'
 
-    classes = fileTree("build/intermediates/classes/production/")
+    classes = fileTree('build/intermediates/classes/production/')
     source = fileTree('src/main/java')
     classpath = files()
-
     effort = 'max'
+    excludeFilter = file('quality/findbugs_exclude.xml')
 
-    excludeFilter = file("findbugs_exclude.xml")
-
+    reportLevel = 'medium'
     reports {
-        xml.enabled = true
-        html.enabled = false
+        xml.enabled = false
+        html.enabled = true
     }
+
+    ignoreFailures = false
 }
 
-task pmd(type: Pmd, dependsOn: "assembleDebug") {
-    description 'Run pmd'
+task checkstyle(type: Checkstyle) {
+    description 'Run checkstyle'
     group 'verification'
 
-    ruleSets = ["java-basic", "java-braces", "java-strings", "java-design", "java-unusedcode"]
-    source = fileTree('src/main/java')
+    showViolations = true
+    configFile file('quality/checkstyle/checkstyle.xml')
+    // Expose ${configDir} in Checkstyle files
+    configProperties = ['configDir': file('quality/checkstyle')]
+    // empty classpath
+    classpath = files()
 
-    reports {
-        xml.enabled = true
-        html.enabled = false
-    }
+    source 'src/main/java'
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude '**/R.java'
+    exclude '**/BuildConfig.java'
+
+    ignoreFailures = false
 }
 
-check.doLast {
-    project.tasks.getByName("findbugs").execute()
-    project.tasks.getByName("pmd").execute()
+task ktlint(type: JavaExec) {
+    group = 'verification'
+    description = 'Check Kotlin code style'
+    main = 'com.github.shyiko.ktlint.Main'
+    classpath = configurations.ktlint
+    args 'src/**/*.kt'
 }
+
+task ktlintFormat(type: JavaExec) {
+    group = 'formatting'
+    description = 'Fix Kotlin code style deviations'
+    main = 'com.github.shyiko.ktlint.Main'
+    classpath = configurations.ktlint
+    args '-F', 'src/**/*.kt'
+}
+
+preBuild.dependsOn 'checkstyle', 'ktlintFormat'
+
+check.dependsOn 'checkstyle', 'findbugs', 'ktlintFormat', 'ktlint'

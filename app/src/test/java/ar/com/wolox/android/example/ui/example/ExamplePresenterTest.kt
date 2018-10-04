@@ -35,5 +35,4 @@ class ExamplePresenterTest {
         mExamplePresenter.storeUsername("Test")
         verify<IExampleView>(mExampleView, times(1)).onUsernameSaved()
     }
-
 }

@@ -4,8 +4,8 @@ import dagger.Subcomponent
 import dagger.android.AndroidInjector
 
 @Subcomponent
-interface ViewPagerActivitySubcomponent : AndroidInjector<ViewpagerActivity> {
+interface ViewPagerActivitySubcomponent : AndroidInjector<ViewPagerActivity> {
 
     @Subcomponent.Builder
-    abstract class Builder : AndroidInjector.Builder<ViewpagerActivity>()
+    abstract class Builder : AndroidInjector.Builder<ViewPagerActivity>()
 }

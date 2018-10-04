@@ -2,7 +2,7 @@ package ar.com.wolox.android.example.ui.example
 
 import android.content.Intent
 import ar.com.wolox.android.R
-import ar.com.wolox.android.example.ui.viewpager.ViewpagerActivity
+import ar.com.wolox.android.example.ui.viewpager.ViewPagerActivity
 import ar.com.wolox.android.example.utils.onClickListener
 import ar.com.wolox.android.example.utils.onTextChanged
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
@@ -24,7 +24,7 @@ class ExampleFragment : WolmoFragment<ExamplePresenter>(), IExampleView {
     }
 
     override fun onUsernameSaved() {
-        val intent = Intent(activity, ViewpagerActivity::class.java)
+        val intent = Intent(activity, ViewPagerActivity::class.java)
         startActivity(intent)
     }
 }

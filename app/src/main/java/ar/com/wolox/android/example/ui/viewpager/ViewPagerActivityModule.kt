@@ -18,9 +18,10 @@ abstract class ViewPagerActivityModule {
 
     @Binds
     @IntoMap
-    @ActivityKey(ViewpagerActivity::class)
+    @ActivityKey(ViewPagerActivity::class)
     internal abstract fun bindViewPagerActivityFactory(
-            builder: ViewPagerActivitySubcomponent.Builder): AndroidInjector.Factory<out Activity>
+        builder: ViewPagerActivitySubcomponent.Builder
+    ): AndroidInjector.Factory<out Activity>
 
     @ContributesAndroidInjector
     internal abstract fun viewpagerFragment(): ViewPagerFragment

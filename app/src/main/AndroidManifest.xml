@@ -3,7 +3,6 @@
     package="ar.com.wolox.android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_LOGS"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
@@ -25,7 +24,7 @@
         </activity>
 
         <activity
-            android:name=".example.ui.viewpager.ViewpagerActivity"
+            android:name=".example.ui.viewpager.ViewPagerActivity"
             android:screenOrientation="portrait" />
 
     </application>

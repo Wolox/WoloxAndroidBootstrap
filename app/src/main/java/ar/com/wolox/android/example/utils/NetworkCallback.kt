@@ -10,7 +10,6 @@ open class SimpleNetworkCallback<T> : NetworkCallback<T>() {
     override fun onResponseFailed(p0: ResponseBody?, p1: Int) {}
 
     override fun onCallFailure(p0: Throwable?) {}
-
 }
 
 class NetworkCallbackBuilder<T> {
