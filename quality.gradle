@@ -1,5 +1,5 @@
-apply plugin: 'findbugs'
 apply plugin: 'checkstyle'
+apply plugin: 'com.chaitanyapramod.findbugs-android'
 
 configurations {
     ktlint
@@ -14,26 +14,11 @@ dependencies {
 }
 
 findbugs {
-    reportsDir = file("$project.buildDir/outputs/")
-}
-
-task findbugs(type: FindBugs) {
-    description 'Run findbugs'
-    group 'verification'
-
-    classes = fileTree('build/intermediates/classes/production/')
-    source = fileTree('src/main/java')
-    classpath = files()
-    effort = 'max'
-    excludeFilter = file('quality/findbugs_exclude.xml')
-
-    reportLevel = 'medium'
-    reports {
-        xml.enabled = false
-        html.enabled = true
-    }
-
-    ignoreFailures = false
+    toolVersion '3.0.1'
+    ignoreFailures false
+    effort 'max'
+    reportLevel 'high'
+    reportsDir = file("$project.buildDir/reports")
 }
 
 task checkstyle(type: Checkstyle) {
@@ -54,6 +39,12 @@ task checkstyle(type: Checkstyle) {
     exclude '**/BuildConfig.java'
 
     ignoreFailures = false
+
+    reports {
+        xml.enabled = false
+        html.enabled = true
+        html.destination = file("$project.buildDir/reports/checkstyle.html")
+    }
 }
 
 task ktlint(type: JavaExec) {
@@ -61,7 +52,7 @@ task ktlint(type: JavaExec) {
     description = 'Check Kotlin code style'
     main = 'com.github.shyiko.ktlint.Main'
     classpath = configurations.ktlint
-    args 'src/**/*.kt'
+    args 'src/**/*.kt', "--reporter=checkstyle", "output=${project.buildDir}/reports/ktlint.xml"
 }
 
 task ktlintFormat(type: JavaExec) {
@@ -74,4 +65,4 @@ task ktlintFormat(type: JavaExec) {
 
 preBuild.dependsOn 'checkstyle', 'ktlintFormat'
 
-check.dependsOn 'checkstyle', 'findbugs', 'ktlintFormat', 'ktlint'
+check.dependsOn 'checkstyle', 'findbugsProductionRelease', 'ktlintFormat', 'ktlint'
