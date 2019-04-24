@@ -4,8 +4,8 @@ import android.content.res.Resources
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.GradientDrawable.Orientation
 import android.graphics.drawable.GradientDrawable.Orientation.TL_BR
-import android.support.annotation.ColorInt
-import android.support.annotation.LayoutRes
+import androidx.annotation.ColorInt
+import androidx.annotation.LayoutRes
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
