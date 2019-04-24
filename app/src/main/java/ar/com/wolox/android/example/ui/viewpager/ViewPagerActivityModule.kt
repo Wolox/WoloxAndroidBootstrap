@@ -10,7 +10,7 @@ import dagger.Module
 import dagger.android.AndroidInjector
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.ClassKey
-import dagger.multibindings.IntoMapgs
+import dagger.multibindings.IntoMap
 
 @Module(subcomponents = [(ViewPagerActivitySubcomponent::class)])
 abstract class ViewPagerActivityModule {
