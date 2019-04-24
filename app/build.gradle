@@ -94,7 +94,6 @@ buildscript {
     ext.androidx_material_version = '1.0.0'
     ext.dagger_version = '2.22.1'
     ext.wolmo_version = '3.0.0'
-    ext.butterknife_version = '10.1.0'
     ext.leak_canary_version = '1.5.4'
     ext.chuck_version = '1.1.0'
     ext.powermock_version = '1.7.0'
@@ -126,8 +125,6 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
     // Third-party
-    implementation "com.jakewharton:butterknife:$butterknife_version"
-    kapt "com.jakewharton:butterknife-compiler:$butterknife_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhhtp_login_interceptor_version"
     debugImplementation "com.readystatesoftware.chuck:library:$chuck_version"
     releaseImplementation "com.readystatesoftware.chuck:library-no-op:$chuck_version"
