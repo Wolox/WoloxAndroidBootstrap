@@ -14,7 +14,7 @@ class RandomPresenter @Inject constructor(
     private val toastFactory: ToastFactory
 ) : BasePresenter<IRandomView>() {
 
-    @Inject protected lateinit var logger: Logger
+    @Inject lateinit var logger: Logger
 
     override fun onViewAttached() {
         view.setUsername(userSession.username ?: "")
@@ -22,14 +22,14 @@ class RandomPresenter @Inject constructor(
         logger.d("View Attached")
     }
 
-    fun generateRandomNumber(): Int {
+    fun onRandomizeButtonClicked(): Int {
         // Do some backend logic here, in this case generate just some random number
         // between a given range and update our model
         val model = ExampleModel(Random().nextInt(NUMBER_MAX - NUMBER_MIN + 1) + NUMBER_MIN)
         Log.i(TAG, "A new random number has been generated: ${model.someNumber}")
 
         // Notify the view so it can update the UI however it wants to
-        view.onRandomNumberUpdate(model.someNumber)
+        view.setRandom(model.someNumber)
 
         // Note: Remember that the presenter doesn't know and doesn't care about what the View
         // does with the new value of the random number, it only cares about the backend
