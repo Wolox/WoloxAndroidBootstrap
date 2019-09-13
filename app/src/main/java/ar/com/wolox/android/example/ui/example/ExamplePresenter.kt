@@ -7,8 +7,8 @@ import javax.inject.Inject
 
 class ExamplePresenter @Inject constructor(private val mUserSession: UserSession) : BasePresenter<IExampleView>() {
 
-    fun storeUsername(text: String) {
+    fun onLoginButtonClicked(text: String) {
         mUserSession.username = text
-        view.onUsernameSaved()
+        view.goToViewPager()
     }
 }

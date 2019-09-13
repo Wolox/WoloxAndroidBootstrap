@@ -4,5 +4,5 @@ interface IRandomView {
 
     fun setUsername(username: String)
 
-    fun onRandomNumberUpdate(someNumber: Int)
+    fun setRandom(someNumber: Int)
 }

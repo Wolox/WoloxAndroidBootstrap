@@ -18,12 +18,10 @@ class ExampleFragment : WolmoFragment<ExamplePresenter>(), IExampleView {
 
     override fun setListeners() {
         vUsernameInput.onTextChanged { vLoginButton.isEnabled = it.isNotBlank() }
-        vLoginButton.onClickListener {
-            presenter.storeUsername(vUsernameInput.text.toString())
-        }
+        vLoginButton.onClickListener { presenter.onLoginButtonClicked(vUsernameInput.text.toString()) }
     }
 
-    override fun onUsernameSaved() {
+    override fun goToViewPager() {
         val intent = Intent(activity, ViewPagerActivity::class.java)
         startActivity(intent)
     }

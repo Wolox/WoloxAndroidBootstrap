@@ -15,14 +15,14 @@ class RandomFragment @Inject constructor() : WolmoFragment<RandomPresenter>(), I
     }
 
     override fun setListeners() {
-        vRandomizeButton.onClickListener { presenter.generateRandomNumber() }
+        vRandomizeButton.onClickListener { presenter.onRandomizeButtonClicked() }
     }
 
     override fun setUsername(username: String) {
         vUserTitle.text = getString(R.string.page_1_title, username)
     }
 
-    override fun onRandomNumberUpdate(someNumber: Int) {
+    override fun setRandom(someNumber: Int) {
         vMessage.text = getString(R.string.example_message, someNumber)
     }
 }

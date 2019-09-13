@@ -25,14 +25,14 @@ class ExamplePresenterTest {
     @Test
     fun usernameIsStored() {
         mExamplePresenter.attachView(mExampleView)
-        mExamplePresenter.storeUsername("Test")
+        mExamplePresenter.onLoginButtonClicked("Test")
         verify<UserSession>(mUserSession, times(1)).username = "Test"
     }
 
     @Test
     fun storeUsernameUpdatesView() {
         mExamplePresenter.attachView(mExampleView)
-        mExamplePresenter.storeUsername("Test")
-        verify<IExampleView>(mExampleView, times(1)).onUsernameSaved()
+        mExamplePresenter.onLoginButtonClicked("Test")
+        verify<IExampleView>(mExampleView, times(1)).goToViewPager()
     }
 }
