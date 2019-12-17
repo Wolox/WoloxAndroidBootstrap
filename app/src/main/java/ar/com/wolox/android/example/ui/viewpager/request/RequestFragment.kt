@@ -6,7 +6,7 @@ import ar.com.wolox.wolmo.core.util.ToastFactory
 import kotlinx.android.synthetic.main.fragment_request.*
 import javax.inject.Inject
 
-class RequestFragment @Inject constructor() : WolmoFragment<RequestPresenter>(), IRequestView {
+class RequestFragment @Inject constructor() : WolmoFragment<IRequestView, RequestPresenter>(), IRequestView {
 
     @Inject internal lateinit var mToastFactory: ToastFactory
 

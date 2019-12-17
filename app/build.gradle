@@ -25,6 +25,7 @@ android {
         applicationId "ar.com.wolox.android.example"
         minSdkVersion 19
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode 1
         versionName "1.0.0"
 
@@ -110,8 +111,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Wolmo
-    implementation "com.github.Wolox:wolmo-core-android:$wolmo_version"
     implementation "com.github.Wolox:wolmo-networking-android:$wolmo_version"
+    implementation("com.github.Wolox:wolmo-core-android:kotlin-migration-fixing-SNAPSHOT") {
+        force = true
+    }
 
     // Android support libraries
     implementation "androidx.core:core:$androidx_core_version"
@@ -133,7 +136,8 @@ dependencies {
 
     // Testing dependencies
     testImplementation "junit:junit:$junit_version"
-    testImplementation "org.mockito:mockito-inline:$mockito_inline_version" // Mockito inline adds support for mocking final classes and methods
+    testImplementation "org.mockito:mockito-inline:$mockito_inline_version"
+    // Mockito inline adds support for mocking final classes and methods
     testImplementation "org.assertj:assertj-core:$assertj_version"
     testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
 }

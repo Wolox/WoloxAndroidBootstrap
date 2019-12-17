@@ -6,7 +6,7 @@ import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import kotlinx.android.synthetic.main.fragment_random.*
 import javax.inject.Inject
 
-class RandomFragment @Inject constructor() : WolmoFragment<RandomPresenter>(), IRandomView {
+class RandomFragment @Inject constructor() : WolmoFragment<RandomView, RandomPresenter>(), RandomView {
 
     override fun layout(): Int = R.layout.fragment_random
 

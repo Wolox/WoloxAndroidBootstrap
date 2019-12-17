@@ -1,6 +1,8 @@
 package ar.com.wolox.android.example.ui.example
 
-interface IExampleView {
+interface ExampleView {
 
     fun goToViewPager()
+
+    fun toggleLoginButtonEnable(isEnable: Boolean)
 }

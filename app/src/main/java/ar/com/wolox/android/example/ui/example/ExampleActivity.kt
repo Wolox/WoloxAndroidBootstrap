@@ -8,6 +8,6 @@ class ExampleActivity : WolmoActivity() {
     override fun layout(): Int = R.layout.activity_base
 
     override fun init() {
-        replaceFragment(R.id.vActivityBaseContent, ExampleFragment())
+        replaceFragment(R.id.vActivityBaseContent, ExampleFragment.newInstance())
     }
 }

@@ -11,13 +11,13 @@ import org.junit.Test
 
 class ExamplePresenterTest {
 
-    private lateinit var mExampleView: IExampleView
+    private lateinit var mExampleView: ExampleView
     private lateinit var mExamplePresenter: ExamplePresenter
     private lateinit var mUserSession: UserSession
 
     @Before
     fun createInstances() {
-        mExampleView = mock(IExampleView::class.java)
+        mExampleView = mock(ExampleView::class.java)
         mUserSession = mock(UserSession::class.java)
         mExamplePresenter = ExamplePresenter(mUserSession)
     }
@@ -33,6 +33,6 @@ class ExamplePresenterTest {
     fun storeUsernameUpdatesView() {
         mExamplePresenter.attachView(mExampleView)
         mExamplePresenter.onLoginButtonClicked("Test")
-        verify<IExampleView>(mExampleView, times(1)).goToViewPager()
+        verify<ExampleView>(mExampleView, times(1)).goToViewPager()
     }
 }

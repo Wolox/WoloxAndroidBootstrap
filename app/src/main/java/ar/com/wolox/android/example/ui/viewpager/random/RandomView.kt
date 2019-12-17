@@ -1,6 +1,6 @@
 package ar.com.wolox.android.example.ui.viewpager.random
 
-interface IRandomView {
+interface RandomView {
 
     fun setUsername(username: String)
 

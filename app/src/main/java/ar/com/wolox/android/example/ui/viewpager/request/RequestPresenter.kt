@@ -8,23 +8,23 @@ import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices
 import javax.inject.Inject
 
 class RequestPresenter @Inject constructor(
-    private val mRetrofitServices: RetrofitServices
+    private val retrofitServices: RetrofitServices
 ) : BasePresenter<IRequestView>() {
 
     override fun onViewAttached() {
-        mRetrofitServices.getService(PostService::class.java).getPostById(POST_ID).enqueue(
-                networkCallback {
-                    onResponseSuccessful { response ->
-                        runIfViewAttached { view ->
-                            view.setNewsTitle(response?.title ?: "")
-                            view.setNewsBody(response?.body ?: "")
-                        }
+        retrofitServices.getService(PostService::class.java).getPostById(POST_ID).enqueue(
+            networkCallback {
+                onResponseSuccessful { response ->
+                    view?.run {
+                        setNewsTitle(response?.title ?: "")
+                        setNewsBody(response?.body ?: "")
                     }
-
-                    onResponseFailed { _, _ -> runIfViewAttached(Runnable { view.showError() }) }
-
-                    onCallFailure { runIfViewAttached(Runnable { view.showError() }) }
                 }
+
+                onResponseFailed { _, _ -> view?.showError() }
+
+                onCallFailure { view?.showError() }
+            }
         )
     }
 
