@@ -18,13 +18,13 @@ idea {
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
+    buildToolsVersion '29.0.2'
 
     defaultConfig {
         applicationId "ar.com.wolox.android.example"
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 29
         multiDexEnabled true
         versionCode 1
         versionName "1.0.0"
@@ -91,9 +91,9 @@ jacocoAndroidUnitTestReport {
 
 buildscript {
     ext.androidx_core_version = '1.0.1'
-    ext.androidx_recycler_version = '1.0.0'
+    ext.androidx_recycler_version = '1.1.0'
     ext.androidx_material_version = '1.0.0'
-    ext.dagger_version = '2.22.1'
+    ext.dagger_version = '2.25.3'
     ext.wolmo_version = '3.0.0'
     ext.leak_canary_version = '1.5.4'
     ext.chuck_version = '1.1.0'
@@ -102,6 +102,7 @@ buildscript {
     ext.junit_version = '4.12'
     ext.mockito_inline_version = '2.13.0'
     ext.assertj_version = '3.9.0'
+    ext.android_ktx_version = '1.1.0'
 }
 
 dependencies {
@@ -136,8 +137,12 @@ dependencies {
 
     // Testing dependencies
     testImplementation "junit:junit:$junit_version"
-    testImplementation "org.mockito:mockito-inline:$mockito_inline_version"
     // Mockito inline adds support for mocking final classes and methods
+    testImplementation "org.mockito:mockito-inline:$mockito_inline_version"
     testImplementation "org.assertj:assertj-core:$assertj_version"
     testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
+
+    // Android KTX
+    implementation "androidx.core:core-ktx:$android_ktx_version"
+    implementation "androidx.fragment:fragment-ktx:$android_ktx_version"
 }
