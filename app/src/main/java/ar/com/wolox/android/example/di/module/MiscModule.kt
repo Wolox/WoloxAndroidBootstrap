@@ -8,5 +8,5 @@ import dagger.Provides
 class MiscModule {
 
     @Provides
-    fun providesDefaultBasePresenter() = BasePresenter<Any>()
+    internal fun providesDefaultBasePresenter() = BasePresenter<Any>()
 }
