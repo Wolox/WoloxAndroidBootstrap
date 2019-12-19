@@ -15,7 +15,7 @@ class ExampleFragment private constructor() : WolmoFragment<ExampleView, Example
     }
 
     override fun setListeners() {
-        vUsernameInput.onTextChanged { presenter .onUsernameInputChanged(it.toString()) }
+        vUsernameInput.onTextChanged { presenter.onUsernameInputChanged(it.toString()) }
         vLoginButton.onClickListener { presenter.onLoginButtonClicked(vUsernameInput.text.toString()) }
     }
 
