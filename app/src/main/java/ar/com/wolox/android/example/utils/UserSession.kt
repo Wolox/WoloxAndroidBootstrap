@@ -6,8 +6,7 @@ import ar.com.wolox.wolmo.core.util.SharedPreferencesManager
 import javax.inject.Inject
 
 @ApplicationScope
-class UserSession @Inject
-constructor(private val sharedPreferencesManager: SharedPreferencesManager) {
+class UserSession @Inject constructor(private val sharedPreferencesManager: SharedPreferencesManager) {
     // Really, we don't need to query the username because this instance live as long as the
     // application, but we should add a check in case Android decides to kill the application
     // and return to a state where this isn't initialized.
