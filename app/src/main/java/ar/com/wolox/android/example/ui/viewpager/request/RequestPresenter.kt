@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class RequestPresenter @Inject constructor(
     private val retrofitServices: RetrofitServices
-) : BasePresenter<IRequestView>() {
+) : BasePresenter<RequestView>() {
 
     override fun onViewAttached() {
         retrofitServices.getService(PostService::class.java).getPostById(POST_ID).enqueue(

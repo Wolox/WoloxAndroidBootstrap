@@ -1,35 +1,69 @@
 package ar.com.wolox.android.example.ui.viewpager.fragment
 
+import android.os.Bundle
+import androidx.core.os.bundleOf
+import androidx.viewpager.widget.ViewPager
 import ar.com.wolox.android.R
 import ar.com.wolox.android.example.ui.viewpager.random.RandomFragment
 import ar.com.wolox.android.example.ui.viewpager.request.RequestFragment
 import ar.com.wolox.wolmo.core.adapter.viewpager.SimpleFragmentPagerAdapter
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
-import ar.com.wolox.wolmo.core.presenter.BasePresenter
 import dagger.Lazy
 import kotlinx.android.synthetic.main.fragment_viewpager.*
 import javax.inject.Inject
 
-class ViewPagerFragment private constructor() : WolmoFragment<Any, BasePresenter<Any>>() {
+class ViewPagerFragment private constructor() : WolmoFragment<ViewPagerPresenter>(), ViewPagerView {
 
     // Lazy example, a lazy injection does not build the dependencies until #get() is called
     @Inject
-    internal lateinit var page1Fragment: Lazy<RandomFragment>
+    internal lateinit var randomFragment: Lazy<RandomFragment>
 
     @Inject
-    internal lateinit var page2Fragment: RequestFragment
+    internal lateinit var requestFragment: RequestFragment
 
     override fun layout(): Int = R.layout.fragment_viewpager
+
+    override fun handleArguments(arguments: Bundle?) = arguments?.containsKey(FAVOURITE_COLOR_KEY)
 
     override fun init() {
         vViewPager.adapter = SimpleFragmentPagerAdapter(childFragmentManager).apply {
             addFragments(
-                page1Fragment.get() to "Page 1",
-                page2Fragment to "Page 2")
+                randomFragment.get() to "Page 1",
+                requestFragment to "Page 2")
         }
+        presenter.onInit(requireArgument(FAVOURITE_COLOR_KEY))
+    }
+
+    override fun setListeners() {
+        vViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {}
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+
+            override fun onPageSelected(position: Int) = presenter.onSelectedTab(position)
+        })
+    }
+
+    override fun showUserAndFavouriteColor(username: String, favouriteColor: String) {
+        vViewPagerTitle.text = resources.getString(R.string.view_pager_title, username, favouriteColor)
+    }
+
+    override fun setToolbarTitle(title: ViewPagerToolbarTitle) {
+        val titleRes = when (title) {
+            ViewPagerToolbarTitle.RANDOM -> R.string.random_toolbar_title
+            ViewPagerToolbarTitle.REQUEST -> R.string.request_toolbar_title
+        }
+        vToolbar.setTitle(titleRes)
     }
 
     companion object {
-        fun newInstance() = ViewPagerFragment()
+
+        fun newInstance(favouriteColor: String) = ViewPagerFragment().apply {
+            arguments = bundleOf(FAVOURITE_COLOR_KEY to favouriteColor)
+        }
+
+        const val FAVOURITE_COLOR_KEY = "FAVOURITE_COLOR_KEY"
     }
 }
+
+enum class ViewPagerToolbarTitle { RANDOM, REQUEST }

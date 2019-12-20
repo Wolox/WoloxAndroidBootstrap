@@ -5,28 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/vToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/spacing_large"
         android:gravity="center"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/vUserTitle"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/spacing_none"
-            android:layout_weight="1"
-            android:layout_margin="@dimen/spacing_medium_more"
-            android:gravity="top|center_horizontal"
-            android:text="@string/page_1_title"
-            android:textSize="@dimen/font_medium_extra" />
 
         <TextView
             android:id="@+id/vMessage"

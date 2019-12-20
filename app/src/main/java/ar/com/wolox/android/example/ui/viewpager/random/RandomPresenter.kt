@@ -2,23 +2,18 @@ package ar.com.wolox.android.example.ui.viewpager.random
 
 import android.util.Log
 import ar.com.wolox.android.example.model.ExampleModel
-import ar.com.wolox.android.example.utils.UserSession
 import ar.com.wolox.wolmo.core.presenter.BasePresenter
 import ar.com.wolox.wolmo.core.util.Logger
 import ar.com.wolox.wolmo.core.util.ToastFactory
 import java.util.Random
 import javax.inject.Inject
 
-class RandomPresenter @Inject constructor(
-    private val userSession: UserSession,
-    private val toastFactory: ToastFactory
-) : BasePresenter<RandomView>() {
+class RandomPresenter @Inject constructor(private val toastFactory: ToastFactory) : BasePresenter<RandomView>() {
 
     @Inject
     lateinit var logger: Logger
 
     override fun onViewAttached() {
-        view?.setUsername(userSession.username ?: "")
         toastFactory.show("We don't show toasts from presenters, this should be done on the fragment.")
         logger.d("View Attached")
     }

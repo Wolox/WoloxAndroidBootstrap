@@ -6,6 +6,21 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/vToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/vViewPagerTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_medium_more"
+        android:gravity="top|center_horizontal"
+        android:text="@string/view_pager_title"
+        android:textSize="@dimen/font_medium_extra" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vViewPager"
         android:layout_width="match_parent"

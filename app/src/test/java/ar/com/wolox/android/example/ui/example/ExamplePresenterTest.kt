@@ -24,13 +24,13 @@ class ExamplePresenterTest {
 
     @Test
     fun `when login button is clicked then user session should be updated`() {
-        examplePresenter.onLoginButtonClicked("Test")
+        examplePresenter.onLoginButtonClicked("Test", "H")
         verify<UserSession>(userSession, times(1)).username = "Test"
     }
 
     @Test
     fun `when login button is clicked then view should go to viewpager`() {
-        examplePresenter.onLoginButtonClicked("Test")
-        verify<ExampleView>(exampleView, times(1)).goToViewPager()
+        examplePresenter.onLoginButtonClicked("Test", "azul")
+        verify<ExampleView>(exampleView, times(1)).goToViewPager("azul")
     }
 }

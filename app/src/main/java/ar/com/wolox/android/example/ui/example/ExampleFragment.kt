@@ -1,13 +1,13 @@
 package ar.com.wolox.android.example.ui.example
 
+import androidx.core.widget.addTextChangedListener
 import ar.com.wolox.android.R
 import ar.com.wolox.android.example.ui.viewpager.ViewPagerActivity
-import ar.com.wolox.android.example.utils.onClickListener
-import ar.com.wolox.android.example.utils.onTextChanged
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
+import ar.com.wolox.wolmo.core.util.openBrowser
 import kotlinx.android.synthetic.main.fragment_example.*
 
-class ExampleFragment private constructor() : WolmoFragment<ExampleView, ExamplePresenter>(), ExampleView {
+class ExampleFragment private constructor() : WolmoFragment<ExamplePresenter>(), ExampleView {
 
     override fun layout() = R.layout.fragment_example
 
@@ -15,15 +15,20 @@ class ExampleFragment private constructor() : WolmoFragment<ExampleView, Example
     }
 
     override fun setListeners() {
-        vUsernameInput.onTextChanged { presenter.onUsernameInputChanged(it.toString()) }
-        vLoginButton.onClickListener { presenter.onLoginButtonClicked(vUsernameInput.text.toString()) }
+        vUsernameInput.addTextChangedListener { presenter.onUsernameInputChanged(it.toString()) }
+        vWoloxLink.setOnClickListener { presenter.onWoloxLinkClicked() }
+        vLoginButton.setOnClickListener {
+            presenter.onLoginButtonClicked(vUsernameInput.text.toString(), vFavouriteColorInput.text.toString())
+        }
     }
 
     override fun toggleLoginButtonEnable(isEnable: Boolean) {
         vLoginButton.isEnabled = isEnable
     }
 
-    override fun goToViewPager() = ViewPagerActivity.start(requireContext())
+    override fun goToViewPager(favouriteColor: String) = ViewPagerActivity.start(requireContext(), favouriteColor)
+
+    override fun openBrowser(url: String) = requireContext().openBrowser(url)
 
     companion object {
         fun newInstance() = ExampleFragment()

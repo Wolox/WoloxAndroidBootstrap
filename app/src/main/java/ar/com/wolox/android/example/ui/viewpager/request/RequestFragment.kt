@@ -6,9 +6,9 @@ import ar.com.wolox.wolmo.core.util.ToastFactory
 import kotlinx.android.synthetic.main.fragment_request.*
 import javax.inject.Inject
 
-class RequestFragment @Inject constructor() : WolmoFragment<IRequestView, RequestPresenter>(), IRequestView {
+class RequestFragment @Inject constructor() : WolmoFragment<RequestPresenter>(), RequestView {
 
-    @Inject internal lateinit var mToastFactory: ToastFactory
+    @Inject internal lateinit var toastFactory: ToastFactory
 
     override fun layout(): Int = R.layout.fragment_request
 
@@ -24,7 +24,5 @@ class RequestFragment @Inject constructor() : WolmoFragment<IRequestView, Reques
         vPageBody.text = body
     }
 
-    override fun showError() {
-        mToastFactory.show(R.string.unknown_error)
-    }
+    override fun showError() = toastFactory.show(R.string.unknown_error)
 }

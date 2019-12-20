@@ -1,6 +1,6 @@
 package ar.com.wolox.android.example.ui.viewpager.request
 
-interface IRequestView {
+interface RequestView {
 
     fun setNewsTitle(title: String)
 
