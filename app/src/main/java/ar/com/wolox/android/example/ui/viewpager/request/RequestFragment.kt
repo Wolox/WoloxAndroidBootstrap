@@ -10,10 +10,9 @@ class RequestFragment @Inject constructor() : WolmoFragment<RequestPresenter>(),
 
     @Inject internal lateinit var toastFactory: ToastFactory
 
-    override fun layout(): Int = R.layout.fragment_request
+    override fun layout() = R.layout.fragment_request
 
     override fun init() {
-        vToolbar.title = getString(R.string.page_2_toolbar_title)
     }
 
     override fun setNewsTitle(title: String) {

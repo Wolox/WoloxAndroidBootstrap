@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class ViewPagerActivity @Inject constructor() : WolmoActivity() {
 
-    override fun layout(): Int = R.layout.activity_base
+    override fun layout() = R.layout.activity_base
 
     override fun handleArguments(arguments: Bundle?) = arguments?.containsKey(FAVOURITE_COLOR_KEY)
 

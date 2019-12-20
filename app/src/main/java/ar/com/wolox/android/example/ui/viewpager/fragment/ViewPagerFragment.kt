@@ -21,7 +21,7 @@ class ViewPagerFragment private constructor() : WolmoFragment<ViewPagerPresenter
     @Inject
     internal lateinit var requestFragment: RequestFragment
 
-    override fun layout(): Int = R.layout.fragment_viewpager
+    override fun layout() = R.layout.fragment_viewpager
 
     override fun handleArguments(arguments: Bundle?) = arguments?.containsKey(FAVOURITE_COLOR_KEY)
 
@@ -40,8 +40,11 @@ class ViewPagerFragment private constructor() : WolmoFragment<ViewPagerPresenter
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
-            override fun onPageSelected(position: Int) = presenter.onSelectedTab(position)
+            override fun onPageSelected(position: Int) {
+                presenter.onSelectedTab(position)
+            }
         })
+        presenter.onSelectedTab(0)
     }
 
     override fun showUserAndFavouriteColor(username: String, favouriteColor: String) {

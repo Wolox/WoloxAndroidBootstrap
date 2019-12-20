@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class RandomFragment @Inject constructor() : WolmoFragment<RandomPresenter>(), RandomView {
 
-    override fun layout(): Int = R.layout.fragment_random
+    override fun layout() = R.layout.fragment_random
 
     override fun init() {
     }

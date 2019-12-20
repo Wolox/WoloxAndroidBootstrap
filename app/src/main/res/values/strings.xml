@@ -2,7 +2,7 @@
 
     <!-- General -->
     <string name="example_title">ExampleFragment</string>
-    <string name="example_textview">Press the button to generate a random number</string>
+    <string name="example_random_description">Press the button to generate a random number</string>
     <string name="example_randomize">Randomize</string>
     <string name="example_wolox">WOLOX</string>
     <string name="example_message">The presenter generated the number %1$d and this view is displaying it</string>

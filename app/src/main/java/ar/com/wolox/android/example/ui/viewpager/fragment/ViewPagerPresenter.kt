@@ -6,13 +6,9 @@ import javax.inject.Inject
 
 class ViewPagerPresenter @Inject constructor(private val userSession: UserSession) : BasePresenter<ViewPagerView>() {
 
-    fun onInit(favouriteColor: String) {
-        userSession.username?.let {
-            view?.showUserAndFavouriteColor(it, favouriteColor)
-        }
+    fun onInit(favouriteColor: String) = userSession.username?.let {
+        view?.showUserAndFavouriteColor(it, favouriteColor)
     }
 
-    fun onSelectedTab(position: Int) {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
-    }
+    fun onSelectedTab(position: Int) = view?.setToolbarTitle(ViewPagerToolbarTitle.values()[position])
 }
