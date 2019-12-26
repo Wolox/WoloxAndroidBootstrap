@@ -1,5 +1,6 @@
 package ar.com.wolox.android.example.ui.viewpager
 
+import ar.com.wolox.android.example.ui.viewpager.coroutinesrequest.CoroutinesRequestFragment
 import ar.com.wolox.android.example.ui.viewpager.fragment.ViewPagerFragment
 
 import ar.com.wolox.android.example.ui.viewpager.random.RandomFragment
@@ -30,4 +31,7 @@ abstract class ViewPagerActivityModule {
 
     @ContributesAndroidInjector
     internal abstract fun requestFragment(): RequestFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun coroutinesRequestFragment(): CoroutinesRequestFragment
 }

@@ -112,8 +112,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Wolmo
-    implementation "com.github.Wolox:wolmo-networking-android:$wolmo_version"
-    implementation("com.github.Wolox:wolmo-core-android:kotlin-migration-rollback-SNAPSHOT") {
+    implementation "com.github.Wolox:wolmo-networking-android:updating-versions-SNAPSHOT"
+    implementation("com.github.Wolox:wolmo-core-android:new-cool-stuff-SNAPSHOT") {
         force = true
     }
 
