@@ -1,13 +1,10 @@
-package ar.com.wolox.android.example.di
-
-import ar.com.wolox.android.example.ui.example.ExampleActivity
-import ar.com.wolox.android.example.ui.example.ExampleFragment
+package ar.com.wolox.android.example.ui.example
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class AppModule {
+abstract class ExampleModule {
 
     @ContributesAndroidInjector
     internal abstract fun exampleActivity(): ExampleActivity
