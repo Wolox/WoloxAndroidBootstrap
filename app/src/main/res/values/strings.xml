@@ -5,6 +5,7 @@
     <string name="example_random_description">Press the button to generate a random number</string>
     <string name="example_randomize">Randomize</string>
     <string name="example_wolox">WOLOX</string>
+    <string name="example_wolox_phone">0800 123 4567</string>
     <string name="example_message">The presenter generated the number %1$d and this view is displaying it</string>
     <string name="view_pager_title">Username: %1$s\nFavourite color: %2$s</string>
     <string name="random_toolbar_title">Random number example</string>

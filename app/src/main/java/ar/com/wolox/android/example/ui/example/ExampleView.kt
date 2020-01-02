@@ -7,4 +7,6 @@ interface ExampleView {
     fun openBrowser(url: String)
 
     fun toggleLoginButtonEnable(isEnable: Boolean)
+
+    fun openPhone(woloxPhone: String): Any
 }

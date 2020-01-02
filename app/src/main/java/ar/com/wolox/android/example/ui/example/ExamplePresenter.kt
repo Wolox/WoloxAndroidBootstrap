@@ -15,7 +15,10 @@ class ExamplePresenter @Inject constructor(private val userSession: UserSession)
 
     fun onWoloxLinkClicked() = view?.openBrowser(WOLOX_URL)
 
+    fun onWoloxPhoneClicked() = view?.openPhone(WOLOX_PHONE)
+
     companion object {
         private const val WOLOX_URL = "www.wolox.com.ar"
+        private const val WOLOX_PHONE = "08001234567"
     }
 }
