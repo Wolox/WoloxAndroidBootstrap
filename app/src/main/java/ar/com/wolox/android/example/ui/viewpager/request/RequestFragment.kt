@@ -15,13 +15,19 @@ class RequestFragment @Inject constructor() : WolmoFragment<RequestPresenter>(),
     override fun init() {
     }
 
-    override fun setNewsTitle(title: String) {
+    override fun setListeners() {
+        vSearchButton.setOnClickListener { presenter.onSearchRequested(vIdInput.text.toString().toIntOrNull()) }
+    }
+
+    override fun setTitle(title: String) {
         vPageTitle.text = title
     }
 
-    override fun setNewsBody(body: String) {
+    override fun setBody(body: String) {
         vPageBody.text = body
     }
+
+    override fun showInvalidInput() = toastFactory.show(R.string.fragment_request_invalid_input)
 
     override fun showError() = toastFactory.show(R.string.unknown_error)
 }

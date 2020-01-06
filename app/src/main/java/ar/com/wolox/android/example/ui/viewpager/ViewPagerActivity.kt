@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import ar.com.wolox.android.R
 import ar.com.wolox.android.example.ui.viewpager.fragment.ViewPagerFragment
-import ar.com.wolox.android.example.ui.viewpager.fragment.ViewPagerFragment.Companion.FAVOURITE_COLOR_KEY
+import ar.com.wolox.android.example.utils.Extras.ViewPager.FAVOURITE_COLOR_KEY
 import ar.com.wolox.wolmo.core.activity.WolmoActivity
 import ar.com.wolox.wolmo.core.util.jumpTo
 import javax.inject.Inject

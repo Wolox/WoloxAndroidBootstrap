@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.viewpager.widget.ViewPager
 import ar.com.wolox.android.R
-import ar.com.wolox.android.example.ui.viewpager.coroutinesrequest.CoroutinesRequestFragment
 import ar.com.wolox.android.example.ui.viewpager.random.RandomFragment
 import ar.com.wolox.android.example.ui.viewpager.request.RequestFragment
+import ar.com.wolox.android.example.utils.Extras.ViewPager.FAVOURITE_COLOR_KEY
 import ar.com.wolox.wolmo.core.adapter.viewpager.SimpleFragmentPagerAdapter
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import dagger.Lazy
@@ -22,9 +22,6 @@ class ViewPagerFragment private constructor() : WolmoFragment<ViewPagerPresenter
     @Inject
     internal lateinit var requestFragment: RequestFragment
 
-    @Inject
-    internal lateinit var coroutinesRequestFragment: CoroutinesRequestFragment
-
     override fun layout() = R.layout.fragment_viewpager
 
     override fun handleArguments(arguments: Bundle?) = arguments?.containsKey(FAVOURITE_COLOR_KEY)
@@ -33,8 +30,7 @@ class ViewPagerFragment private constructor() : WolmoFragment<ViewPagerPresenter
         vViewPager.adapter = SimpleFragmentPagerAdapter(childFragmentManager).apply {
             addFragments(
                 randomFragment.get() to "Page 1",
-                requestFragment to "Page 2",
-                coroutinesRequestFragment to "Page 3")
+                requestFragment to "Page 2")
         }
         presenter.onInit(requireArgument(FAVOURITE_COLOR_KEY))
     }
@@ -60,7 +56,6 @@ class ViewPagerFragment private constructor() : WolmoFragment<ViewPagerPresenter
         val titleRes = when (title) {
             ViewPagerToolbarTitle.RANDOM -> R.string.random_toolbar_title
             ViewPagerToolbarTitle.REQUEST -> R.string.request_toolbar_title
-            ViewPagerToolbarTitle.COROUTINES_REQUEST -> R.string.coroutines_request_toolbar_title
         }
         vToolbar.setTitle(titleRes)
     }
@@ -70,9 +65,7 @@ class ViewPagerFragment private constructor() : WolmoFragment<ViewPagerPresenter
         fun newInstance(favouriteColor: String) = ViewPagerFragment().apply {
             arguments = bundleOf(FAVOURITE_COLOR_KEY to favouriteColor)
         }
-
-        const val FAVOURITE_COLOR_KEY = "FAVOURITE_COLOR_KEY"
     }
 }
 
-enum class ViewPagerToolbarTitle { RANDOM, REQUEST, COROUTINES_REQUEST }
+enum class ViewPagerToolbarTitle { RANDOM, REQUEST }

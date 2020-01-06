@@ -6,6 +6,30 @@
 	android:layout_height="match_parent"
 	android:padding="@dimen/spacing_large">
 
+	<EditText
+		android:id="@+id/vIdInput"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:hint="@string/fragment_request_post_id"
+		android:importantForAutofill="no"
+		android:inputType="number"
+		app:layout_constraintBottom_toTopOf="@id/vSearchButton"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0"
+		app:layout_constraintVertical_chainStyle="packed" />
+
+	<Button
+		android:id="@+id/vSearchButton"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:text="@string/fragment_request_search"
+		app:layout_constraintBottom_toTopOf="@id/vPageTitle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/vIdInput" />
+
 	<TextView
 		android:id="@+id/vPageTitle"
 		android:layout_width="wrap_content"
@@ -16,8 +40,7 @@
 		app:layout_constraintBottom_toTopOf="@id/vPageBody"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_chainStyle="packed"
+		app:layout_constraintTop_toBottomOf="@id/vSearchButton"
 		tools:text="Titulo de la página" />
 
 	<TextView

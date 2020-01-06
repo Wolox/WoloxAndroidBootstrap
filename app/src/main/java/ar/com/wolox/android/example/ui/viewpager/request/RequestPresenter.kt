@@ -1,43 +1,30 @@
 package ar.com.wolox.android.example.ui.viewpager.request
 
 import ar.com.wolox.android.example.model.Post
-import ar.com.wolox.android.example.network.PostService
-import ar.com.wolox.android.example.utils.networkCallback
-import ar.com.wolox.wolmo.core.presenter.BasePresenter
-import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices
-
+import ar.com.wolox.android.example.network.repository.PostRepository
+import ar.com.wolox.wolmo.core.presenter.CoroutineBasePresenter
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class RequestPresenter @Inject constructor(
-    private val retrofitServices: RetrofitServices
-) : BasePresenter<RequestView>() {
+    private val postRepository: PostRepository
+) : CoroutineBasePresenter<RequestView>() {
 
-    override fun onViewAttached() {
-        retrofitServices.getService(PostService::class.java).getPostById(POST_ID).enqueue(
-            networkCallback {
-                onResponseSuccessful { response ->
-                    response?.let {
-                        showPost(it)
-                    } ?: run {
-                        showError()
-                    }
-                }
+    fun onSearchRequested(postId: Int?) = launch {
+        if (postId == null) {
+            view?.showInvalidInput()
+            return@launch
+        }
 
-                onResponseFailed { _, _ -> showError() }
-
-                onCallFailure { showError() }
-            }
-        )
+        try {
+            showPost(postRepository.getPostById(postId))
+        } catch (e: Exception) {
+            view?.showError()
+        }
     }
 
     private fun showPost(post: Post) = view?.run {
-        setNewsTitle(post.title)
-        setNewsBody(post.body)
-    }
-
-    private fun showError() = view?.showError()
-
-    companion object {
-        private const val POST_ID = 1
+        setTitle(post.title)
+        setBody(post.body)
     }
 }
