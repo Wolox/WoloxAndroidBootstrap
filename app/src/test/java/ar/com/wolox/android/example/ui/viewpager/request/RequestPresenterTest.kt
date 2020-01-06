@@ -21,7 +21,7 @@ import retrofit2.HttpException
 class RequestPresenterTest : WolmoPresenterTest<RequestView, RequestPresenter>() {
 
     @get:Rule
-    val coroutineTestRule = CoroutineTestRule()
+    val coroutineTestRule = CoroutineTestRule(runOnAllTests = true)
 
     @Mock
     lateinit var postRepository: PostRepository
