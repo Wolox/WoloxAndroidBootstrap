@@ -93,6 +93,7 @@ buildscript {
     ext.androidx_core_version = '1.0.1'
     ext.androidx_recycler_version = '1.1.0'
     ext.androidx_material_version = '1.0.0'
+    ext.constraint_version = '2.0.0-beta4'
     ext.dagger_version = '2.25.3'
     ext.wolmo_version = '3.0.0'
     ext.leak_canary_version = '1.6.2'
@@ -121,7 +122,7 @@ dependencies {
     // Android libraries
     implementation "androidx.core:core:$androidx_core_version"
     implementation "androidx.recyclerview:recyclerview:$androidx_recycler_version"
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
     implementation "com.google.android.material:material:$androidx_material_version"
 
     // Dagger
