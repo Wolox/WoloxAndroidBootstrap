@@ -1,38 +1,44 @@
 package ar.com.wolox.android.example.ui.example
 
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.times
-import org.mockito.Mockito.verify
-
 import ar.com.wolox.android.example.utils.UserSession
-
-import org.junit.Before
+import ar.com.wolox.wolmo.core.tests.WolmoPresenterTest
+import com.nhaarman.mockitokotlin2.times
+import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
+import org.mockito.Mock
 
-class ExamplePresenterTest {
+class ExamplePresenterTest : WolmoPresenterTest<ExampleView, ExamplePresenter>() {
 
-    private lateinit var mExampleView: IExampleView
-    private lateinit var mExamplePresenter: ExamplePresenter
-    private lateinit var mUserSession: UserSession
+    @Mock
+    lateinit var userSession: UserSession
 
-    @Before
-    fun createInstances() {
-        mExampleView = mock(IExampleView::class.java)
-        mUserSession = mock(UserSession::class.java)
-        mExamplePresenter = ExamplePresenter(mUserSession)
+    override fun getPresenterInstance() = ExamplePresenter(userSession)
+
+    @Test
+    fun `given an user and a color when login button is clicked then user session should be updated`() {
+
+        // GIVEN
+        val user = "Test"
+        val color = "_"
+
+        // WHEN
+        presenter.onLoginButtonClicked(user, color)
+
+        // THEN
+        verify(userSession, times(1)).username = user
     }
 
     @Test
-    fun usernameIsStored() {
-        mExamplePresenter.attachView(mExampleView)
-        mExamplePresenter.onLoginButtonClicked("Test")
-        verify<UserSession>(mUserSession, times(1)).username = "Test"
-    }
+    fun `given an user and a color when login button is clicked then view should go to viewpager`() {
 
-    @Test
-    fun storeUsernameUpdatesView() {
-        mExamplePresenter.attachView(mExampleView)
-        mExamplePresenter.onLoginButtonClicked("Test")
-        verify<IExampleView>(mExampleView, times(1)).goToViewPager()
+        // GIVEN
+        val user = "Test"
+        val color = "blue"
+
+        // WHEN
+        presenter.onLoginButtonClicked(user, color)
+
+        // THEN
+        verify(view, times(1)).goToViewPager(color)
     }
 }

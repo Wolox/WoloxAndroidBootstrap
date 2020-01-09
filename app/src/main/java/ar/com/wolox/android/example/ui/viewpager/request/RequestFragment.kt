@@ -6,25 +6,28 @@ import ar.com.wolox.wolmo.core.util.ToastFactory
 import kotlinx.android.synthetic.main.fragment_request.*
 import javax.inject.Inject
 
-class RequestFragment @Inject constructor() : WolmoFragment<RequestPresenter>(), IRequestView {
+class RequestFragment @Inject constructor() : WolmoFragment<RequestPresenter>(), RequestView {
 
-    @Inject internal lateinit var mToastFactory: ToastFactory
+    @Inject internal lateinit var toastFactory: ToastFactory
 
-    override fun layout(): Int = R.layout.fragment_request
+    override fun layout() = R.layout.fragment_request
 
     override fun init() {
-        vToolbar.title = getString(R.string.page_2_toolbar_title)
     }
 
-    override fun setNewsTitle(title: String) {
+    override fun setListeners() {
+        vSearchButton.setOnClickListener { presenter.onSearchRequested(vIdInput.text.toString().toIntOrNull()) }
+    }
+
+    override fun setTitle(title: String) {
         vPageTitle.text = title
     }
 
-    override fun setNewsBody(body: String) {
+    override fun setBody(body: String) {
         vPageBody.text = body
     }
 
-    override fun showError() {
-        mToastFactory.show(R.string.unknown_error)
-    }
+    override fun showInvalidInput() = toastFactory.show(R.string.fragment_request_invalid_input)
+
+    override fun showError() = toastFactory.show(R.string.unknown_error)
 }
