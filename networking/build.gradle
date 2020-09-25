@@ -1,0 +1,72 @@
+apply plugin: 'com.android.library'
+apply plugin: 'jacoco-android'
+//apply plugin: 'com.github.kt3k.coveralls'
+
+group = 'com.github.Wolox'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 29
+        consumerProguardFiles 'proguard-retrofit.pro', 'proguard-okhttp.pro', 'proguard-gson.pro',
+                'proguard-joda-time.pro'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+jacocoAndroidUnitTestReport {
+    excludes = defaultExcludes + ['**/*_Factory.class']
+}
+
+//coveralls {
+//    jacocoReportPath = "${buildDir}/reports/jacoco/jacocoTestReleaseUnitTestReport/jacocoTestReleaseUnitTestReport.xml"
+//}
+
+buildscript {
+    ext.wolmo_version = '4.0.0'
+    ext.retrofit_version = '2.9.0'
+    ext.okhttp3_version = '3.9.0'
+    ext.dagger_version = '2.25.3'
+    ext.joda_version = '2.10'
+    ext.findbugs_version = '3.0.2'
+    ext.junit_version = '4.12'
+    ext.mockito_inline_version = '2.13.0'
+    ext.assertj_version = '3.9.0'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Wolmo
+    api "com.github.Wolox:wolmo-core-android:$wolmo_version"
+
+    // Dagger
+    api "com.google.dagger:dagger:$dagger_version"
+    api "com.google.dagger:dagger-android-support:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // Third party
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"
+    api "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    api "com.squareup.okhttp3:okhttp-urlconnection:$okhttp3_version"
+    api "com.squareup.okhttp3:okhttp:$okhttp3_version"
+    api "joda-time:joda-time:$joda_version"
+    api "com.google.code.findbugs:jsr305:$findbugs_version"
+
+    // Test
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.mockito:mockito-inline:$mockito_inline_version" // Mockito inline adds support for mocking final classes and methods
+    testImplementation "org.assertj:assertj-core:$assertj_version"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$okhttp3_version"
+}

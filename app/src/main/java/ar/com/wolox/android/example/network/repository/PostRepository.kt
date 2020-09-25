@@ -1,5 +1,6 @@
 package ar.com.wolox.android.example.network.repository
 
+import ar.com.wolox.android.example.network.handler.NetworkRequestHandler
 import ar.com.wolox.android.example.network.services.PostService
 import ar.com.wolox.wolmo.networking.retrofit.RetrofitServices
 import kotlinx.coroutines.Dispatchers
@@ -12,6 +13,6 @@ class PostRepository @Inject constructor(private val retrofitServices: RetrofitS
         get() = retrofitServices.getService(PostService::class.java)
 
     suspend fun getPostById(id: Int) = withContext(Dispatchers.IO) {
-        service.getPostById(id)
+        NetworkRequestHandler.safeApiCall { service.getPostById(id) }
     }
 }
