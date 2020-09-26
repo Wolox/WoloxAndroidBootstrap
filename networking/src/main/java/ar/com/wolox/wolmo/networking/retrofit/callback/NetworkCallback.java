@@ -37,7 +37,7 @@ import retrofit2.Response;
  * @param <T> the type of object expected to be returned from the API call
  */
 @ParametersAreNonnullByDefault
-public abstract class   NetworkCallback<T> implements Callback<T> {
+public abstract class NetworkCallback<T> implements Callback<T> {
 
     /**
      * NetworkCallback's implementation of Retrofit's onResponse() callback

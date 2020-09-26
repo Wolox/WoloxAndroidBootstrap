@@ -6,7 +6,6 @@ import ar.com.wolox.android.example.network.repository.PostRepository
 import ar.com.wolox.wolmo.core.tests.CoroutineTestRule
 import ar.com.wolox.wolmo.core.tests.WolmoPresenterTest
 import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -16,7 +15,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.mock
-import retrofit2.HttpException
 import retrofit2.Response
 
 @ExperimentalCoroutinesApi
@@ -43,11 +41,11 @@ class RequestPresenterTest : WolmoPresenterTest<RequestView, RequestPresenter>()
     }
 
     @Test
-    fun `given a wrong id when request search then show error`() = runBlocking {
+    fun `given a wrong id when request search then show failure`() = runBlocking {
 
         // GIVEN
         val id = 0
-        whenever(postRepository.getPostById(id)).doThrow(mock(HttpException::class.java))
+        whenever(postRepository.getPostById(id)).doReturn(NetworkResponse.Failure(Throwable()))
 
         // WHEN
         presenter.onSearchRequested(id).join()

@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'jacoco-android'
-//apply plugin: 'com.github.kt3k.coveralls'
+apply plugin: 'com.github.kt3k.coveralls'
 
 group = 'com.github.Wolox'
 
@@ -29,13 +29,13 @@ jacocoAndroidUnitTestReport {
     excludes = defaultExcludes + ['**/*_Factory.class']
 }
 
-//coveralls {
-//    jacocoReportPath = "${buildDir}/reports/jacoco/jacocoTestReleaseUnitTestReport/jacocoTestReleaseUnitTestReport.xml"
-//}
+coveralls {
+    jacocoReportPath = "${buildDir}/reports/jacoco/jacocoTestReleaseUnitTestReport/jacocoTestReleaseUnitTestReport.xml"
+}
 
 buildscript {
     ext.wolmo_version = '4.0.0'
-    ext.retrofit_version = '2.9.0'
+    ext.retrofit_version = '2.7.0'
     ext.okhttp3_version = '3.9.0'
     ext.dagger_version = '2.25.3'
     ext.joda_version = '2.10'
