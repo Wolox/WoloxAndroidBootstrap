@@ -1,6 +1,7 @@
 package ar.com.wolox.android.example.ui.viewpager.request
 
 import ar.com.wolox.android.example.model.Post
+import ar.com.wolox.android.example.network.handler.NetworkResponse
 import ar.com.wolox.android.example.network.repository.PostRepository
 import ar.com.wolox.wolmo.core.tests.CoroutineTestRule
 import ar.com.wolox.wolmo.core.tests.WolmoPresenterTest
@@ -16,6 +17,7 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.mock
 import retrofit2.HttpException
+import retrofit2.Response
 
 @ExperimentalCoroutinesApi
 class RequestPresenterTest : WolmoPresenterTest<RequestView, RequestPresenter>() {
@@ -23,8 +25,7 @@ class RequestPresenterTest : WolmoPresenterTest<RequestView, RequestPresenter>()
     @get:Rule
     val coroutineTestRule = CoroutineTestRule(runOnAllTests = true)
 
-    @Mock
-    lateinit var postRepository: PostRepository
+    @Mock lateinit var postRepository: PostRepository
 
     override fun getPresenterInstance() = RequestPresenter(postRepository)
 
@@ -63,7 +64,9 @@ class RequestPresenterTest : WolmoPresenterTest<RequestView, RequestPresenter>()
         val title = "Title"
         val body = "body body body body body body body body"
         val post = Post(title, body)
-        whenever(postRepository.getPostById(id)).doReturn(post)
+        val response = mock(Response::class.java) as Response<Post>
+        whenever(response.body()).doReturn(post)
+        whenever(postRepository.getPostById(id)).doReturn(NetworkResponse.Success(response))
 
         // WHEN
         presenter.onSearchRequested(id).join()
