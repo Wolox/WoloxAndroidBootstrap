@@ -115,7 +115,7 @@ dependencies {
 
     // Wolmo
     implementation "com.github.Wolox:wolmo-core-android:$wolmo_version"
-    implementation "com.github.Wolox:wolmo-networking-android:$wolmo_version"
+    implementation "com.github.Wolox:wolmo-networking-android:1b696a3c940dc89138dc1e26614c4711154ca9c7"
 
     // Android libraries
     implementation "androidx.core:core:$androidx_core_version"
