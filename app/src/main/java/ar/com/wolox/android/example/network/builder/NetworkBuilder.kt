@@ -14,11 +14,11 @@ class NetworkBuilder<T> {
     fun onResponseFailed(block: (ResponseBody?, Int) -> Unit) = apply { onResponseFailed = block }
     fun onCallFailure(block: (Throwable?) -> Unit) = apply { onCallFailure = block }
 
-    fun build(response: NetworkResponse<Response<T>>) {
-        return when (response) {
-            is NetworkResponse.Success -> onResponseSuccessful.invoke(response.body.body())
-            is NetworkResponse.Error -> onResponseFailed.invoke(response.body.errorBody(), response.body.code())
-            is NetworkResponse.Failure -> onCallFailure.invoke(response.t)
+    fun build(networkResponse: NetworkResponse<Response<T>>) {
+        return when (networkResponse) {
+            is NetworkResponse.Success -> onResponseSuccessful.invoke(networkResponse.response.body())
+            is NetworkResponse.Error -> onResponseFailed.invoke(networkResponse.response.errorBody(), networkResponse.response.code())
+            is NetworkResponse.Failure -> onCallFailure.invoke(networkResponse.t)
         }
     }
 }
