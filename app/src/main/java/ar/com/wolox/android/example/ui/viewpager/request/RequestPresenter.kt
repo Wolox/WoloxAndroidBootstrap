@@ -1,6 +1,7 @@
 package ar.com.wolox.android.example.ui.viewpager.request
 
 import ar.com.wolox.android.example.model.Post
+import ar.com.wolox.android.example.network.builder.networkRequest
 import ar.com.wolox.android.example.network.repository.PostRepository
 import ar.com.wolox.wolmo.core.presenter.CoroutineBasePresenter
 import kotlinx.coroutines.launch
@@ -16,10 +17,10 @@ class RequestPresenter @Inject constructor(
             return@launch
         }
 
-        try {
-            showPost(postRepository.getPostById(postId))
-        } catch (e: Exception) {
-            view?.showError()
+        networkRequest(postRepository.getPostById(postId)) {
+            onResponseSuccessful { response -> showPost(response!!) }
+            onResponseFailed { _, _ -> view?.showError() }
+            onCallFailure { view?.showError() }
         }
     }
 

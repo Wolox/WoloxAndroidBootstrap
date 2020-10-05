@@ -4,8 +4,8 @@ import ar.com.wolox.android.example.model.Post
 import ar.com.wolox.android.example.network.repository.PostRepository
 import ar.com.wolox.wolmo.core.tests.CoroutineTestRule
 import ar.com.wolox.wolmo.core.tests.WolmoPresenterTest
+import ar.com.wolox.wolmo.networking.retrofit.handler.NetworkResponse
 import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -15,7 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.mock
-import retrofit2.HttpException
+import retrofit2.Response
 
 @ExperimentalCoroutinesApi
 class RequestPresenterTest : WolmoPresenterTest<RequestView, RequestPresenter>() {
@@ -46,7 +46,7 @@ class RequestPresenterTest : WolmoPresenterTest<RequestView, RequestPresenter>()
 
         // GIVEN
         val id = 0
-        whenever(postRepository.getPostById(id)).doThrow(mock(HttpException::class.java))
+        whenever(postRepository.getPostById(id)).doReturn(NetworkResponse.Failure(Throwable()))
 
         // WHEN
         presenter.onSearchRequested(id).join()
@@ -63,7 +63,9 @@ class RequestPresenterTest : WolmoPresenterTest<RequestView, RequestPresenter>()
         val title = "Title"
         val body = "body body body body body body body body"
         val post = Post(title, body)
-        whenever(postRepository.getPostById(id)).doReturn(post)
+        val response = mock(Response::class.java) as Response<Post>
+        whenever(response.body()).doReturn(post)
+        whenever(postRepository.getPostById(id)).doReturn(NetworkResponse.Success(response))
 
         // WHEN
         presenter.onSearchRequested(id).join()
