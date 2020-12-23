@@ -1,91 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:gravity="center"
-	android:orientation="vertical"
-	android:padding="@dimen/spacing_large">
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<TextView
-		android:id="@+id/vExampleTitle"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="@string/example_title"
-		android:textSize="@dimen/font_medium_extra"
-		app:layout_constraintBottom_toTopOf="@id/vUsernameInput"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_bias="0" />
-
-	<EditText
-		android:id="@+id/vUsernameInput"
+	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginLeft="@dimen/spacing_large_extra"
-		android:layout_marginRight="@dimen/spacing_large_extra"
+		android:layout_height="match_parent"
 		android:gravity="center"
-		android:hint="@string/fragment_example_username"
-		android:inputType="text"
-		android:maxLines="1"
-		app:layout_constraintBottom_toTopOf="@id/vFavouriteColorInput"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_chainStyle="packed" />
+		android:orientation="vertical"
+		android:padding="@dimen/spacing_large">
 
-	<EditText
-		android:id="@+id/vFavouriteColorInput"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginLeft="@dimen/spacing_large_extra"
-		android:layout_marginTop="@dimen/spacing_large"
-		android:layout_marginRight="@dimen/spacing_large_extra"
-		android:gravity="center"
-		android:hint="@string/fragment_example_favourite_color"
-		android:inputType="text"
-		android:maxLines="1"
-		app:layout_constraintBottom_toTopOf="@id/vLoginButton"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/vUsernameInput" />
+		<TextView
+			android:id="@+id/title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/example_title"
+			android:textSize="@dimen/font_medium_extra"
+			app:layout_constraintBottom_toTopOf="@id/usernameInput"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0" />
 
-	<Button
-		android:id="@+id/vLoginButton"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="@dimen/spacing_large"
-		android:text="@string/fragment_example_login"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="@id/vFavouriteColorInput"
-		app:layout_constraintStart_toStartOf="@id/vFavouriteColorInput"
-		app:layout_constraintTop_toBottomOf="@id/vFavouriteColorInput" />
+		<EditText
+			android:id="@+id/usernameInput"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="@dimen/spacing_large_extra"
+			android:layout_marginRight="@dimen/spacing_large_extra"
+			android:gravity="center"
+			android:hint="@string/fragment_example_username"
+			android:inputType="text"
+			android:maxLines="1"
+			app:layout_constraintBottom_toTopOf="@id/favouriteColorInput"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_chainStyle="packed" />
 
-	<TextView
-		android:id="@+id/vWoloxLink"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:gravity="bottom|center_horizontal"
-		android:text="@string/example_wolox"
-		android:textSize="@dimen/font_medium_extra"
-		app:layout_constraintBottom_toTopOf="@id/vWoloxPhone"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/vLoginButton"
-		app:layout_constraintVertical_bias="1"
-		app:layout_constraintVertical_chainStyle="packed" />
+		<EditText
+			android:id="@+id/favouriteColorInput"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="@dimen/spacing_large_extra"
+			android:layout_marginTop="@dimen/spacing_large"
+			android:layout_marginRight="@dimen/spacing_large_extra"
+			android:gravity="center"
+			android:hint="@string/fragment_example_favourite_color"
+			android:inputType="text"
+			android:maxLines="1"
+			app:layout_constraintBottom_toTopOf="@id/loginButton"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/usernameInput" />
 
-	<TextView
-		android:id="@+id/vWoloxPhone"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:gravity="bottom|center_horizontal"
-		android:text="@string/example_wolox_phone"
-		android:textSize="@dimen/font_medium_extra"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/vWoloxLink" />
+		<Button
+			android:id="@+id/loginButton"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/spacing_large"
+			android:text="@string/fragment_example_login"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="@id/favouriteColorInput"
+			app:layout_constraintStart_toStartOf="@id/favouriteColorInput"
+			app:layout_constraintTop_toBottomOf="@id/favouriteColorInput" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+		<TextView
+			android:id="@+id/woloxLink"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:gravity="bottom|center_horizontal"
+			android:text="@string/example_wolox"
+			android:textSize="@dimen/font_medium_extra"
+			app:layout_constraintBottom_toTopOf="@id/woloxPhone"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/loginButton"
+			app:layout_constraintVertical_bias="1"
+			app:layout_constraintVertical_chainStyle="packed" />
+
+		<TextView
+			android:id="@+id/woloxPhone"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:gravity="bottom|center_horizontal"
+			android:text="@string/example_wolox_phone"
+			android:textSize="@dimen/font_medium_extra"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/woloxLink" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

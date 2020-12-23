@@ -1,11 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'idea'
-apply plugin: 'jacoco-android'
+apply plugin: 'com.hiya.jacoco-android'
 apply from: 'keystore.gradle'
-apply from: '../jacoco.gradle'
 apply from: '../quality.gradle'
 apply from: '../scripts/warp/warp_task.gradle'
 apply from: '../scripts/sanity/sanity_task.gradle'
@@ -83,6 +81,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        dataBinding true
+    }
 }
 
 jacocoAndroidUnitTestReport {
@@ -115,7 +117,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Wolmo
-    implementation "com.github.Wolox:wolmo-core-android:$wolmo_core_version"
+    implementation "com.github.Wolox:wolmo-core-android:6bdf1b7d658c57706fec90ab0e1f516eea91e996"
     implementation "com.github.Wolox:wolmo-networking-android:$wolmo_networking_version"
 
     // Android libraries

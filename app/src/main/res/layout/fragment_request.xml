@@ -1,73 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:padding="@dimen/spacing_large">
+	xmlns:tools="http://schemas.android.com/tools">
 
-	<EditText
-		android:id="@+id/vIdInput"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:hint="@string/fragment_request_post_id"
-		android:importantForAutofill="no"
-		android:inputType="number"
-		app:layout_constraintBottom_toTopOf="@id/vSearchButton"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_bias="0"
-		app:layout_constraintVertical_chainStyle="packed" />
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="@dimen/spacing_large">
 
-	<Button
-		android:id="@+id/vSearchButton"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:text="@string/fragment_request_search"
-		app:layout_constraintBottom_toTopOf="@id/vPageTitle"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/vIdInput" />
+		<EditText
+			android:id="@+id/idInput"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:hint="@string/fragment_request_post_id"
+			android:importantForAutofill="no"
+			android:inputType="number"
+			app:layout_constraintBottom_toTopOf="@id/searchButton"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0"
+			app:layout_constraintVertical_chainStyle="packed" />
 
-	<TextView
-		android:id="@+id/vPageTitle"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="@dimen/spacing_medium_more"
-		android:textAlignment="center"
-		android:textSize="@dimen/font_big"
-		app:layout_constraintBottom_toTopOf="@id/vPageBody"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/vSearchButton"
-		tools:text="Titulo de la página" />
+		<Button
+			android:id="@+id/searchButton"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:text="@string/fragment_request_search"
+			app:layout_constraintBottom_toTopOf="@id/pageTitle"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/idInput" />
 
-	<TextView
-		android:id="@+id/vPageBody"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="@dimen/spacing_medium_more"
-		android:textAlignment="center"
-		android:textSize="@dimen/font_medium_extra"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/vPageTitle"
-		tools:text="Descripción de la página" />
+		<TextView
+			android:id="@+id/pageTitle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/spacing_medium_more"
+			android:textAlignment="center"
+			android:textSize="@dimen/font_big"
+			app:layout_constraintBottom_toTopOf="@id/pageBody"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/searchButton"
+			tools:text="Titulo de la página" />
 
-	<TextView
-		android:id="@+id/vWoloxTitle"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="@dimen/spacing_medium_more"
-		android:gravity="bottom|center_horizontal"
-		android:text="@string/example_wolox"
-		android:textSize="@dimen/font_medium_extra"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/vPageBody"
-		app:layout_constraintVertical_bias="1" />
+		<TextView
+			android:id="@+id/pageBody"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/spacing_medium_more"
+			android:textAlignment="center"
+			android:textSize="@dimen/font_medium_extra"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/pageTitle"
+			tools:text="Descripción de la página" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+		<TextView
+			android:id="@+id/woloxTitle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/spacing_medium_more"
+			android:gravity="bottom|center_horizontal"
+			android:text="@string/example_wolox"
+			android:textSize="@dimen/font_medium_extra"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/pageBody"
+			app:layout_constraintVertical_bias="1" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

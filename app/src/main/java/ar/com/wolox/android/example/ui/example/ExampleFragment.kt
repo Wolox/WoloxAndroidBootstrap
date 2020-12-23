@@ -2,13 +2,13 @@ package ar.com.wolox.android.example.ui.example
 
 import androidx.core.widget.addTextChangedListener
 import ar.com.wolox.android.R
+import ar.com.wolox.android.databinding.FragmentExampleBinding
 import ar.com.wolox.android.example.ui.viewpager.ViewPagerActivity
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import ar.com.wolox.wolmo.core.util.openBrowser
 import ar.com.wolox.wolmo.core.util.openDial
-import kotlinx.android.synthetic.main.fragment_example.*
 
-class ExampleFragment private constructor() : WolmoFragment<ExamplePresenter>(), ExampleView {
+class ExampleFragment private constructor() : WolmoFragment<FragmentExampleBinding, ExamplePresenter>(), ExampleView {
 
     override fun layout() = R.layout.fragment_example
 
@@ -16,16 +16,18 @@ class ExampleFragment private constructor() : WolmoFragment<ExamplePresenter>(),
     }
 
     override fun setListeners() {
-        vUsernameInput.addTextChangedListener { presenter.onUsernameInputChanged(it.toString()) }
-        vWoloxLink.setOnClickListener { presenter.onWoloxLinkClicked() }
-        vWoloxPhone.setOnClickListener { presenter.onWoloxPhoneClicked() }
-        vLoginButton.setOnClickListener {
-            presenter.onLoginButtonClicked(vUsernameInput.text.toString(), vFavouriteColorInput.text.toString())
+        binding!!.run {
+            usernameInput.addTextChangedListener { presenter.onUsernameInputChanged(it.toString()) }
+            woloxLink.setOnClickListener { presenter.onWoloxLinkClicked() }
+            woloxPhone.setOnClickListener { presenter.onWoloxPhoneClicked() }
+            loginButton.setOnClickListener {
+                presenter.onLoginButtonClicked(usernameInput.text.toString(), favouriteColorInput.text.toString())
+            }
         }
     }
 
     override fun toggleLoginButtonEnable(isEnable: Boolean) {
-        vLoginButton.isEnabled = isEnable
+        binding!!.loginButton.isEnabled = isEnable
     }
 
     override fun goToViewPager(favouriteColor: String) = ViewPagerActivity.start(requireContext(), favouriteColor)
