@@ -9,6 +9,6 @@ class ExampleActivity : WolmoActivity<ActivityBaseBinding>() {
     override fun layout() = R.layout.activity_base
 
     override fun init() {
-        replaceFragment(binding!!.activityBaseContent.id, ExampleFragment.newInstance())
+        replaceFragment(binding.activityBaseContent.id, ExampleFragment.newInstance())
     }
 }

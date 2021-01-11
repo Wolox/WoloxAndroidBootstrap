@@ -13,10 +13,10 @@ class RandomFragment @Inject constructor() : WolmoFragment<FragmentRandomBinding
     }
 
     override fun setListeners() {
-        binding!!.randomizeButton.setOnClickListener { presenter.onRandomizeButtonClicked() }
+        binding.randomizeButton.setOnClickListener { presenter.onRandomizeButtonClicked() }
     }
 
     override fun setRandom(someNumber: Int) {
-        binding!!.message.text = getString(R.string.example_message, someNumber)
+        binding.message.text = getString(R.string.example_message, someNumber)
     }
 }

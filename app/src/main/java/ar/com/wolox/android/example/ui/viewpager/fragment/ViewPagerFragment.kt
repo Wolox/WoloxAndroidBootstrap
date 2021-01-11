@@ -27,7 +27,7 @@ class ViewPagerFragment private constructor() : WolmoFragment<FragmentViewpagerB
     override fun handleArguments(arguments: Bundle?) = arguments?.containsKey(FAVOURITE_COLOR_KEY)
 
     override fun init() {
-        binding!!.viewPager.adapter = SimpleFragmentPagerAdapter(childFragmentManager).apply {
+        binding.viewPager.adapter = SimpleFragmentPagerAdapter(childFragmentManager).apply {
             addFragments(
                 randomFragment.get() to "Page 1",
                 requestFragment to "Page 2")
@@ -36,7 +36,7 @@ class ViewPagerFragment private constructor() : WolmoFragment<FragmentViewpagerB
     }
 
     override fun setListeners() {
-        binding!!.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
@@ -49,7 +49,7 @@ class ViewPagerFragment private constructor() : WolmoFragment<FragmentViewpagerB
     }
 
     override fun showUserAndFavouriteColor(username: String, favouriteColor: String) {
-        binding!!.viewPagerTitle.text = resources.getString(R.string.view_pager_title, username, favouriteColor)
+        binding.viewPagerTitle.text = resources.getString(R.string.view_pager_title, username, favouriteColor)
     }
 
     override fun setToolbarTitle(title: ViewPagerToolbarTitle) {
@@ -57,7 +57,7 @@ class ViewPagerFragment private constructor() : WolmoFragment<FragmentViewpagerB
             ViewPagerToolbarTitle.RANDOM -> R.string.random_toolbar_title
             ViewPagerToolbarTitle.REQUEST -> R.string.request_toolbar_title
         }
-        binding!!.toolbar.setTitle(titleRes)
+        binding.toolbar.setTitle(titleRes)
     }
 
     companion object {

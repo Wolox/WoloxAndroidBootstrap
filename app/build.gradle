@@ -101,7 +101,7 @@ buildscript {
     ext.androidx_material_version = '1.2.0-alpha03'
     ext.constraint_version = '2.0.0-beta4'
     ext.dagger_version = '2.28.1'
-    ext.wolmo_core_version = '4.1.0'
+    ext.wolmo_core_version = '4.1.1'
     ext.wolmo_networking_version = '4.0.1'
     ext.leak_canary_version = '1.6.2'
     ext.chuck_version = '1.1.0'
@@ -121,7 +121,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Wolmo
-    implementation "com.github.Wolox:wolmo-core-android:$wolmo_core_version"
+    implementation "com.github.Wolox:wolmo-core-android:4.1.1"
     implementation "com.github.Wolox:wolmo-networking-android:$wolmo_networking_version"
 
     // Android libraries

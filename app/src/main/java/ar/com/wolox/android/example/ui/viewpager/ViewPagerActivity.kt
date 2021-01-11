@@ -17,7 +17,7 @@ class ViewPagerActivity @Inject constructor() : WolmoActivity<ActivityBaseBindin
     override fun handleArguments(arguments: Bundle?) = arguments?.containsKey(FAVOURITE_COLOR_KEY)
 
     override fun init() {
-        replaceFragment(binding!!.activityBaseContent.id, ViewPagerFragment.newInstance(requireArgument(FAVOURITE_COLOR_KEY)))
+        replaceFragment(binding.activityBaseContent.id, ViewPagerFragment.newInstance(requireArgument(FAVOURITE_COLOR_KEY)))
     }
 
     companion object {

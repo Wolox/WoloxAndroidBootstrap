@@ -16,15 +16,15 @@ class RequestFragment @Inject constructor() : WolmoFragment<FragmentRequestBindi
     }
 
     override fun setListeners() {
-        binding!!.searchButton.setOnClickListener { presenter.onSearchRequested(binding!!.idInput.text.toString().toIntOrNull()) }
+        binding.searchButton.setOnClickListener { presenter.onSearchRequested(binding.idInput.text.toString().toIntOrNull()) }
     }
 
     override fun setTitle(title: String) {
-        binding!!.pageTitle.text = title
+        binding.pageTitle.text = title
     }
 
     override fun setBody(body: String) {
-        binding!!.pageBody.text = body
+        binding.pageBody.text = body
     }
 
     override fun showInvalidInput() = toastFactory.show(R.string.fragment_request_invalid_input)

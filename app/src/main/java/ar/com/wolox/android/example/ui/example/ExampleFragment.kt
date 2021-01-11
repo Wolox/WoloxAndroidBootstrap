@@ -16,7 +16,7 @@ class ExampleFragment private constructor() : WolmoFragment<FragmentExampleBindi
     }
 
     override fun setListeners() {
-        binding!!.run {
+        with(binding) {
             usernameInput.addTextChangedListener { presenter.onUsernameInputChanged(it.toString()) }
             woloxLink.setOnClickListener { presenter.onWoloxLinkClicked() }
             woloxPhone.setOnClickListener { presenter.onWoloxPhoneClicked() }
@@ -27,7 +27,7 @@ class ExampleFragment private constructor() : WolmoFragment<FragmentExampleBindi
     }
 
     override fun toggleLoginButtonEnable(isEnable: Boolean) {
-        binding!!.loginButton.isEnabled = isEnable
+        binding.loginButton.isEnabled = isEnable
     }
 
     override fun goToViewPager(favouriteColor: String) = ViewPagerActivity.start(requireContext(), favouriteColor)
