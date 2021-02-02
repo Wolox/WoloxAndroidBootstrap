@@ -1,12 +1,12 @@
 package ar.com.wolox.android.example.ui.viewpager.request
 
 import ar.com.wolox.android.R
+import ar.com.wolox.android.databinding.FragmentRequestBinding
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import ar.com.wolox.wolmo.core.util.ToastFactory
-import kotlinx.android.synthetic.main.fragment_request.*
 import javax.inject.Inject
 
-class RequestFragment @Inject constructor() : WolmoFragment<RequestPresenter>(), RequestView {
+class RequestFragment @Inject constructor() : WolmoFragment<FragmentRequestBinding, RequestPresenter>(), RequestView {
 
     @Inject internal lateinit var toastFactory: ToastFactory
 
@@ -16,15 +16,15 @@ class RequestFragment @Inject constructor() : WolmoFragment<RequestPresenter>(),
     }
 
     override fun setListeners() {
-        vSearchButton.setOnClickListener { presenter.onSearchRequested(vIdInput.text.toString().toIntOrNull()) }
+        binding.searchButton.setOnClickListener { presenter.onSearchRequested(binding.idInput.text.toString().toIntOrNull()) }
     }
 
     override fun setTitle(title: String) {
-        vPageTitle.text = title
+        binding.pageTitle.text = title
     }
 
     override fun setBody(body: String) {
-        vPageBody.text = body
+        binding.pageBody.text = body
     }
 
     override fun showInvalidInput() = toastFactory.show(R.string.fragment_request_invalid_input)

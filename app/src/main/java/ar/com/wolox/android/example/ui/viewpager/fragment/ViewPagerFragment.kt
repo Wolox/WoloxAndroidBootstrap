@@ -4,16 +4,16 @@ import android.os.Bundle
 import androidx.core.os.bundleOf
 import androidx.viewpager.widget.ViewPager
 import ar.com.wolox.android.R
+import ar.com.wolox.android.databinding.FragmentViewpagerBinding
 import ar.com.wolox.android.example.ui.viewpager.random.RandomFragment
 import ar.com.wolox.android.example.ui.viewpager.request.RequestFragment
 import ar.com.wolox.android.example.utils.Extras.ViewPager.FAVOURITE_COLOR_KEY
 import ar.com.wolox.wolmo.core.adapter.viewpager.SimpleFragmentPagerAdapter
 import ar.com.wolox.wolmo.core.fragment.WolmoFragment
 import dagger.Lazy
-import kotlinx.android.synthetic.main.fragment_viewpager.*
 import javax.inject.Inject
 
-class ViewPagerFragment private constructor() : WolmoFragment<ViewPagerPresenter>(), ViewPagerView {
+class ViewPagerFragment private constructor() : WolmoFragment<FragmentViewpagerBinding, ViewPagerPresenter>(), ViewPagerView {
 
     // Lazy example, a lazy injection does not build the dependencies until #get() is called
     @Inject
@@ -27,7 +27,7 @@ class ViewPagerFragment private constructor() : WolmoFragment<ViewPagerPresenter
     override fun handleArguments(arguments: Bundle?) = arguments?.containsKey(FAVOURITE_COLOR_KEY)
 
     override fun init() {
-        vViewPager.adapter = SimpleFragmentPagerAdapter(childFragmentManager).apply {
+        binding.viewPager.adapter = SimpleFragmentPagerAdapter(childFragmentManager).apply {
             addFragments(
                 randomFragment.get() to "Page 1",
                 requestFragment to "Page 2")
@@ -36,7 +36,7 @@ class ViewPagerFragment private constructor() : WolmoFragment<ViewPagerPresenter
     }
 
     override fun setListeners() {
-        vViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
@@ -49,7 +49,7 @@ class ViewPagerFragment private constructor() : WolmoFragment<ViewPagerPresenter
     }
 
     override fun showUserAndFavouriteColor(username: String, favouriteColor: String) {
-        vViewPagerTitle.text = resources.getString(R.string.view_pager_title, username, favouriteColor)
+        binding.viewPagerTitle.text = resources.getString(R.string.view_pager_title, username, favouriteColor)
     }
 
     override fun setToolbarTitle(title: ViewPagerToolbarTitle) {
@@ -57,7 +57,7 @@ class ViewPagerFragment private constructor() : WolmoFragment<ViewPagerPresenter
             ViewPagerToolbarTitle.RANDOM -> R.string.random_toolbar_title
             ViewPagerToolbarTitle.REQUEST -> R.string.request_toolbar_title
         }
-        vToolbar.setTitle(titleRes)
+        binding.toolbar.setTitle(titleRes)
     }
 
     companion object {

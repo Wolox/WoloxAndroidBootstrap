@@ -1,47 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:padding="@dimen/spacing_large">
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 
-	<TextView
-		android:id="@+id/vMessage"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="@dimen/spacing_medium_more"
-		android:gravity="center"
-		android:text="@string/example_random_description"
-		android:textSize="@dimen/font_medium_extra"
-		app:layout_constraintBottom_toTopOf="@id/vRandomizeButton"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_chainStyle="packed" />
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:padding="@dimen/spacing_large">
 
-	<Button
-		android:id="@+id/vRandomizeButton"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="@dimen/spacing_medium_more"
-		android:text="@string/example_randomize"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/vMessage" />
+		<TextView
+			android:id="@+id/message"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/spacing_medium_more"
+			android:gravity="center"
+			android:text="@string/example_random_description"
+			android:textSize="@dimen/font_medium_extra"
+			app:layout_constraintBottom_toTopOf="@id/randomizeButton"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_chainStyle="packed" />
 
-	<TextView
-		android:id="@+id/vWoloxTitle"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="@dimen/spacing_medium_more"
-		android:gravity="bottom|center_horizontal"
-		android:text="@string/example_wolox"
-		android:textSize="@dimen/font_medium_extra"
-		app:layout_constraintBottom_toBottomOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@id/vRandomizeButton"
-		app:layout_constraintVertical_bias="1" />
+		<Button
+			android:id="@+id/randomizeButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/spacing_medium_more"
+			android:text="@string/example_randomize"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/message" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+		<TextView
+			android:id="@+id/woloxTitle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/spacing_medium_more"
+			android:gravity="bottom|center_horizontal"
+			android:text="@string/example_wolox"
+			android:textSize="@dimen/font_medium_extra"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/randomizeButton"
+			app:layout_constraintVertical_bias="1" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
