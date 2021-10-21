@@ -105,10 +105,10 @@ buildscript {
     ext.wolmo_networking_version = '4.0.1'
     ext.leak_canary_version = '1.6.2'
     ext.chuck_version = '1.1.0'
-    ext.powermock_version = '1.7.0'
+//    ext.powermock_version = '1.7.0'
     ext.okhhtp_login_interceptor_version = '4.7.2'
     ext.junit_version = '4.13'
-    ext.mockito_inline_version = '2.13.0'
+//    ext.mockito_inline_version = '2.13.0'
     ext.assertj_version = '3.9.0'
     ext.android_ktx_version = '1.1.0'
     ext.mockito_kotlin_version = "2.2.0"
@@ -121,7 +121,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Wolmo
-    implementation "com.github.Wolox:wolmo-core-android:4.1.1"
+    implementation "com.github.Wolox:wolmo-core-android:$wolmo_core_version"
     implementation "com.github.Wolox:wolmo-networking-android:$wolmo_networking_version"
 
     // Android libraries
