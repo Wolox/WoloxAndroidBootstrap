@@ -5,16 +5,16 @@ import ar.com.wolox.android.example.network.repository.PostRepository
 import ar.com.wolox.wolmo.core.tests.CoroutineTestRule
 import ar.com.wolox.wolmo.core.tests.WolmoPresenterTest
 import ar.com.wolox.wolmo.networking.retrofit.handler.NetworkResponse
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.times
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.mock
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.times
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 import retrofit2.Response
 
 @ExperimentalCoroutinesApi
