@@ -1,10 +1,8 @@
 package ar.com.wolox.android.example.ui.viewpager
 
 import ar.com.wolox.android.example.ui.viewpager.fragment.ViewPagerFragment
-
 import ar.com.wolox.android.example.ui.viewpager.random.RandomFragment
 import ar.com.wolox.android.example.ui.viewpager.request.RequestFragment
-
 import dagger.Binds
 import dagger.Module
 import dagger.android.AndroidInjector

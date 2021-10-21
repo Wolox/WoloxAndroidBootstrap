@@ -2,7 +2,6 @@ package ar.com.wolox.android.example.utils
 
 import ar.com.wolox.wolmo.core.di.scopes.ApplicationScope
 import ar.com.wolox.wolmo.core.util.SharedPreferencesManager
-
 import javax.inject.Inject
 
 @ApplicationScope
