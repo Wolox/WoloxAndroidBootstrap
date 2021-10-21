@@ -111,7 +111,7 @@ buildscript {
 //    ext.mockito_inline_version = '2.13.0'
     ext.assertj_version = '3.9.0'
     ext.android_ktx_version = '1.1.0'
-    ext.mockito_kotlin_version = "2.2.0"
+    ext.mockito_kotlin_version = "3.2.0"
 }
 
 dependencies {
@@ -147,7 +147,7 @@ dependencies {
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.assertj:assertj-core:$assertj_version"
     testImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito_kotlin_version"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockito_kotlin_version"
 
     // Android KTX
     implementation "androidx.core:core-ktx:$android_ktx_version"
