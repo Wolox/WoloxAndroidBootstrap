@@ -7,22 +7,13 @@ import ar.com.wolox.wolmo.networking.di.DaggerNetworkingComponent
 import ar.com.wolox.wolmo.networking.di.NetworkingComponent
 import com.google.gson.FieldNamingPolicy
 import com.readystatesoftware.chuck.ChuckInterceptor
-import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 
 class BootstrapApplication : WolmoApplication() {
 
-    override fun onInit() {
-        // Initialize Application stuff here
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return
-        }
-        LeakCanary.install(this)
-    }
+    override fun onInit() {}
 
     override fun applicationInjector(): AndroidInjector<BootstrapApplication> {
         return DaggerAppComponent.builder().networkingComponent(buildDaggerNetworkingComponent())
