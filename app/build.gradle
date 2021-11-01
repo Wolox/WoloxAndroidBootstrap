@@ -17,7 +17,6 @@ idea {
 
 android {
     compileSdkVersion 29
-    buildToolsVersion '29.0.2'
 
     defaultConfig {
         applicationId "ar.com.wolox.android.example"
@@ -118,8 +117,12 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // Wolmo
-    implementation "com.github.Wolox:wolmo-core-android:$wolmo_core_version"
-    implementation "com.github.Wolox:wolmo-networking-android:$wolmo_networking_version"
+    implementation("com.github.Wolox:wolmo-core-android:$wolmo_core_version") {
+        exclude group: 'org.jetbrains.kotlinx', module: 'kotlinx-coroutines-debug'
+    }
+    implementation("com.github.Wolox:wolmo-networking-android:$wolmo_networking_version") {
+        exclude group: 'org.jetbrains.kotlinx', module: 'kotlinx-coroutines-debug'
+    }
 
     // Android KTX
     implementation "androidx.core:core-ktx:$android_core_ktx_version"
