@@ -38,10 +38,10 @@ android {
             keyPassword 'android'
         }
         release {
-            storeFile release_keystore
-            storePassword store_password
-            keyAlias key_alias
-            keyPassword key_password
+            storeFile file('keystore/debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
         }
     }
 
@@ -112,6 +112,11 @@ buildscript {
     ext.assertj_version = '3.9.0'
     ext.android_ktx_version = '1.1.0'
     ext.mockito_kotlin_version = "2.2.0"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
 }
 
 dependencies {
