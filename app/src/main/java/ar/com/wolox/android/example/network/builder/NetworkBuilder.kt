@@ -24,4 +24,4 @@ class NetworkBuilder<T> {
 }
 
 inline fun <T> networkRequest(response: NetworkResponse<Response<T>>, block: NetworkBuilder<T>.() -> Unit) =
-        NetworkBuilder<T>().apply(block).build(response)
+    NetworkBuilder<T>().apply(block).build(response)

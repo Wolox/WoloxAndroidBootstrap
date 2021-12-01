@@ -14,9 +14,13 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 
 @ApplicationScope
-@Component(dependencies = [NetworkingComponent::class],
-        modules = [AndroidSupportInjectionModule::class, DefaultModule::class, ContextModule::class,
-            ExampleModule::class, ViewPagerActivityModule::class])
+@Component(
+    dependencies = [NetworkingComponent::class],
+    modules = [
+        AndroidSupportInjectionModule::class, DefaultModule::class, ContextModule::class,
+        ExampleModule::class, ViewPagerActivityModule::class
+    ]
+)
 interface AppComponent : AndroidInjector<BootstrapApplication> {
 
     @Component.Builder
